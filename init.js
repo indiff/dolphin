@@ -32,10 +32,11 @@ arr.add('http://minisite.qq.com/others8', 'MiniSite');
 arr.add('javascript:(void(function(){alert(document.links.length - ' + (arr.length + 1) + ');})())', 'links-length');
 s.innerHTML = arr.join('');
 // set style.
-s.style.backgroundColor = '#CCCCCC';
+s.style.backgroundColor = '#FF99FF';
 s.style.position = 'absolute';
 s.style.left = document.body.scrollLeft;
 s.style.top = document.body.scrollTop;
+s.style.color ='red';
 s.style.cursor = 'hand';
 s.style.margin = '5px';
 s.style.padding = '5px';
