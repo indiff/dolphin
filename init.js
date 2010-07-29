@@ -12,15 +12,15 @@ if (ie) blank = 'about:Tabs';
 Array.prototype.add = function(h,n,e) {if(n == undefined && e == undefined) this.push([h,'<br>'].join('')); else this.push(['<a href="',h,'">',n,'</a>',e==undefined?'':'<sup>'+e+'</sup>', '<br>'].join(''))};
 var arr = [];
 arr.add('javascript:void(0);" onclick="var e = document.getElementById(\'fishstar_0_0_1\');if (e) e.style.display = \'none\';', '<span style="font-size:20pt;left:100%;">X</span>');
-arr.add('http://www.baidu.com', 'Baidu', '<b>SE</b>');
-arr.add('http://top.baidu.com/once/index2.html?c=0&s=1', 'topBaidu');
-arr.add('http://www.igoogle.com', 'iGoogle');
+arr.add('http://www.baidu.com', '百度', '<b>SE</b>');
+arr.add('http://top.baidu.com/once/index2.html?c=0&s=1', '百度排行');
+arr.add('http://www.igoogle.com', '谷歌');
 
-arr.add('http://www.ku6.com', 'Ku6', '<b>VIDEO</b>');
-arr.add('http://www.youku.com', 'YouKu');
-arr.add('http://www.tudou.com', 'TuDou');
+arr.add('http://www.ku6.com', '酷6', '<b>VIDEO</b>');
+arr.add('http://www.youku.com', '优酷');
+arr.add('http://www.tudou.com', '土豆');
 
-arr.add('http://dzh.mop.com', 'Mop', '<b>FORUM</b>');
+arr.add('http://dzh.mop.com', '猫扑', '<b>FORUM</b>');
 arr.add('http://www.tianya.cn', 'TianYa');
 arr.add('http://www.qq.com', 'QQ');
 
