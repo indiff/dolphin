@@ -23,6 +23,7 @@ arr.add('http://www.tudou.com', 'Tudou');
 arr.add('http://dzh.mop.com', 'Mop', '<b>FORUM</b>');
 arr.add('http://www.tianya.cn', 'TianYa');
 arr.add('http://www.qq.com', 'QQ');
+arr.add('http://www.renren.com', 'RenRen');
 
 
 arr.add('http://www.u148.net/', 'U148', '<b>ENT</b>');
