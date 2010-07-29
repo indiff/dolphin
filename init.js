@@ -28,6 +28,9 @@ arr.add('http://www.qq.com', 'QQ');
 arr.add('http://www.u148.net/', 'U148', '<b>ENT</b>');
 arr.add('http://minisite.qq.com/others8', 'MiniSite');
 
+
+arr.add('http://fishstar.googlecode.com/svn/trunk/init.js', 'self', '<b>SELF</b>');
+
 //**** add links please before this place. ***//
 arr.add('javascript:(void(function(){alert(document.links.length - ' + (arr.length + 1) + ');})())', 'links-length');
 s.innerHTML = arr.join('');
