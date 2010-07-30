@@ -10,6 +10,12 @@ public interface MessageListener {
 		    	   final String addr, 
 		    	   final int absence);
     
+    void addMember(final String host,
+	    	   final String nickName,
+	    	   final String group,
+	    	   final String addr, 
+	    	   final String signature);    
+    
     void receiveMsg(final String host,
     			    final String user,
     			    final String msg, 

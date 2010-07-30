@@ -84,6 +84,18 @@ public class Messenger extends IPMessenger{
             ob_iterator = null;
         }
     }
+    
+    @Override
+	public void addMember(String host, String nickName, String group, String addr, int absence, String signature) {
+    	if (ob_messageListener != null){
+            // 保持しているメッセンジャリスナーすべてに通知
+            Iterator<MessageListener> ob_iterator = ob_messageListener.iterator();
+            while(ob_iterator.hasNext()){
+                ((MessageListener)ob_iterator.next()).addMember(host, nickName, group, addr, signature);
+            }
+            ob_iterator = null;
+        }
+	}    
     // メッセージ受信
     public void receiveMsg(String st_inHost,String st_inNickName,String st_inMsg, boolean in_boLock){
         if (ob_messageListener != null){
@@ -95,7 +107,9 @@ public class Messenger extends IPMessenger{
             ob_iterator = null;
         }
     }
-    // ユーザ削除
+
+
+	// ユーザ削除
     public void removeMember(String st_inHost){
         if (ob_messageListener != null){
             // 保持しているメッセンジャリスナーすべてに通知

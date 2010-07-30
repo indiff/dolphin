@@ -9,7 +9,15 @@ public class MessageAdapter implements MessageListener{
     		final String host,
     		final String user){};
     		
-    public void addMember(String host,
+    @Override
+	public void addMember(String host, 
+			String nickName, 
+			String group,
+			String addr, String signature) {
+		
+	}
+
+	public void addMember(String host,
     		String nickName,
     		String group,
     		String addr, 

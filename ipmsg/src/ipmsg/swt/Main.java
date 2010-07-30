@@ -52,6 +52,7 @@ public class Main {
     
     private String  userName;
     private String  groupName;
+    private String sign;
     private Messenger messenger;
     
 	private Tray tray;
@@ -63,6 +64,8 @@ public class Main {
 	private Properties properties;
 	private static final String PROPERTY_FILE = "ipmsg.properties";
     
+	
+	
 	/**
 	 * Constructor for Main.
 	 * 
@@ -105,6 +108,10 @@ public class Main {
 	    return this.debug;
 	}
 	
+	public String getSign() {
+		return this.sign;
+	}
+	
     /**
      * 設定用�?��アログを表示
      */
@@ -112,14 +119,17 @@ public class Main {
         
         SetupDialog dialog = new SetupDialog(shell);
         dialog.setInitValue(properties.getProperty("userName"),
-                            properties.getProperty("groupName"));
+                            properties.getProperty("groupName"),
+                            properties.getProperty("signature"));
         
         if(dialog.open()){  
         
             this.userName  = dialog.getUserName();
             this.groupName = dialog.getGroupName();
+            this.sign = dialog.getSign();
             this.properties.setProperty("userName" ,this.userName);
             this.properties.setProperty("groupName",this.groupName);
+            this.properties.setProperty("signature",this.sign);
             
             try {
                 // タスクトレイの準備
@@ -160,6 +170,7 @@ public class Main {
                 messenger = new Messenger(this.userName,
                 		this.userName,
                 		this.groupName,
+                		this.sign,
                 		this);
                 messenger.login();
                 messenger.start();
@@ -189,21 +200,28 @@ public class Main {
         
         SashForm sash = new SashForm(shell,SWT.VERTICAL);
         
-        table = new Table(sash,SWT.MULTI|SWT.FULL_SELECTION|SWT.BORDER);
+        table = new Table(sash, SWT.BORDER | SWT.V_SCROLL
+        		| SWT.FULL_SELECTION);
         table.setHeaderVisible(true);
-        String[] cols = {"用户","组名", "主机"};
+        table.setLinesVisible(true);
+        
+        String[] cols = {"用户","组名", "主机", "个性签名"};
 // 		TODO i18n.
 //      String[] cols = {"ユーザ","グルー�?,"ホス�?}; 
 		for (int i = 0; i < cols.length; i++) {
 			TableColumn col = new TableColumn(table, SWT.LEFT);
 			col.setText(cols[i]);
-			col.setWidth(100);
 			if (i == 0) {
 				col.addSelectionListener(new UserSortListener());
+				col.setWidth(60);
 			} else if (i == 1) {
 				col.addSelectionListener(new GroupSortListener());
+				col.setWidth(50);
 			} else if (i == 2) {
 				col.addSelectionListener(new HostSortListener());
+				col.setWidth(80);
+			} else {
+				col.setWidth(100);
 			}
 		}
         
@@ -260,16 +278,19 @@ public class Main {
      * @param groupName グループ名
      * @param host      ホスト名
      */
-    public void addMember(String userName,String groupName,String host){
+    public void addMember(final String userName,
+    					  final String groupName,
+    					  final String host,
+    					  final String signature){
         if(userName.equals(this.userName) && groupName.equals(this.groupName)){
             // 自�??�?��ばん上に挿入
 	        TableItem item = new TableItem(table,SWT.NULL,0);
-	        String[] data = {userName,groupName,host};
+	        String[] data = {userName,groupName,host, signature};
 	        item.setText(data);
         } else {
             // 自�?��外�?下に追�?
 	        TableItem item = new TableItem(table,SWT.NULL);
-	        String[] data = {userName,groupName,host};
+	        String[] data = {userName,groupName,host, signature};
 	        item.setText(data);
         }
     }
@@ -279,7 +300,7 @@ public class Main {
      * 
      * @param host ホスト名
      */
-    public void removeMember(String host){
+    public void removeMember(final String host){
         if(this.shell.isDisposed()){
             return;
         }
@@ -383,7 +404,10 @@ public class Main {
 			Arrays.sort(items,new UserComparator());
 			Vector<String[]> vec = new Vector<String[]>();
 			for(int i=0;i<items.length;i++){
-				String[] data = {items[i].getText(0),items[i].getText(1),items[i].getText(2)};
+				String[] data = {items[i].getText(0),
+						items[i].getText(1),
+						items[i].getText(2),
+						items[i].getText(3)};
 				vec.add(data);
 			}
 			
@@ -411,7 +435,7 @@ public class Main {
 			int spaceCount = 0;
 			int sameCount  = 1;
 			for(int i=0;i<items.length;i++){
-				String[] data = {items[i].getText(0),items[i].getText(1),items[i].getText(2)};
+				String[] data = {items[i].getText(0),items[i].getText(1),items[i].getText(2),items[i].getText(3)};
 				boolean regFlag = false;
 				if(i!=0 && data[1].equals(groupName) && !data[1].equals("")){
 					vec.insertElementAt(data,sameCount);
@@ -456,7 +480,8 @@ public class Main {
 			for(int i=0;i<items.length;i++){
 				String[] data = {items[i].getText(0),
 								 items[i].getText(1),
-							     items[i].getText(2)};
+							     items[i].getText(2),
+							     items[i].getText(3)};
 				vec.add(data);
 			}
 			

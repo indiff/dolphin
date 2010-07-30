@@ -16,6 +16,7 @@ public abstract class IPMessenger extends Thread {
     protected String  nickName;
     protected String  group;
     protected String  hostName;
+    protected String  signature;
     protected DatagramSocket socket;
     protected boolean absenceMode;
     protected String  absenceMsg;
@@ -64,6 +65,23 @@ public abstract class IPMessenger extends Thread {
         this.in_port     = Constants.PORT;
         this.debug       = debug;
     }
+    
+    public IPMessenger(final String userName,
+    		final String nickName,
+    		final String group,
+    		final String signature,
+    		final boolean debug) throws IOException {
+        this.userName    = userName;
+        this.nickName    = nickName;
+        this.group       = group;
+        this.hostName    = InetAddress.getLocalHost().getHostName();
+        this.absenceMode = false;
+        this.absenceMsg  = "";
+        this.socket      = new DatagramSocket(Constants.PORT);
+        this.in_port     = Constants.PORT;
+        this.debug       = debug;
+        this.signature	 = signature;
+    }    
 
     /**
      * ログインします。
@@ -143,6 +161,13 @@ public abstract class IPMessenger extends Thread {
     		final String group,
     		final String addr,
     		final int absence);
+    
+    public abstract void addMember(final String host,
+    		final String nickName,
+    		final String group,
+    		final String addr,
+    		final int absence,
+    		final String signature);
 
     /**
      * メンバー削除時にフックされるメソッドです。

@@ -25,11 +25,14 @@ public final  class SetupDialog {
 //    private Display display;
     private Text    userName;
     private Text    groupName;
+    private Text    signature;
     private Button  button;
     private String  user;
     private String  group;
+    private String sign;
     private boolean returnFlag = false;
     private Image image = ImageRegistry.getImage("icons/ipmsg16x16.gif");
+    
     
 	/**
 	 * Constructor for SetupDialog.
@@ -56,16 +59,21 @@ public final  class SetupDialog {
         Label label1 = new Label(shell,SWT.NULL);
 //         TODO i18n.
 //        label1.setText("ユーザ�?);
-        label1.setText("用户名");
+        label1.setText("用户名:");
         this.userName = new Text(shell,SWT.BORDER);
         this.userName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         
         Label label2 = new Label(shell,SWT.NULL);
 //         TODO i18n.
 //        label2.setText("グループ名");
-        label2.setText("组名");
+        label2.setText("组   名:");
         this.groupName = new Text(shell,SWT.BORDER);
         this.groupName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        
+        Label label3 = new Label(shell, SWT.NULL);
+        label3.setText("签   名:");
+        this.signature = new Text(shell,SWT.BORDER);
+        this.signature.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         
         GridData gridData = new GridData(GridData.HORIZONTAL_ALIGN_END);     
         gridData.horizontalSpan = 2;
@@ -73,7 +81,7 @@ public final  class SetupDialog {
         this.button = new Button(shell,SWT.NULL);
 //         TODO i18n.
 //        this.button.setText("ログイン");
-        this.button.setText("登录");
+        this.button.setText("   登     录  ");
         this.button.addSelectionListener(new LoginListener());
         this.button.setLayoutData(gridData);
         
@@ -93,12 +101,15 @@ public final  class SetupDialog {
      * @param userName  ユーザ�?
      * @param groupName グループ名
      */
-    public final void setInitValue(final String userName,final String groupName){
+    public final void setInitValue(final String userName,final String groupName, final String sign){
         if(userName!=null){
             this.userName.setText(userName);
         }
         if(groupName!=null){
             this.groupName.setText(groupName);
+        }
+        if (sign != null) {
+        	this.signature.setText(sign);
         }
     }
     
@@ -126,6 +137,11 @@ public final  class SetupDialog {
     public String getUserName(){
         return this.user;
     }
+    /**
+     * Get the signature.
+     * @return
+     */
+    public String getSign() {return sign;}
     
     /**
      * 入力されたグループ名を取得します�?
@@ -154,7 +170,15 @@ public final  class SetupDialog {
             returnFlag = true;
             user  = userName.getText();
             group = groupName.getText();
+            sign = signature.getText();
             shell.dispose();
         }
+    }
+    
+    public static void main(String[] args) {
+    	Display display = new Display();
+    	Shell shell = new Shell(display);
+    	SetupDialog dialog = new SetupDialog(shell);
+    	dialog.open();
     }
 }

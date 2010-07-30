@@ -37,6 +37,15 @@ public final class Messenger extends IPMessenger {
 		super(userName, nickName, group, main.getDebugMode());
         this.main = main;
 	}
+	
+	public Messenger(final String userName, 
+			 final String nickName, 
+			 final String group,
+			 final String signature,
+			 final Main main) throws IOException {
+		super(userName, nickName, group,signature, main.getDebugMode());
+		this.main = main;
+	}
 
 	public final void receiveMsg(final String host, 
 								 final String user, 
@@ -63,12 +72,29 @@ public final class Messenger extends IPMessenger {
 							  final String nickName,
 							  final String group,
 							  final String addr,
-							  final int absence) {
+							  final int absence,
+							  final String signature) {
         if(hash.get(host)==null){
-            main.getShell().getDisplay().asyncExec(new RunnableAddMember(nickName,group,host));
+            main.getShell()
+	            .getDisplay()
+	            .asyncExec(new RunnableAddMember(nickName,group,host,signature));
             hash.put(host,nickName);
         }
 	}
+	public final void addMember(
+			  final String host,
+			  final String nickName,
+			  final String group,
+			  final String addr,
+			  final int absence) {
+		if (hash.get(host) == null) {
+			main.getShell()
+			.getDisplay()
+			.asyncExec(new RunnableAddMember(nickName, group, host, main.getSign()));
+			hash.put(host, nickName);
+	}
+	
+}	
 
 	public final void sendMsg(final String user, 
 			final String host, 
@@ -101,17 +127,26 @@ public final class Messenger extends IPMessenger {
         private String nickName;
         private String group;
         private String host;
+        private String signature;
         
         public RunnableAddMember(final String nickName,
         		final String group,
-        		final String host){
+        		final String host,
+        		final String signature){
             this.nickName = nickName;
             this.group    = group;
             this.host     = host;
+            if (signature == null || signature.trim().length() == 0) {
+            	this.signature= "这个人很懒什么也没留下!";
+            } else {
+            	this.signature= signature;
+            }
         }
         
+              
+        
         public void run(){
-            main.addMember(nickName,group,host);
+            main.addMember(nickName,group,host, signature);
         }
     }
     
