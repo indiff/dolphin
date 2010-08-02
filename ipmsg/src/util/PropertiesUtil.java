@@ -35,6 +35,8 @@ public class PropertiesUtil {
 		}
 	}
 	
+	private PropertiesUtil(){}
+	
 	public static String get(final String key) {
 		return properties.getProperty(key);
 	}
