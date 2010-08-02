@@ -41,16 +41,20 @@ public class PropertiesUtil {
 	
 	public static String getEncoding() {
 		String encoding = get("encoding");
-		if (encoding == null)
+		if (encoding == null){
+			properties.put("encoding", "utf-8");
 			return "utf-8";
+		}
 		else
 			return encoding;
 	}
 	
 	public static int getPort() {
 		String port = get("port");
-		if (port == null) return 2426;
-		else {
+		if (port == null) {
+			properties.put("port", "2426");
+			return 2426;
+		} else {
 			return Integer.parseInt(port);
 		}
 	}
