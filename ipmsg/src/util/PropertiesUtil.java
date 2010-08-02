@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class PropertiesUtil {
+public final class PropertiesUtil {
 	private static Properties properties = new Properties();
 	
 	static {
