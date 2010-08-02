@@ -1,11 +1,10 @@
 package ipmsg.swt;
 
 
-import java.io.File;
-import java.io.FileInputStream;
+import static ipmsg.Constants.PROPERTY_FILE;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -35,8 +34,6 @@ import org.eclipse.swt.widgets.Tray;
 import org.eclipse.swt.widgets.TrayItem;
 
 import util.PropertiesUtil;
-
-import static ipmsg.Constants.*;
 
 /**
  * SWT�?P Messengerのメインクラス�?

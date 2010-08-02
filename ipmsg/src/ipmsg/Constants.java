@@ -47,9 +47,9 @@ public final class Constants {
     public static final int IPMSG_SECRETOPT    = 0x00000200;
     public static final int IPMSG_BROADCASTOPT = 0x00000400;
     public static final int IPMSG_MULTICASTOPT = 0x00000800;
-    public static final int IPMSG_NOPOPUPOPT   = 0x00001000;
-    public static final int IPMSG_AUTORETOPT   = 0x00002000;
-    public static final int IPMSG_RETRYOPT     = 0x00004000;
+    public static final int IPMSG_NOPOPUPOPT   = 0x00002000;
+    public static final int IPMSG_RETRYOPT     = 0x00001000;
+    public static final int IPMSG_AUTORETOPT   = 0x00004000;
     public static final int IPMSG_PASSWORDOPT  = 0x00008000;
     public static final int IPMSG_NOLOGOPT     = 0x00020000;
     public static final int IPMSG_NEWMUTIOPT   = 0x00040000;
