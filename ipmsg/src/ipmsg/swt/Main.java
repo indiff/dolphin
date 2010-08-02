@@ -34,6 +34,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tray;
 import org.eclipse.swt.widgets.TrayItem;
 
+import util.PropertiesUtil;
+
 import static ipmsg.Constants.*;
 
 /**
@@ -82,27 +84,8 @@ public class Main {
 		this.useTray = useTray;
 		this.debug   = debug;
 		
-		this.properties = new Properties();
-		InputStream in = null;
-		File file = new File(PROPERTY_FILE);
-		try {
-			if (file.exists() && file.isFile()){
-				in = new FileInputStream(file);
-		    	this.properties.load(in);
-			} else {
-				System.err.println(file.getAbsolutePath() + " not found!");
-			}
-		} catch(IOException ex){
-		    ex.printStackTrace();
-		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} in = null;
-			}
-		}
+		this.properties = PropertiesUtil.loadProperties();
+		
 		initComponents();
 	}
     
@@ -155,9 +138,7 @@ public class Main {
 	        			    trayItem.setVisible(true);
 	                    }
 	                });
-	              
                 }
-                
                 
         		// メイン�?��アログを開�?
                 open();

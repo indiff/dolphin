@@ -1,16 +1,13 @@
 package ipmsg;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Properties;
-import static ipmsg.Constants.*;
+
+import util.PropertiesUtil;
 
 /**
  * @author Naoki Takezoe
@@ -33,8 +30,7 @@ public abstract class IPMessenger extends Thread {
     private HashMap<String,String> userNames = new HashMap<String,String>();
     
     /** 送受信に使用する文字コード */
-    private String charset = loadEncoding();
-    private Properties properties ;
+    private String charset = PropertiesUtil.getEncoding();
     
     /**
      * デフォルトのコンストラクタ。
@@ -42,37 +38,6 @@ public abstract class IPMessenger extends Thread {
     public IPMessenger(){
     }
     
-    private String loadEncoding() {
-    	this.properties = new Properties();
-		InputStream in = null;
-		File file = new File(PROPERTY_FILE);
-		try {
-			if (file.exists() && file.isFile()){
-				in = new FileInputStream(file);
-		    	this.properties.load(in);
-			} else {
-				System.err.println(file.getAbsolutePath() + " not found!");
-			}
-		} catch(IOException ex){
-		    ex.printStackTrace();
-		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} in = null;
-			}
-		}
-		String encoding = (String) properties.get("encoding");
-		if (encoding == null) {
-			charset = "utf-8";
-			properties.put("encoding", "utf-8");
-		} else {
-			charset = encoding;
-		}
-		return encoding;
-	}
 
 	/** デバッグモードがtrueのとき標準出力にデバッグメッセージを出力します。*/ 
     protected void debugMessage(final String message){

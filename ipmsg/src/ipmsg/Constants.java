@@ -1,5 +1,7 @@
 package ipmsg;
 
+import util.PropertiesUtil;
+
 /**
  * IPMessengerクラスで用いる定数を定義します。
  * 
@@ -57,7 +59,8 @@ public final class Constants {
     
     // Private constants
 //	public static final int PORT         = 2426;
-	public static final int PORT         = 2425;
+//	public static final int PORT         = 2425;
+	public static final int PORT         = PropertiesUtil.getPort();
     public static final int BUFSIZE      = 8192;
     public static final int PROTOCOL_VER = 1;
 
