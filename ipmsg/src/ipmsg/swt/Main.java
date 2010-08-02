@@ -34,6 +34,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tray;
 import org.eclipse.swt.widgets.TrayItem;
 
+import static ipmsg.Constants.*;
+
 /**
  * SWT�?P Messengerのメインクラス�?
  * 
@@ -62,7 +64,7 @@ public class Main {
 	private boolean debug;
 	
 	private Properties properties;
-	private static final String PROPERTY_FILE = "ipmsg.properties";
+	
     
 	
 	

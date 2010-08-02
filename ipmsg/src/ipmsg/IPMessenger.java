@@ -1,11 +1,16 @@
 package ipmsg;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Properties;
+import static ipmsg.Constants.*;
 
 /**
  * @author Naoki Takezoe
@@ -28,7 +33,8 @@ public abstract class IPMessenger extends Thread {
     private HashMap<String,String> userNames = new HashMap<String,String>();
     
     /** 送受信に使用する文字コード */
-    private static String CHARSET = "utf-8";
+    private String charset = loadEncoding();
+    private Properties properties ;
     
     /**
      * デフォルトのコンストラクタ。
@@ -36,7 +42,39 @@ public abstract class IPMessenger extends Thread {
     public IPMessenger(){
     }
     
-    /** デバッグモードがtrueのとき標準出力にデバッグメッセージを出力します。*/ 
+    private String loadEncoding() {
+    	this.properties = new Properties();
+		InputStream in = null;
+		File file = new File(PROPERTY_FILE);
+		try {
+			if (file.exists() && file.isFile()){
+				in = new FileInputStream(file);
+		    	this.properties.load(in);
+			} else {
+				System.err.println(file.getAbsolutePath() + " not found!");
+			}
+		} catch(IOException ex){
+		    ex.printStackTrace();
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} in = null;
+			}
+		}
+		String encoding = (String) properties.get("encoding");
+		if (encoding == null) {
+			charset = "utf-8";
+			properties.put("encoding", "utf-8");
+		} else {
+			charset = encoding;
+		}
+		return encoding;
+	}
+
+	/** デバッグモードがtrueのとき標準出力にデバッグメッセージを出力します。*/ 
     protected void debugMessage(final String message){
         if(debug){
             System.out.println(message);
@@ -156,18 +194,13 @@ public abstract class IPMessenger extends Thread {
      * @param addr
      * @param absence
      */
-    public abstract void addMember(final String host,
-    		final String nickName,
-    		final String group,
-    		final String addr,
-    		final int absence);
     
     public abstract void addMember(final String host,
     		final String nickName,
     		final String group,
     		final String addr,
-    		final int absence,
-    		final String signature);
+    		final String signature,
+    		final int absence);
 
     /**
      * メンバー削除時にフックされるメソッドです。
@@ -223,7 +256,7 @@ public abstract class IPMessenger extends Thread {
     		final String host,
     		final int port) throws IOException {
         String message = msg;
-        byte[] byteMsg = message.getBytes(CHARSET);
+        byte[] byteMsg = message.getBytes(charset);
         DatagramPacket packet = new DatagramPacket(byteMsg,byteMsg.length,
                                                    InetAddress.getByName(host),port);
         socket.send(packet);
@@ -248,7 +281,9 @@ public abstract class IPMessenger extends Thread {
         sb.append(command);
         sb.append(":");
         sb.append(supplement);
-
+        sb.append(":");
+        sb.append(this.signature);
+        
         return sb.toString();
     }
 
@@ -257,7 +292,7 @@ public abstract class IPMessenger extends Thread {
      */
     private void broadcastMsg(final String msg) throws IOException {
         String message = msg;
-        byte[] byteMsg = message.getBytes(CHARSET);
+        byte[] byteMsg = message.getBytes(charset);
 
         DatagramPacket packet = new DatagramPacket(byteMsg,byteMsg.length,
                                                    InetAddress.getByName("255.255.255.255"),
@@ -305,7 +340,8 @@ public abstract class IPMessenger extends Thread {
     	/** パケットを処理します。*/
     	public void run(){
     		try {
-    			String message = new String(packet.getData(),CHARSET);
+    			// TODO operate the message.
+    			String message = new String(packet.getData(),charset);
     			debugMessage("[MSG]" + message.trim());
     			
                 String[] telegram = split(message,":");
@@ -332,15 +368,25 @@ public abstract class IPMessenger extends Thread {
                             dim[0] = telegram[2];
                         }
                         userNames.put(fromHost,dim[0]);
-                        addMember(fromHost, dim[0], dim[1], fromAddr,
-                                  Constants.IPMSG_ABSENCEOPT & command);
+                        if (telegram.length >= 7) {
+                        	 addMember(fromHost, dim[0], dim[1], fromAddr,telegram[6],
+                                     Constants.IPMSG_ABSENCEOPT & command);
+                        }  else {
+                        	addMember(fromHost, dim[0], dim[1], fromAddr,null,
+                        			Constants.IPMSG_ABSENCEOPT & command);
+                        }
                         break;
                     }
                     case Constants.IPMSG_BR_ENTRY: {
                         String[] dim = split(telegram[5], "\0");
                         userNames.put(fromHost,dim[0]);
-                        addMember(fromHost, dim[0], dim[1], fromAddr,
-                                  Constants.IPMSG_ABSENCEOPT & command);
+                        if (telegram.length >= 7) {
+                        	addMember(fromHost, dim[0], dim[1], fromAddr,telegram[6],
+                                    Constants.IPMSG_ABSENCEOPT & command);
+                        }  else {
+                        	addMember(fromHost, dim[0], dim[1], fromAddr,null,
+                       			Constants.IPMSG_ABSENCEOPT & command);
+                        }
                         if (absenceMode) {
                             send(makeTelegram(Constants.IPMSG_ANSENTRY | Constants.IPMSG_ABSENCEOPT,
                                               nickName + absenceMsg + "\0" + group), fromAddr, fromPort);
@@ -388,8 +434,13 @@ public abstract class IPMessenger extends Thread {
                     }
                     case Constants.IPMSG_BR_ABSENCE: {
                         String[] dim = split(telegram[5], "\0");
-                        addMember(fromHost, dim[0], dim[1], fromAddr,
-                                  Constants.IPMSG_ABSENCEOPT & command);
+                        if (telegram.length >= 7) {
+                        	addMember(fromHost, dim[0], dim[1], fromAddr,telegram[6],
+                                    Constants.IPMSG_ABSENCEOPT & command);
+                        }  else {
+                        	addMember(fromHost, dim[0], dim[1], fromAddr,null,
+                       			Constants.IPMSG_ABSENCEOPT & command);
+                        }
                         break;
                     }
 

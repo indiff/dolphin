@@ -79,19 +79,30 @@ public class Messenger extends IPMessenger{
             // 保持しているメッセンジャリスナーすべてに通知
             Iterator<MessageListener> ob_iterator = ob_messageListener.iterator();
             while(ob_iterator.hasNext()){
-                ((MessageListener)ob_iterator.next()).addMember(st_inHost,st_inNickName,st_inGroup,st_inAddr,in_inAbsence);
+//                ((MessageListener)ob_iterator.next())
+//                .addMember(st_inHost,st_inNickName,st_inGroup,st_inAddr,in_inAbsence);
             }
             ob_iterator = null;
         }
     }
     
     @Override
-	public void addMember(String host, String nickName, String group, String addr, int absence, String signature) {
+	public void addMember(final String host, 
+			final String nickName, 
+			final String group, 
+			final String addr, 
+			final String signature, 
+			final int absence) {
     	if (ob_messageListener != null){
             // 保持しているメッセンジャリスナーすべてに通知
             Iterator<MessageListener> ob_iterator = ob_messageListener.iterator();
             while(ob_iterator.hasNext()){
-                ((MessageListener)ob_iterator.next()).addMember(host, nickName, group, addr, signature);
+                ((MessageListener)ob_iterator.next()).addMember(
+                		host, 
+                		nickName, 
+                		group, 
+                		addr, 
+                		signature);
             }
             ob_iterator = null;
         }

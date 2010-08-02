@@ -72,8 +72,9 @@ public final class Messenger extends IPMessenger {
 							  final String nickName,
 							  final String group,
 							  final String addr,
-							  final int absence,
-							  final String signature) {
+							  final String signature,
+							  final int absence
+							 ) {
         if(hash.get(host)==null){
             main.getShell()
 	            .getDisplay()

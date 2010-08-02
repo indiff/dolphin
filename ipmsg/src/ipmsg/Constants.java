@@ -9,6 +9,7 @@ public final class Constants {
 	private Constants(){}
 	
 	public static final String DATE_FORMAT = "yyyy年MM月dd日 hh时mm分ss秒";
+	public static final String PROPERTY_FILE = "ipmsg.properties";
     // command 
     public static final int IPMSG_NOOPERATION = 0x00000000;
     public static final int IPMSG_BR_ENTRY    = 0x00000001;
@@ -55,8 +56,8 @@ public final class Constants {
     public static final int IPMSG_SECRETEXOPT  =(IPMSG_READCHECKOPT|IPMSG_SECRETOPT);
     
     // Private constants
-	public static final int PORT         = 2426;
-//	public static final int PORT         = 2425;
+//	public static final int PORT         = 2426;
+	public static final int PORT         = 2425;
     public static final int BUFSIZE      = 8192;
     public static final int PROTOCOL_VER = 1;
 
