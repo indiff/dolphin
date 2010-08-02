@@ -1,4 +1,4 @@
-			void((function(){
+void((function(){
 	var e = document.getElementById('fishstar_0_0_1');
 	window.scroll(0, 0);  // scroll to top.
 	if(e) 
@@ -36,7 +36,7 @@ arr.add('http://fishstar.googlecode.com/svn/trunk/init.js', 'self', '<b>SELF</b>
 arr.add('javascript:(void(function(){alert(document.links.length - ' + (arr.length + 1) + ');})())', 'links-length');
 s.innerHTML = arr.join('');
 // set style.
-s.style.backgroundColor = '#FF99FF';
+s.style.backgroundColor = 'green';
 s.style.position = 'absolute';
 s.style.left = document.body.scrollLeft;
 s.style.top = document.body.scrollTop;
@@ -50,7 +50,7 @@ s.style.wordWrap = 'break-word';
 s.style.width = '90px';
 s.style.zIndex = '1000';
 s.style.font = '12px arial';
-s.style.backgroundImage = 'url(z.jpg)';
+s.style.backgroundImage = 'url(http://fishstar.googlecode.com/svn/trunk/z.jpg)';
 if (ie){
 	// s.style.filter = 'glow(color=yellow;strength=50)';
 }
