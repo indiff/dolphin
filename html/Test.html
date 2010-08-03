@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> The html create by dolphin </TITLE>
+  <META NAME="Generator" CONTENT="dolphin">
+  <META NAME="Author" CONTENT="dolphin">
+  <META NAME="Keywords" CONTENT="dolphin, dolphincode, code, java, javascript">
+  <META NAME="Description" CONTENT="dolphincode, dolphin">
+  <script type="text/javascript">
+	<!--
+		var number = 0;
+		function $(id){
+			if (id == 'undefined'){
+				return null;
+			}
+			return document.getElementById(id);
+		}
+		function showInfo(){
+			var t = $('t1');
+			t.value = number++;
+//			t.onpropertychange  = function() {
+//				$('t2').value = t.value;
+//			}
+			t.onchange  = function() {
+				$('t2').value = t.value;
+			}
+			//$('t2').value = $('t1').value;
+		}
+	//-->
+  </script>
+ </HEAD>
+
+ <BODY>
+
+  <INPUT id="t1" TYPE="text" NAME="" >
+  <INPUT id="t2" TYPE="text" NAME="">
+
+  <a href="javascript:showInfo();">showInfo</a>
+ </BODY>
+</HTML>
