@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> The html create by dolphin </TITLE>
+  <META NAME="Generator" CONTENT="dolphin">
+  <META NAME="Author" CONTENT="dolphin">
+  <META NAME="Keywords" CONTENT="dolphin, dolphincode, code, java, javascript">
+  <META NAME="Description" CONTENT="dolphincode, dolphin">
+  <style>
+   /*contenteditable style="background-color: black; color: white;"*/
+  </style>
+
+  <script>
+	function showHTML (){
+		var con = $('content');
+		con.value = $('copy').innerHTML;
+		if (con.value != null && con.value != ''){
+			con.style.backgroundColor = '#848484';
+			con.style.cursor ='hand';
+		}
+	}
+
+	function clearT (){
+		$('content').value = '';
+	}
+
+	function clearD (){
+		$('copy').innerHTML = '';
+	}
+
+	function $ (id){
+		if (id != 'undefined' && id != null){
+			return document.getElementById(id);
+		}
+	}
+
+	function showD (){
+		var html = $('content').value;
+		if (html != ''){
+			$('showD').innerHTML = html;
+		}
+	}
+  </script>
+ </HEAD>
+
+ <BODY bgColor="#999999">
+  <fieldset>
+	<legend >COPY SOME HTML TO THE BLUE BOX</legend>
+	<div id="copy" contenteditable style="border: 1px solid blue; background-color: white; color: black;"></div>
+  </fieldset>
+
+  <br/>
+  <a href="#showHTML" onclick="showHTML()">copy2textarea</a><br/>
+  <a href="#clearD" onclick="clearD()">clearDiv</a><br/>
+  <a href="#clearT" onclick="clearT()">clearTxtarea</a><br/>
+  <a href="#showD" onclick="showD()">show Div</a><br/>
+  <textarea id="content" cols="150" rows="30"></textarea><br/>
+
+  <div id="showD" style="background-color: white; color: white;"></div>
+ </BODY>
+</HTML>

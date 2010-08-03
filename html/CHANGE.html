@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>ひらがな・カタカナ変換ツール</title>
+<meta name="keywords" content="ひらがな,カタカナ,かたかな,ツール">
+<meta name="description" content="ひらがなと片仮名（カタカナ）を相互に変換するWebツールです。">
+<link href="../main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+<!--
+var hira="ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをん";
+var kata="ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴ";
+
+function hoge() {
+  var doc = "<table border=1>";
+  for (i=0; i<hira.length; i++) {
+    ch = hira.charAt(i);
+    nh = hira.charCodeAt(i);
+    ck = kata.charAt(i);
+    nk = kata.charCodeAt(i);
+    
+    doc += "<tr><td>"+ch+"</td><td>"+nh+"</td><td>"+ck+"</td><td>"+nk+"</td></tr>";
+  }
+  doc += "</table>";
+  msg.innerHTML = doc;
+}
+
+
+function kata2hira() {  // カタカナ→ひらがな
+  var before = document.hirakata.beforeText.value;
+  var after = "";
+  for (i=0; i<before.length; i++) {
+    c = before.charCodeAt(i);
+    if (c == 12532) {
+	// カタカナの「ヴ」のとき、「う゛」に変換
+   	after += String.fromCharCode(12358);
+   	after += String.fromCharCode(12443);
+    } else {
+	// それ以外
+	if (c>=12449 && c<=12531) {
+		c = c - 96;
+	}
+   	after += String.fromCharCode(c);
+    }
+
+  }
+  document.hirakata.afterText.value = after;
+}
+
+
+
+function hira2kata() {  // ひらがな→カタカナ
+  var before = document.hirakata.beforeText.value;
+  var after = "";
+  for (i=0; i<before.length; i++) {
+    c = before.charCodeAt(i);
+    if ((c == 12358) && (before.charCodeAt(i+1) == 12443)) {
+	// 「う゛」は、カタカナの「ヴ」に変換
+   	after += String.fromCharCode(12532);
+	i++;
+    } else {
+	// それ以外
+    	if (c>=12353 && c<=12435) {
+	    c = c + 96;
+    	}
+    	after += String.fromCharCode(c);
+    }
+  }
+  document.hirakata.afterText.value = after;
+}
+
+
+//-->
+</script>
+</head>
+<body>
+<div id="myBody" class="center">
+
+<h1>ひらがな・カタカナ変換ツール</h1>
+<p>
+ひらがなと片仮名（カタカナ）を相互に変換するWebツールです。
+</p>
+
+<form name="hirakata" id="myTool">
+<strong>変換前</strong><br />
+<textarea name="beforeText" cols="60" rows="5">
+</textarea>
+<br />
+<input type="button" onClick="hira2kata()" value="ひらがな→カタカナ" />　<input type="button" onClick="kata2hira()" value="カタカナ→ひらがな" />
+<br />
+<strong>変換後</strong><br />
+
+<textarea name="afterText" cols="60" rows="5">
+</textarea>
+</form>
+</div>
+</body>
+</html>
+
+

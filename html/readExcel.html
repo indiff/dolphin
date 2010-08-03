@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> The html create by dolphin </TITLE>
+  <META NAME="Generator" CONTENT="dolphin">
+  <META NAME="Author" CONTENT="dolphin">
+  <META NAME="Keywords" CONTENT="dolphin, dolphincode, code, java, javascript">
+  <META NAME="Description" CONTENT="dolphincode, dolphin">
+ </HEAD>
+
+ <BODY>
+ <div id='content'></div>
+
+ <a href='javascript:readExcel();'>readExcel</a>
+  <script>   
+  
+function test(a)   
+  
+{   
+  
+if(a==null)   
+  
+{   
+  
+   a="无";   
+  
+}   
+  
+return a;   
+  
+}   
+  
+function readExcel()   
+ {   
+  
+var filePath = "C:\\Documents and Settings\\Administrator\\デスクトップ\\work-softbank\\list.xls";
+  
+  
+  
+var i;   
+  
+i = 1;   
+  
+    var oXL = new ActiveXObject("Excel.Application");    
+  
+    var oWB = oXL.Workbooks.open(filePath);   
+  
+    var oSheet = oWB.ActiveSheet;   
+  
+	var rowsCount =oWB.Worksheets(1).UsedRange.Cells.Rows.Count   
+	  
+	var columnsCount =oWB.Worksheets(1).UsedRange.Columns.Count   
+  
+	for (var i = 1; i < rowsCount; i++){
+		for (var j = 1; j < columnsCount;  j++){
+			var content = document.getElementById('content');
+			if (oSheet.Cells(i,j).value){
+				content.innerHTML = content.innerHTML + '\t' + i + '|' + j + ':' + oSheet.Cells(i,j).value ;
+			}
+		}
+		content.innerHTML = content.innerHTML + '<BR>';
+	}
+}   
+  
+</script> 
+	
+ </BODY>
+</HTML>

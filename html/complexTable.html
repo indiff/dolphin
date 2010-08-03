@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> The html create by dolphin </TITLE>
+  <META NAME="Generator" CONTENT="dolphin">
+  <META NAME="Author" CONTENT="dolphin">
+  <META NAME="Keywords" CONTENT="dolphin, dolphincode, code, java, javascript">
+  <META NAME="Description" CONTENT="dolphincode, dolphin">
+ </HEAD>
+
+ <BODY>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+  var content = '';
+
+
+
+
+
+  var idxs = [3,4,5,6];
+dwn('<table border=\'1\'>');
+		dwn('<tr><th>no</th><th>name</th><th>sex</th><th>school</th><th>列</th></tr>');
+  for (var i in idxs){
+
+	for (var j = 0; j < idxs[i]; j++){
+//		if (j == 0){
+//			dwn('<span style=color:red>' + idxs[i] + '行</span>');
+//		} 
+		if (j == 0 && idxs[i] == 1){
+			dwn('<tr>');
+				dwn('<td>NoNoNo</td>');
+				dwn('<td>NaNaNa</td>');
+				dwn('<td>girl</td>');
+				dwn('<td>Jiangxi</td>');
+				dwn('<td>列</td>');
+			dwn('</tr>');
+		} else if (j == 0 && idxs[i] > 1){
+			dwn('<tr>');
+			dwn('<td>列</td>');
+			dwn('<td rowspan=' + idxs[i] + '>跨行</td>');
+			dwn('<td>列</td>');
+			dwn('<td rowspan=' + idxs[i] + '>跨行</td>');
+			dwn('<td>列</td>');
+			dwn('</tr>');
+		} else{
+			dwn('<td>列fuck</td>');
+			dwn('<td>列fuck</td>');
+			dwn('<td>列</td>');
+			dwn('</tr>');
+		}
+	}
+	
+  }
+dwn('</table>');
+
+
+	function dwn(s){
+		document.write(s)
+		content = content + s;
+	}
+
+
+
+//0-->1
+//1-->1
+//1-->2
+//1-->3
+//2-->1
+//2-->2
+//2-->3
+//2-->4
+
+
+  //-->
+
+
+
+  </SCRIPT>
+
+
+<!--
+<table border='1'>
+	<tr>
+		<th>sex</th>
+		<th>name</th>
+	</tr>
+	<tr>
+		<td>boy</td>
+		<td>zhang</td>
+	</tr>
+	<tr>
+		<td>boy</td>
+		<td rowspan="3">first3</td>
+	</tr>
+	<tr>
+		<td>second3</td>
+	</tr>
+	<tr>
+		<td>third3</td>
+	</tr>
+	<tr>
+		<td>girl</td>
+		<td  rowspan="4">one4</td>
+	</tr>
+	<tr>
+		<td>two4</td>
+	</tr>
+	<tr>
+		<td>three4</td>
+	</tr>
+	<tr>
+		<td>four4</td>
+	</tr>
+</table>
+-->
+
+<script language="javascript">
+document.write("<textarea cols=100 rows=50><table border='1'><tr><th>no</th><th>name</th& gt;<th>sex</th><th>school</th><th>列< /th></tr><tr><td>列</td><td rowspan=3>跨行</td><td>列</td><td rowspan=3>跨行</td><td>列</td></tr><td>列 fuck</td><td>列fuck</td><td>列</td>< /tr><td>列fuck</td><td>列fuck</td><td> 列</td></tr><tr><td>列</td><td rowspan=4>跨行</td><td>列</td><td rowspan=4>跨行</td><td>列</td></tr><td>列 fuck</td><td>列fuck</td><td>列</td>< /tr><td>列fuck</td><td>列fuck</td><td> 列</td></tr><td>列fuck</td><td>列fuck< /td><td>列</td></tr><tr><td>列< /td><td rowspan=7>跨行</td><td>列</td><td rowspan=7>跨行</td><td>列</td></tr><td>列 fuck</td><td>列fuck</td><td>列</td>< /tr><td>列fuck</td><td>列fuck</td><td> 列</td></tr><td>列fuck</td><td>列fuck< /td><td>列</td></tr><td>列fuck< /td><td>列fuck</td><td>列</td>< /tr><td>列fuck</td><td>列fuck</td><td> 列</td></tr><td>列fuck</td><td>列fuck< /td><td>列</td></tr><tr><td>列< /td><td rowspan=8>跨行</td><td>列</td><td rowspan=8>跨行</td><td>列</td></tr><td>列 fuck</td><td>列fuck</td><td>列</td>< /tr><td>列fuck</td><td>列fuck</td><td> 列</td></tr><td>列fuck</td><td>列fuck< /td><td>列</td></tr><td>列fuck< /td><td>列fuck</td><td>列</td>< /tr><td>列fuck</td><td>列fuck</td><td> 列</td></tr><td>列fuck</td><td>列fuck< /td><td>列</td></tr><td>列fuck< /td><td>列fuck</td><td>列</td></tr>< /table></textarea>");
+</script>
+ </BODY>
+</HTML>

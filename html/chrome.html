@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> The html create by dolphin </TITLE>
+  <META NAME="Generator" CONTENT="dolphin">
+  <META NAME="Author" CONTENT="dolphin">
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ms932" >
+  <META NAME="Keywords" CONTENT="dolphin, dolphincode, code, java, javascript">
+  <META NAME="Description" CONTENT="dolphincode, dolphin">
+ </HEAD>
+
+ <BODY>
+  <FORM METHOD=POST ACTION="">
+	<INPUT TYPE="text" NAME="username">
+	<INPUT TYPE="button" VALUE="test" ONCLICK="alert(document.forms[0].elements('username').value)">
+	<INPUT TYPE="submit">
+  </FORM>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var d = new Date();
+	
+	var arr = [];
+	arr.push('Year: ' + d.getYear());
+	arr.push('Month: ' + (d.getMonth() + 1));
+	arr.push('Date: ' + d.getDate());
+
+	//alert(arr.join(''));
+  //-->
+  </SCRIPT>
+
+
+  <label><input type="radio" name="q1" value="fdsa"/>result</label>
+  <label><input type="radio" name="q1" value="l;;"/>no-result</label>
+  <label><input type="radio" name="q1" value="33zgfdzddd"/>no-result</label>
+  <label><input type="radio" name="q1" value="fdsa"/>no-result</label>
+<br>
+
+  <label><input type="radio" name="q2" value="gfds"/>no-result</label>
+  <label><input type="radio" name="q2" value="hgf"/>no-result</label>
+  <label><input type="radio" name="q2" value="jhj"/>result</label>
+  <label><input type="radio" name="q2" value="hgfd"/>no-result</label>
+<br>
+
+
+  <label><input type="radio" name="q3" value="gfsdgf"/>no-result</label>
+  <label><input type="radio" name="q3" value="kjdhgkjh"/>result</label>
+  <label><input type="radio" name="q3" value="gfsddgf"/>no-result</label>
+  <label><input type="radio" name="q3" value="jhfgjh"/>no-result</label>
+
+  <input type="button" onclick="rs();" value="chk" />
+<br>
+
+
+<script language="javascript">
+	function rs(){
+		var labels = document.getElementsByTagName('label');
+		for (var i = 0; i < labels.length; i++){
+			if (labels[i].innerHTML.match(/result/)){
+				alert('right\r\n The result is ' + i);
+			}
+		}
+	}
+</script>
+ </BODY>
+</HTML>
