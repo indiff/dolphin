@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="qa-filter" basedir="." default="jar">
+	<property name="src.dir" value="qa-filter/src" />
+	<property name="classes.dir" value="bin" />
+
+	<target name="compile" description="Compile the sources">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="no" />
+	</target>
+
+	<target name="jar" description="Jar the qa-filter" depends="compile">
+		<jar destfile="${ant.project.name}.jar" basedir="${classes.dir}" />
+	</target>
+</project>
