@@ -1,4 +1,4 @@
-#Fri Jul 30 11:15:53 CST 2010
+#Mon Aug 02 10:29:18 CST 2010
 eclipse.preferences.version=1
 encoding//src/ipmsg/Constants.java=UTF-8
 encoding//src/ipmsg/IPMessenger.java=UTF-8
@@ -7,5 +7,6 @@ encoding//src/ipmsg/swt/Messenger.java=UTF-8
 encoding//src/ipmsg/swt/ReceiveDialog.java=UTF-8
 encoding//src/ipmsg/swt/SendDialog.java=UTF-8
 encoding//src/ipmsg/swt/SetupDialog.java=UTF-8
+encoding//src/net/Main.java=UTF-8
 encoding/<project>=UTF-8
 encoding/src=shift_JIS

@@ -239,15 +239,15 @@ public abstract class IPMessenger extends Thread {
         sb.append(":");
         sb.append(new Date().getTime()/1000);
         sb.append(":");
-        sb.append(this.userName);
+        sb.append(userName);
         sb.append(":");
-        sb.append(this.hostName);
+        sb.append(hostName);
         sb.append(":");
         sb.append(command);
         sb.append(":");
         sb.append(supplement);
-        sb.append(":");
-        sb.append(this.signature);
+//        sb.append(":");
+//        sb.append(signature);
         
         return sb.toString();
     }
@@ -259,7 +259,8 @@ public abstract class IPMessenger extends Thread {
         String message = msg;
         byte[] byteMsg = message.getBytes(charset);
 
-        DatagramPacket packet = new DatagramPacket(byteMsg,byteMsg.length,
+        DatagramPacket packet = new DatagramPacket(byteMsg,
+        										   byteMsg.length,
                                                    InetAddress.getByName("255.255.255.255"),
                                                    in_port);
         this.socket.send(packet);
