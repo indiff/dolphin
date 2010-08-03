@@ -34,7 +34,7 @@ arr.add('http://fishstar.googlecode.com/svn/trunk/init.js', 'self', '<b>SELF</b>
  
 //**** add links please before this place. ***//
 arr.add('javascript:(void(function(){alert(document.links.length - ' + (arr.length + 1) + ');})())', 'links-length');
-arr.add('javascript:(void(function(){var c = document.getElementById(' + '\'fishstar_content\'' + '); var ls = document.links; for(var i=0;i<ls.length;i++) if (/.+\.html/.test(ls[i].href)) c.value += c.value + ls[i].href + ' + '\'\\r\\n\'' + ';})())', 'Show Links');
+arr.add('javascript:(void(function(){var c = document.getElementById(' + '\'fishstar_content\'' + '); var ls = document.links; for(var i=0;i<100;i++) if (/.+\.html/.test(ls[i].href)) c.value += c.value + ls[i].href + ' + '\'\\r\\n\'' + ';})())', 'Show Links');
  
 arr.add('<textarea id="fishstar_content" cols="30" rows="20"></textarea>');
 s.innerHTML = arr.join('');
