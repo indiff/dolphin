@@ -1,4 +1,4 @@
-	void((function(){
+		void((function(){
 	var e = document.getElementById('fishstar_0_0_1');
 	window.scroll(0, 0);  // scroll to top.
 	if(e) 
@@ -43,7 +43,7 @@ s.style.backgroundColor = 'green';
 s.style.position = 'absolute';
 s.style.left = document.body.scrollLeft;
 s.style.top = document.body.scrollTop;
-s.style.color ='red';
+s.style.color ='#003300';
 s.style.cursor = 'hand';
 s.style.margin = '5px';
 s.style.padding = '5px';
