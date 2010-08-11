@@ -12,28 +12,28 @@ if (ie) blank = 'about:Tabs';
 Array.prototype.add = function(h,n,e) {if(n == undefined && e == undefined) this.push([h,'<br>'].join('')); else this.push(['<a style="color:#000000" href="',h,'"><b>',n,'</b></a>',e==undefined?'':'<sup>'+e+'</sup>', '<br>'].join(''))};
 var arr = [];
 arr.add('javascript:void(0);" onclick="var e = document.getElementById(\'fishstar_0_0_1\');if (e) e.style.display = \'none\';', '<span style="font-size:20pt;left:100%;">X</span>');
-arr.add('http://www.baidu.com', 'Baidu', '<b>SE</b>');
-arr.add('http://top.baidu.com/once/index2.html?c=0&s=1', 'TopBaidu');
-arr.add('http://www.igoogle.com', 'Google');
+arr.add('http://www.baidu.com', '\u767e\u5ea6', '<b>\u641c\u7d22</b>');
+arr.add('http://top.baidu.com/once/index2.html?c=0&s=1', 'T\u767e\u5ea6');
+arr.add('http://www.igoogle.com', '\u8c37\u6b4c');
  
-arr.add('http://www.ku6.com', 'Ku6', '<b>VIDEO</b>');
-arr.add('http://www.youku.com', 'Youku');
-arr.add('http://www.tudou.com', 'Tudou');
+arr.add('http://www.ku6.com', '\u91776', '<b>\u89c6\u9891</b>');
+arr.add('http://www.youku.com', '\u4f18\u9177');
+arr.add('http://www.tudou.com', '\u571f\u8c46');
  
-arr.add('http://dzh.mop.com', 'Mop', '<b>FORUM</b>');
-arr.add('http://www.tianya.cn', 'TianYa');
+arr.add('http://dzh.mop.com', '\u732b\u6251', '<b>\u8bba\u575b</b>');
+arr.add('http://www.tianya.cn', '\u5929\u6daf');
 arr.add('http://www.qq.com', 'QQ');
-arr.add('http://www.renren.com', 'RenRen');
+arr.add('http://www.renren.com', '\u4eba\u4eba');
  
  
-arr.add('http://www.u148.net/', 'U148', '<b>ENT</b>');
-arr.add('http://minisite.qq.com/others8', 'MiniSite');
+arr.add('http://www.u148.net/', '\u6709\u610f\u601d\u5427', '<b>\u5a31\u4e50</b>');
+arr.add('http://minisite.qq.com/others8', '\u8ff7\u4f60\u9996\u9875');
  
  
 arr.add('http://fishstar.googlecode.com/svn/trunk/init.js', 'self', '<b>SELF</b>');
  
 //**** add links please before this place. ***//
-arr.add('javascript:(void(function(){alert(document.links.length - ' + (arr.length + 1) + ');})())', 'links-length');
+arr.add('javascript:(void(function(){alert(\'\u753b\u9762\u6709\u94fe\u63a5\u6570\:\t\' +( document.links.length - ' + (arr.length + 1) + '));})())', '\u94fe\u63a5\u6570');
 //arr.add('javascript:(void(function(){var c = document.getElementById(' + '\'fishstar_content\'' + ');var m=[]; var ls = document.links; for(var i=0;i<ls.length;i++) var h=ls[i].href; if (/.+\.html/.test(h)) m.push([h, \'\\r\\n\'].join(\'\')); c.value=m.join(\'\');})())', 'Show Links');
  
 //arr.add('<textarea id="fishstar_content" cols="30" rows="20"></textarea>');
