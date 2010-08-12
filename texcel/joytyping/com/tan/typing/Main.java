@@ -84,12 +84,9 @@ public class Main {
 //				<TH>疯狂背单词</TH>
 //				<TH>轻松学单词</TH>
 //				<TH>经典怀旧</TH>
-				//check for the birthdate.
 				
 				showHTML(buf, name,sex,age,birthdate,english,englishMiddle,
-						chinese, crazyEnglish,studyWord,oldEnglish
-						);
-				
+						 chinese, crazyEnglish,studyWord,oldEnglish);
 			}
 		}
 		
