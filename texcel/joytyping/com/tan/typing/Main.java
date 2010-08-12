@@ -17,6 +17,12 @@ import com.tan.util.DialogUtil;
 import com.tan.util.ExcelUtil;
 import com.tan.util.StringUtil;
 
+/**
+ * 
+ * @author dolphin
+ *
+ * 2010-8-13 上午12:23:05
+ */
 public class Main {
 
 	/**
