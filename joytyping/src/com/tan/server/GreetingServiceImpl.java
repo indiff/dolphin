@@ -11,10 +11,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet
 		implements
 			GreetingService {
 
-	public String greetServer(String input) {
+	public String greetServer(final String input) {
 		String serverInfo = getServletContext().getServerInfo();
 		String userAgent = getThreadLocalRequest().getHeader("User-Agent");
-		return "Hello, " + input + "!<br><br>I am running " + serverInfo
+		return "你好, " + input + "!<br><br>I am running " + serverInfo
 				+ ".<br><br>It looks like you are using:<br>" + userAgent;
 	}
 }
