@@ -94,6 +94,7 @@ public class Main {
 	/**
 	 * Generate the code for the poi api.
 	 */
+	@SuppressWarnings("unused")
 	private static void generateCode() {
 		final String[] ss = "姓名	性别	年龄	生日	英文入门场记录	英文高中场记录	中文场记录	疯狂背单词记录	轻松学单词记录	经典怀旧场记录".split("\t");
 		int x = 0;
