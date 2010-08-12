@@ -35,6 +35,7 @@ public class Main {
 		int first = sheet.getFirstRowNum();
 		int last = sheet.getLastRowNum();
 		
+		StringBuilder buf = new StringBuilder();
 		for (int i = first; i <= last ; i++) {
 			final Row row = sheet.getRow(i);
 			
@@ -85,12 +86,14 @@ public class Main {
 //				<TH>经典怀旧</TH>
 				//check for the birthdate.
 				
-				showHTML(name,sex,age,birthdate,english,englishMiddle,
+				showHTML(buf, name,sex,age,birthdate,english,englishMiddle,
 						chinese, crazyEnglish,studyWord,oldEnglish
 						);
 				
 			}
 		}
+		
+		print(buf);
 	}
 
 	private static void checkFile(final File excel) {
@@ -136,12 +139,12 @@ public class Main {
 	/**
 	 * print the htmls for the values.
 	 */
-	private static void showHTML(final String ... values) {
-		println("<TR>");
+	private static void showHTML(StringBuilder buf, final String ... values) {
+		appendln(buf,"<TR>");
 		if (values != null && values.length != 0) {
 			for (int i = 0 ; i < values.length; i++) {
 				if (values[i] == null || values[i].trim().length() == 0)  {
-					println("\t<TD>", '-', "</TD>");
+					appendln(buf,"\t<TD>", '-', "</TD>");
 				} else {
 					// when the value had character '.' .
 					int idx = -1;
@@ -153,15 +156,15 @@ public class Main {
 					}
 					
 					// when the i == 3 for the birthdate.
-					if (i == 3) println("\t<TD>", v.length() != 1 ? v.substring(1) : v, "</TD>");
+					if (i == 3) appendln(buf,"\t<TD>", v.length() != 1 ? v.substring(1) : v, "</TD>");
 					// when the i == 4 for the english.
-					else if (i == 4) println("\t<TD><B>", v, "</B></TD>");
+					else if (i == 4) appendln(buf,"\t<TD><B>", v, "</B></TD>");
 					// other wise.
-					else println("\t<TD>",v, "</TD>");
+					else appendln(buf,"\t<TD>",v, "</TD>");
 				}
 				
 			}
 		}
-		println("</TR>");
+		appendln(buf,"</TR>");
 	}
 }
