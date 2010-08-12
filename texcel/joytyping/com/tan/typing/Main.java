@@ -17,6 +17,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+//		generateCode();
+		
 		DialogUtil dialog = new DialogUtil();
 		
 		File excel = dialog.chooseFile("选择记录文件", "记录锦集.xls", 
@@ -24,7 +26,7 @@ public class Main {
 			"C:\\Users\\TanYuanji\\Desktop\\joytyping-data");
 		dialog.forceDispose();
 		
-//		generateCode();
+		checkFile(excel);
 		
 		Workbook wb = ExcelUtil.getWorkbook(excel);
 		
@@ -90,17 +92,38 @@ public class Main {
 			}
 		}
 	}
+
+	private static void checkFile(final File excel) {
+		if (excel == null) {
+			exitWithWarnMessage("文件路径为空!");
+		}
+		if (!excel.exists()) {
+			exitWithWarnMessage(excel + "(系统找不到指定的文件。)");
+		}
+		if (excel.isDirectory()) {
+			exitWithWarnMessage(excel + "(指定文件是一个目录。)");
+		}
+	}
+
+	private static void exitWithWarnMessage(final String msg) {
+		warnln(msg);System.exit(0);
+	}
 	
 	/**
 	 * Generate the code for the poi api.
 	 */
 	@SuppressWarnings("unused")
 	private static void generateCode() {
-		final String[] ss = "姓名	性别	年龄	生日	英文入门场记录	英文高中场记录	中文场记录	疯狂背单词记录	轻松学单词记录	经典怀旧场记录".split("\t");
-		int x = 0;
-		for (String s : ss) {
-			 int number = x++;
-			 println("// ",  s, "\t", number, ".\nCell cell", number, '=', "row.getCell(",number,");");
+		final String[] values = "姓名	性别	年龄	生日	英文入门场记录	英文高中场记录	中文场记录	疯狂背单词记录	轻松学单词记录	经典怀旧场记录".split("\t");
+		int index = 0;
+		for (String value : values) {
+			 println("// ",  
+					 value, 
+					 "\t", index, 
+					 ".\nCell cell", 
+					 index, 
+					 '=',
+					 "row.getCell(",index++,");");
 		}
 		System.exit(1);
 	}

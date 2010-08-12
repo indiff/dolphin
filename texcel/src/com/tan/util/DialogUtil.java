@@ -1,5 +1,7 @@
 package com.tan.util;
 
+import java.io.File;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
@@ -12,7 +14,7 @@ import org.eclipse.swt.widgets.Shell;
  *
  * 2010/07/14 9:57:13
  */
-public class DialogUtil {
+public final class DialogUtil {
 	private Display display ;
 	private Shell shell;
 	private int i;
@@ -21,20 +23,21 @@ public class DialogUtil {
 		init();
 	}
 	
-	public String chooseFile(final String text, 
+	public File chooseFile(final String text, 
 			final String defaultFileName,
-			final String extension, final String defaultPath) {
+			final String[] extensions, final String defaultPath) {
 		FileDialog dialog = new FileDialog(shell, SWT.SINGLE);
 		
 		dialog.setText(text);
 		dialog.setFileName(defaultFileName);
 		dialog.setFilterPath(defaultPath);
 		
-		dialog.setFilterNames(new String[] { extension });
-		dialog.setFilterExtensions(new String[] { extension });
+		dialog.setFilterNames(extensions);
+		dialog.setFilterExtensions(extensions);
 		String url = dialog.open();
+		if (url == null) return null;
 		dispose(i++);
-		return url;
+		return new File(url);
 	}
 	
 	public String chooseDirectory(final String message,
@@ -72,7 +75,7 @@ public class DialogUtil {
 	public static void main(String[] args) {
 		DialogUtil dialogUtil = new DialogUtil();
 		
-		String file = dialogUtil.chooseFile("text", "", "*.xls", "c:\\tools\\");
+		File file = dialogUtil.chooseFile("text", "", new String[]{"*.xls"}, "c:\\tools\\");
 		
 		String directory = dialogUtil.chooseDirectory("message", "text", "c:\\tools\\");
 		

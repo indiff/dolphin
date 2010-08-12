@@ -51,10 +51,10 @@ public class Main {
 
 		DialogUtil dialogUtil = new DialogUtil();
 
-		String file = dialogUtil.chooseFile(
+		File file = dialogUtil.chooseFile(
 				"Select 単テ仕様書 File",
 				"単テ仕様書_EA0660_不動産評価情報入力.xls", 
-				"*.xls", 
+				new String[]{"*.xls"}, 
 				currentPath + File.separatorChar + "単テ仕様書");
 
 		// 単テ仕様書.
@@ -335,16 +335,15 @@ public class Main {
 	 * 
 	 * @param excel
 	 */
-	private static File getFile(String excel) {
-		if (excel == null || excel.trim().length() == 0)
+	private static File getFile(final File excel) {
+		if (excel == null )
 			exitWithMessage("路径为空.\r\nApp exit.");
-		File file = new File(excel);
-		if (file == null || !file.exists()) {
+		if (!excel.exists()) {
 			exitWithMessage("文件不存在.\r\nApp exit.");
-		} else if (file.isDirectory()) {
+		} else if (excel.isDirectory()) {
 			exitWithMessage("不是 一个文件.\r\nApp exit.");
 		}
-		return file;
+		return excel;
 	}
 
 	/**
