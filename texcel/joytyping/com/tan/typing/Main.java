@@ -1,5 +1,11 @@
 package com.tan.typing;
 
+import static com.tan.util.TanUtil.append;
+import static com.tan.util.TanUtil.appendln;
+import static com.tan.util.TanUtil.print;
+import static com.tan.util.TanUtil.println;
+import static com.tan.util.TanUtil.warnln;
+
 import java.io.File;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -9,7 +15,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import com.tan.util.DialogUtil;
 import com.tan.util.ExcelUtil;
-import static com.tan.util.TanUtil.*;
+import com.tan.util.StringUtil;
 
 public class Main {
 
@@ -21,9 +27,11 @@ public class Main {
 		
 		DialogUtil dialog = new DialogUtil();
 		
-		File excel = dialog.chooseFile("选择记录文件", "记录锦集.xls", 
+		File excel = 
+			dialog.chooseFile("选择记录文件", 
+				"记录锦集-v002.xls", 
 				new String[]{ "*.xls"}, 
-			"C:\\Users\\TanYuanji\\Desktop\\joytyping-data");
+				"C:\\Users\\TanYuanji\\Desktop\\joytyping-data");
 		dialog.forceDispose();
 		
 		checkFile(excel);
@@ -84,8 +92,8 @@ public class Main {
 //				<TH>疯狂背单词</TH>
 //				<TH>轻松学单词</TH>
 //				<TH>经典怀旧</TH>
-				
-				showHTML(buf, name,sex,age,birthdate,english,englishMiddle,
+//				showHTML	showHTMLWithNoWhitespace
+				showHTMLWithNoWhitespace(buf, name,sex,age,birthdate,english,englishMiddle,
 						 chinese, crazyEnglish,studyWord,oldEnglish);
 			}
 		}
@@ -136,7 +144,7 @@ public class Main {
 	/**
 	 * print the htmls for the values.
 	 */
-	private static void showHTML(StringBuilder buf, final String ... values) {
+	public static void showHTML(StringBuilder buf, final String ... values) {
 		appendln(buf,"<TR>");
 		if (values != null && values.length != 0) {
 			for (int i = 0 ; i < values.length; i++) {
@@ -153,7 +161,10 @@ public class Main {
 					}
 					
 					// when the i == 3 for the birthdate.
-					if (i == 3) appendln(buf,"\t<TD>", v.length() != 1 ? v.substring(1) : v, "</TD>");
+					if (i == 3) appendln(buf,
+							"\t<TD>",
+							formatDate(v),
+							"</TD>");
 					// when the i == 4 for the english.
 					else if (i == 4) appendln(buf,"\t<TD><B>", v, "</B></TD>");
 					// other wise.
@@ -164,4 +175,43 @@ public class Main {
 		}
 		appendln(buf,"</TR>");
 	}
+	public static void showHTMLWithNoWhitespace(StringBuilder buf, final String ... values) {
+		append(buf,"<TR>");
+		if (values != null && values.length != 0) {
+			for (int i = 0 ; i < values.length; i++) {
+				if (values[i] == null || values[i].trim().length() == 0)  {
+					append(buf,"<TD>", '-', "</TD>");
+				} else {
+					// when the value had character '.' .
+					int idx = -1;
+					String v = null;
+					if ((idx = values[i].indexOf(".0")) >= 0) {
+						v = values[i].substring(0, idx);
+					} else {
+						v = values[i];
+					}
+					
+					// when the i == 3 for the birthdate.
+					if (i == 3) append(buf,
+							"<TD>",
+							formatDate(v),
+							"</TD>");
+					// when the i == 4 for the english.
+					else if (i == 4) append(buf,"<TD><B>", v, "</B></TD>");
+					// other wise.
+					else append(buf,"<TD>",v, "</TD>");
+				}
+				
+			}
+		}
+		append(buf,"</TR>");
+	}
+
+	private static String formatDate(final String v) {
+		return v.length() != 1 ? 
+//		v.substring(1) :
+//		v.substring(1).replace('/', '-') :
+		StringUtil.filter(v.substring(1), '/', '-') :
+		v;
+	}	
 }
