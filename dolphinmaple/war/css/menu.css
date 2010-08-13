@@ -1,0 +1,28 @@
+/* 如何使得所有的li都不显示小圆点,可以使用css标签的选择器 */
+body {
+  background-color: black ;
+  color:#00ff00;
+
+}
+/*
+ul{
+    cursor: pointer ;
+    text-decoration: underline ;
+    color: #5533ff ;
+}  */
+li {
+   list-style: none ;   /* 使li前面的小圆点消失 */
+   margin-left: 18px;    /* 让子菜单的前面缩进 */
+   display: none ;
+   cursor: pointer ;
+
+}
+a:link {
+    color:red ;
+}
+a:visited {
+   color:yellow ; 
+}
+a{
+    text-decoration: none ;
+}

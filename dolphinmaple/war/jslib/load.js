@@ -1,0 +1,1 @@
+function g(l){window.open(location.href.replace(/\?url=.+/gi,'') + '?url='+ l.href,'_self','location=0,status=0,scrollbars=0');return false;}

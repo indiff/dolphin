@@ -1,0 +1,37 @@
+/* id选择器  */
+#win {
+    /* 希望窗口有边框 */
+    border: 1px yellow solid;
+    /* 窗口和宽度高度固定 */
+    width: 50px;
+    height: 50px;
+    /* 控制窗口的位置 */
+    position: absolute ; /* 绝对定位 */
+    top: 275px;
+    left: 326px;
+    /* 窗口的开始是不可视 */
+    display: none ;
+}
+
+#title {
+    /* 标题栏的背景颜色 */
+    background-color:#332255 ;
+
+    color:red ;
+    /*控制标题栏的左内边距*/
+    padding-left:1px ;
+}
+
+#content {
+    padding-left: 1px;
+    padding-top: 1px;
+}
+
+#close{
+    /*使关闭按钮向右边移动*/
+    margin-left:346px;
+    text-decoration:underline ;
+    /* 让鼠标进入的时候显示手形状*/
+    cursor: pointer ;
+}
+

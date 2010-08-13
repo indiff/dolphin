@@ -1,0 +1,161 @@
+/**
+ *
+body {
+	background-color: #403C3F; 
+ 	margin: 100px;
+	padding: 10px;
+	color: #FFFFCC;
+	font-family: 宋体;
+}
+a {color: #FFCCFF; text-decoration: none;}
+a:hover {color:#FFCCFF; text-decoration: underline;}		
+a:active {color: yellow;}
+table#commander {
+	border-color: #FFCCFF;
+}
+ *
+ *
+ *
+ **/
+ 
+ 
+body {
+	background-color: #403C3F; 
+ 	margin: 100px;
+	padding: 10px;
+	color: #FFFFCC;
+	font-family: 宋体;
+}
+a {color: #FFCCFF; text-decoration: none;}
+a:hover {color:#FFCCFF; text-decoration: underline;}		
+a:active {color: yellow;}
+table#commander {
+	border-color: #FFCCFF;
+}
+a {color: white; text-decoration: none;}
+a:hover {color: white; text-decoration: underline;}		
+
+h1#title {
+	margin: 10pt;
+}
+span#replacement {
+	background-color: #CCFF00;
+	color: black;
+}
+p#cp {
+	position:absolute;
+	bottom:0px;
+	text-align:center;
+	z-index:2;
+	left: 40%;
+}
+
+div#controller_t {
+	width: 330px;
+	height: 50px;
+	padding:4px 0;
+	background-color: black;
+	border:1px #FFFFFF solid;
+}
+div#playPauseBtn_1g1g {
+	width:16px;height:16px;
+	background-image:url('../Picture/play-pause-next.png');
+	float:left;cursor:pointer;
+	background-position:0px 0px;
+	overflow:hidden;margin-left:4px
+}
+div#nextBtn_1g1g {
+	width:16px;height:16px;
+	background-image:url('../Picture/play-pause-next.png');
+	background-position:0px -64px;
+	float:left;
+	margin-left:4px;;
+	cursor:pointer;
+	overflow:hidden
+}
+div#displayText_1g1g {
+	width:200px;
+	height: 50px; 
+	font-size: 12px;
+	color: #FFFFFF; 
+	margin-left:8px;
+	text-align:left;
+	overflow:hidden;
+	float:left;
+	line-height:16px;
+	filter: glow(color= #CCCCFF,strength= 10);
+}
+div.error {
+	display :none;
+	font-family: 宋体;
+	font-weight: bold;
+	background-color: red;
+	position: absolute;
+	top: 20px;
+	left: 480px;
+	width: 400px;
+	height: 10px;
+	border: 1px blue solid;
+	z-index: 100;
+}
+/*
+ * 定义按钮和文本框的式样	start ...
+ */
+input.btnout {
+	background-color: blue;
+	color: white;
+	filter: alpha(opacity=100);
+	border: 1px solid  blue;
+	cursor: hand;
+	font-family: 宋体;
+	margin: 0px;
+	padding: 0px;
+}
+input.btnon {
+	background-color: white;
+	color: blue;
+	filter: alpha(opacity=100);
+	border: 1px solid  blue;
+	cursor: hand;
+	font-family: 宋体;
+	margin: 0px;
+	padding: 0px;
+}	
+input.txtout {
+	border: 1px dotted  black;
+	font-family: 宋体;
+	margin: 0px;
+	padding: 0px;
+}
+input.txton {
+	border: 1px double  black;
+	font-family: 宋体;
+	margin: 0px;
+	padding: 0px;
+	outline-style: 1px dashed;
+}
+
+/*
+ * 定义按钮和文本框的式样	end ...
+ */
+
+#sidemenu{
+	background: url('../Picture/yifei1.jpg') no-repeat scroll 25% ;
+	float: right;
+	border: 1px blue solid;
+	color : black;
+	left : 90%;
+	top: 200px;
+}
+dl,dt {
+	font-family: 宋体;
+	font-size: 12;
+	padding: 0px;
+}
+h1,h2,h3 {
+	font-family: 宋体;
+	line-height: 0;
+}
+div#myContent {
+	position: absolute;
+}

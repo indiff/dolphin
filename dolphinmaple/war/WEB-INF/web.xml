@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+  <!-- Servlets -->
+  
+  
+  <!--  geturl-->
+  <servlet>
+  	<servlet-name>geturl</servlet-name>
+  	<servlet-class>com.tan.servlet.GeturlServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>geturl</servlet-name>
+  	<url-pattern>/geturl.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!--  showlinks-->
+  <servlet>
+  	<servlet-name>getlinks</servlet-name>
+  	<servlet-class>com.tan.servlet.GetLinksServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>getlinks</servlet-name>
+  	<url-pattern>/showlinks.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!--  show servlet-->
+  <servlet>
+  	<servlet-name>show</servlet-name>
+  	<servlet-class>com.tan.servlet.ShowServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>show</servlet-name>
+  	<url-pattern>/show.do</url-pattern>
+  </servlet-mapping>
+  
+  <!--  showpage-->
+  <servlet>
+  	<servlet-name>showpage</servlet-name>
+  	<servlet-class>com.tan.servlet.ShowpageServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>showpage</servlet-name>
+  	<url-pattern>/showpage.do</url-pattern>
+  </servlet-mapping>
+  
+  <!--  DB servlet-->
+  <servlet>
+  	<servlet-name>db</servlet-name>
+  	<servlet-class>com.tan.servlet.DBServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>db</servlet-name>
+  	<url-pattern>/db.do</url-pattern>
+  </servlet-mapping>
+
+  <!--  Download-->
+  <servlet>
+  	<servlet-name>download</servlet-name>
+  	<servlet-class>com.tan.servlet.DownloadServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>download</servlet-name>
+  	<url-pattern>/tan.download</url-pattern>
+  </servlet-mapping>
+  
+  <!--  parseSite2Ip-->
+  <servlet>
+  	<servlet-name>parse</servlet-name>
+  	<servlet-class>com.tan.servlet.ParseSiteServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+	<servlet-name>parse</servlet-name>
+  	<url-pattern>/parse.tan</url-pattern>  
+  </servlet-mapping>
+  <!--  bookmark-->
+  <servlet>
+  	<servlet-name>tanbookmark</servlet-name>
+  	<servlet-class>com.tan.servlet.BookMarkServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>tanbookmark</servlet-name>
+  	<url-pattern>/tan.book</url-pattern>
+  </servlet-mapping>
+  <!--  viewscreen-->
+  <servlet>
+  	<servlet-name>viewScreen</servlet-name>
+  	<servlet-class>com.tan.servlet.ViewScreenServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>viewScreen</servlet-name>
+  	<url-pattern>/tan.view</url-pattern>
+  </servlet-mapping>
+  <!--  encoding filter-->
+  <filter>
+  	<filter-name>encodingfilter</filter-name>
+  	<filter-class>com.tan.filter.EncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
+  </filter>
+
+  <filter-mapping>
+  	<filter-name>encodingfilter</filter-name>
+  	<url-pattern>*.*</url-pattern>
+  </filter-mapping>
+
+  <welcome-file-list>
+  	<welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+</web-app>

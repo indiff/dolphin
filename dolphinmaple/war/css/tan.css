@@ -1,0 +1,81 @@
+.body1{
+  background: url(..\Picture\1.jpg) no-repeat center fixed;
+  color: #eeeeee;
+}
+.body2{
+ background: url(..\Picture\2.jpg) no-repeat center fixed;
+ color: #eeeeee;
+}
+.body3{
+ background: url(..\Picture\3.jpg) no-repeat center fixed;
+ color: #eeeeee;
+}
+.body4{
+ background: url(..\Picture\4.jpg) no-repeat center fixed;
+ color: #eeeeee;
+
+}
+.body5{
+ background: url(..\Picture\5.jpg) no-repeat center fixed;
+ color: #eeeeee;
+}
+.body6{
+ background: url(..\Picture\6.jpg) no-repeat center fixed;
+ color: #eeeeee;
+}
+.body7{
+ background: url(..\Picture\7.jpg) no-repeat center fixed;
+ color: #eeeeee;
+}
+.body8{
+ background: url(..\Picture\8.jpg) no-repeat center fixed;
+ color: #eeeeee;
+}
+.body9{
+ background: url(..\Picture\9.jpg) no-repeat center fixed;
+ color: #eeeeee;
+}
+
+#kw{
+background:url(..\Picture\yifeix.bmp); 
+border-bottom-style:bold;
+border-color:aliceblue;
+font:16px Verdana;height:1.78em;padding-top:1px;
+font-weight :4;
+font-famlily: 宋体;
+layer-background-color: transparent;
+color=yellow;
+filter:Alpha(Opacity=80);
+}
+.btnoff, .btnon {
+	background-color: #000000;
+    color:  #ffffff;
+    width:  56px;
+    border-color: #ffffff;
+	height: 21px;
+}
+.btnon {
+	background-color: #ffffff;
+    color:#000000;
+    width: 56px;
+    border-color: #000000;
+	height: 21px;
+}
+.tantextoff, .tantexton {
+	color:#9944ff;             
+}
+.tantexton {
+              color:#00ccaa;
+}
+.navigator {
+	float: right;
+	border: 1px red solid;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+,'''�q�Шr�Шr.',''',,',.'',,','',.  <br>
+ �u��������''o',''',,',.''.'',,',.  <br>
+��������辶 '',,',.',''',,',.''  <br>
+�p�p�p�p�p�p�p�p�p�p�p�p�p�p�p�p�p�p<br>
