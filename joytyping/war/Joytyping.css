@@ -31,7 +31,27 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
+
+/** Add by dolphin. */
 B {
   font-weight: bold;
   color: red;	
+}
+.t_record {
+	border-spacing:0;
+	border-left:1px solid #0000FF;
+	border-top:1px solid #0000FF;
+}
+.t_record td {
+	border-bottom: 1px solid #0000FF;
+	border-right: 1px solid #0000FF;
+	padding: 2px;
+	text-align: center;
+}
+.t_record th{
+	border-bottom: 1px solid #0000FF;
+	border-right: 1px solid #0000FF;
+	padding: 2px;
+	color: #000000;
+	text-align: center;
 }
