@@ -54,7 +54,7 @@ s.style.width = '90px';
 s.style.zIndex = '1000';
 s.style.font = '12px arial';
 s.style.backgroundImage = 'url(http://fishstar.googlecode.com/svn/trunk/z.jpg)';
-s.style.filter = 'gray';
+//s.style.filter = 'gray';
 if (ie){
 	// s.style.filter = 'glow(color=yellow;strength=50)';
 }
