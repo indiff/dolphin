@@ -29,7 +29,8 @@ arr.add('http://www.renren.com', '\u4eba\u4eba');
 arr.add('http://www.u148.net/', '\u6709\u610f\u601d\u5427', '<b>\u5a31\u4e50</b>');
 arr.add('http://minisite.qq.com/others8', '\u8ff7\u4f60\u9996\u9875');
 arr.add('http://joytyping.appspot.com/', '\u5feb\u4e50\u6253\u5b57');
- 
+arr.add('http://play.typeracer.com/', 'typeracer');
+
 arr.add('http://fishstar.googlecode.com/svn/trunk/init.js', 'self', '<b>SELF</b>');
  
 //**** add links please before this place. ***//
