@@ -9,6 +9,16 @@ h1 {
   text-align: center;
 }
 
+h4 {
+  font-size: 1em;
+  font-weight: bold;
+  color: #0000FF;
+  text-align: center;
+}
+
+fieldset {
+	border: 1px solid blue;
+}
 .sendButton {
   display: block;
   font-size: 16pt;
