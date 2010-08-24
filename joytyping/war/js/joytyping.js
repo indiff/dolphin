@@ -19,5 +19,13 @@ function ku(l) {
 		document.getElementById('joytyping_0_0_1').style.display = '';
 	}
 }
+function m() {
+	var c = document.getElementById('controler');
+	var d = c.style.display;
+	if (c) {
+		if (d == 'none') c.style.display = '';
+		else c.style.display = 'none';
+	}
+}
 	
 

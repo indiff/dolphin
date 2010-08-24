@@ -53,7 +53,13 @@
         <td id="sendButtonContainer"></td>
       </tr>
     </table>    -->
-	<a id='opener' href='#open' onclick='ku(this);' style="">☻</a>
+	<a id='opener' href='#openLinks' onclick='ku(this);' style="">☻</a><br/>
+	<a id='opener' href='#openMusic' onclick='m();' style="">☺</a><br/>
+	<div id="controler" style="display:none;">
+	<div id="hidMusic"></div>
+	<input type="button" value="M" onclick="go()"/><br/>
+	<input type="button" value="S" onclick="stop()"/></div>
+	
 <!--<h1>深切悼念甘肃舟曲特大山洪泥石流遇难同胞</h1>-->
 <h1>快乐打字</h1>
 <!-- 打字人员一览 -->
@@ -96,6 +102,23 @@
 	 rs[i].onclick = function() { this.style.backgroundColor = '#0000FF';this.style.color='#00FF00';}
   }
    //document.body.style.filter = 'gray';
+   
+   
+   var hid = document.getElementById('hidMusic');
+	hid.style.display='none';
+	function ru() {
+		return "m/" + new Date().getTime().toString().charAt(12) + '.mid';
+	}
+	function dwn(s) {document.write(s + '<br>');}
+	
+	function go() {
+		var embedHTML ='<embed autoplay="true" src="' + ru() +  '"  height=\"0\" width=\"0\"></embed>';
+		
+
+		hid.innerHTML = embedHTML;
+	}
+
+	function stop() {hid.innerHTML = '';}
   //-->
   </SCRIPT>
   	
