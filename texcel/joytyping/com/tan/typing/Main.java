@@ -7,6 +7,8 @@ import static com.tan.util.TanUtil.println;
 import static com.tan.util.TanUtil.warnln;
 
 import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -104,7 +106,7 @@ public class Main {
 			}
 		}
 		
-		print(buf);
+		println(buf);
 	}
 
 	private static void checkFile(final File excel) {
@@ -197,6 +199,7 @@ public class Main {
 						v = values[i];
 					}
 					
+					// TODO to delete.
 					// when the i == 3 for the birthdate.
 					if (i == 3) append(buf,
 							"<TD>",
@@ -214,10 +217,25 @@ public class Main {
 	}
 
 	private static String formatDate(final String v) {
-		return v.length() != 1 ? 
-//		v.substring(1) :
-//		v.substring(1).replace('/', '-') :
-		StringUtil.filter(v.substring(1), '/', '-') :
-		v;
+		String value = v.length() != 1 ? 
+//				v.substring(1) :
+//				v.substring(1).replace('/', '-') :
+				StringUtil.filter(v.substring(1), '/', '-') :
+				v;
+		Pattern p = Pattern.compile("(\\d{4})-(\\d{1,2})-(\\d{1,2})");
+		
+		Matcher m = p.matcher(value);
+		if (m.find()) {
+			String year = m.group(1);
+			String month = m.group(2);
+			String date = m.group(3);
+			
+			return (year.length() == 2 ? "19" + year : year) 
+				    + '-'  + 
+				   (month.length() == 1 ? '0' + month : month ) 
+					+ '-' + 
+				   (date.length() == 1 ? '0' + date : date);
+		}
+		return value;
 	}	
 }
