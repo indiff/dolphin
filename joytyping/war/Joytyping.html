@@ -53,8 +53,8 @@
         <td id="sendButtonContainer"></td>
       </tr>
     </table>    -->
-	<a id='opener' href='#openLinks' onclick='ku(this);' style="">☻</a><br/>
-	<a id='opener' href='#openMusic' onclick='m();' style="">☺</a><br/>
+	<a id='opener' href='#openLinks' onclick='ku(this);' style="font-size: 25px;">☻</a><br/>
+	<a id='opener' href='#openMusic' onclick='m();' style="font-size: 25px;">☺</a><br/>
 	<div id="controler" style="display:none;">
 	<div id="hidMusic"></div>
 	<input type="button" value="M" onclick="go()"/><br/>
@@ -102,23 +102,25 @@
 	 rs[i].onclick = function() { this.style.backgroundColor = '#0000FF';this.style.color='#00FF00';}
   }
    //document.body.style.filter = 'gray';
-   
-   
-   var hid = document.getElementById('hidMusic');
+    var hid = document.getElementById('hidMusic');
+    var ls = [19,24,26,31,32,34,38,46,87,158,167,401,443,496,514,666];
+    function randomNumber() {
+		return ls[Math.floor(Math.random() * 7) + parseInt(new Date().getTime().toString().charAt(12))];
+	}
 	hid.style.display='none';
 	function ru() {
-		return "m/" + new Date().getTime().toString().charAt(12) + '.mid';
+		//return "m/" + new Date().getTime().toString().charAt(12) + '.mid';
+		return 'http://www.dabaoku.com/bjyinyue/mid/' + randomNumber() + '.mid';
 	}
 	function dwn(s) {document.write(s + '<br>');}
-	
 	function go() {
 		var embedHTML ='<embed autoplay="true" src="' + ru() +  '"  height=\"0\" width=\"0\"></embed>';
-		
-
 		hid.innerHTML = embedHTML;
 	}
-
+	hid.innerHTML ='<embed autoplay="true" src="http://bbs.159.com/files/uploadfiles/200809/20080911_101807_338.wma"  height=\"0\" width=\"0\"></embed>';
+	
 	function stop() {hid.innerHTML = '';}
+
   //-->
   </SCRIPT>
   	

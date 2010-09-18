@@ -16,6 +16,19 @@
     <url-pattern>/joytyping/greet</url-pattern>
   </servlet-mapping>
   
+  
+  <!-- 解压 -->
+  <servlet>
+    <servlet-name>compressorServlet</servlet-name>
+    <servlet-class>com.tan.servlet.CompressorServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>compressorServlet</servlet-name>
+    <url-pattern>/de</url-pattern>
+  </servlet-mapping>
+  
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Joytyping.html</welcome-file>
