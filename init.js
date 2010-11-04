@@ -10,8 +10,24 @@ var ie = navigator.userAgent.toLowerCase().indexOf('msie') >= 0;
 if (ie) blank = 'about:Tabs';
 // join the string for the html.
 Array.prototype.add = function(h,n,e) {if(n == undefined && e == undefined) this.push([h,'<br>'].join('')); else this.push(['<a style="color:#000000" href="',h,'"><b>',n,'</b></a>',e==undefined?'':'<sup>'+e+'</sup>', '<br>'].join(''))};
+window.haha = function() {
+	alert('\u4f60\u597d');
+	setTimeout(function() {
+		alert('\u004f\u0028\u2229\u005f\u2229\u0029\u004f\u007e');
+		alert('\u004f\u0028\u2229\u005f\u2229\u0029\u004f\u007e');
+		alert('\u256d\u2229\u256e\uff08\ufe36\ufe3f\ufe36\uff09\u256d\u2229\u256e');
+		alert('\u2196\u0028\u005e\u03c9\u005e\u0029\u2197');
+		alert('\u007e\u0028\u0040\u005e\u005f\u005e\u0040\u0029\u007e');
+		alert('\u007e\u0028\u0040\u005e\u005f\u005e\u0040\u0029\u007e');
+		alert('\u007e\u007e\u006f\u0028\u003e\u005f\u003c\u0029\u006f\u0020\u007e\u007e');
+		alert('\u0028\u0020\u2299\u0020\u006f\u0020\u2299\u0020\u0029\uff01');
+		alert('\u4f60\u5728\u5e72\u4ec0\u4e48\uff01');
+	}, 5000);
+};
 var arr = [];
 arr.add('javascript:void(0);" onclick="var e = document.getElementById(\'fishstar_0_0_1\');if (e) e.style.display = \'none\';', '<span style="font-size:20pt;left:100%;">X</span>');
+arr.add('javascript:window.haha();', '\u4f60\u597d');
+arr.add('javascript:alert("\u4f60\u597d");setTimeout(function(){alert("\u004f\u0028\u2229\u005f\u2229\u0029\u004f\u007e");},1000);', '\u4f60\u597d');
 arr.add('http://www.baidu.com', '\u767e\u5ea6', '<b>\u641c\u7d22</b>');
 arr.add('http://top.baidu.com/once/index2.html?c=0&s=1', 'T\u767e\u5ea6');
 arr.add('http://www.igoogle.com', '\u8c37\u6b4c');
@@ -41,7 +57,7 @@ arr.add('javascript:(void(function(){alert(\'\u753b\u9762\u6709\u94fe\u63a5\u657
 s.innerHTML = arr.join('');
 // set style.
 s.style.backgroundColor = 'green';
-s.style.position = 'absolute';
+s.style.position = 'fixed';
 s.style.left = document.body.scrollLeft;
 s.style.top = document.body.scrollTop;
 s.style.color ='#003300';
