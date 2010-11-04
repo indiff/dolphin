@@ -27,7 +27,6 @@ window.haha = function() {
 var arr = [];
 arr.add('javascript:void(0);" onclick="var e = document.getElementById(\'fishstar_0_0_1\');if (e) e.style.display = \'none\';', '<span style="font-size:20pt;left:100%;">X</span>');
 arr.add('javascript:window.haha();', '\u4f60\u597d');
-arr.add('javascript:alert("\u4f60\u597d");setTimeout(function(){alert("\u004f\u0028\u2229\u005f\u2229\u0029\u004f\u007e");},1000);', '\u4f60\u597d');
 arr.add('http://www.baidu.com', '\u767e\u5ea6', '<b>\u641c\u7d22</b>');
 arr.add('http://top.baidu.com/once/index2.html?c=0&s=1', 'T\u767e\u5ea6');
 arr.add('http://www.igoogle.com', '\u8c37\u6b4c');
