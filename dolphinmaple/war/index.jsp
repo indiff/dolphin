@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=GB2312" pageEncoding="GB2312"%>
-<%@ page import="com.tan.util.CreateCounter" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -14,45 +13,6 @@
 		<script type="text/javascript" src="jslib/idx.js"></script>
 	</head>
 	<body> 
-	
-	<!-- advertisement start ... -->
-	<%
-		if ("dolphin".equalsIgnoreCase(request.getParameter("role"))) {
-			session.setAttribute("role", "dolphin");
-		}
-	%>
-	<%if (!"dolphin".equals(session.getAttribute("role"))) { %>
-	<Center>
-	<!--  close the advertisement 
-		<div style="border: 1px solid yellow;" id="advert_above">
-			<script type="text/javascript" src="http://image.178.sdo.com/Static/WebSiteView/WebSiteView.js?type=flash&id=1&account=725238484" charset="utf-8"></script>
-			<a href="#close" onclick="this.parentElement.style.display = 'none';"><span  onmouseover="this.style.color = '#CCFFFF'" style="position:absolute;">X</span></a>
-		</div>
-	-->	
-	
-	<!-- 
-	À—À˜∞¢¿Ô¬Ë¬Ë
-	 -->
-<script type='text/javascript'>
-alimama_pid='mm_16258767_0_0';
-alimama_type='g';
-alimama_tks={};
-alimama_tks.style_i=1;
-alimama_tks.lg_i=0;
-alimama_tks.w_i=572;
-alimama_tks.h_i=69;
-alimama_tks.btn_i=1;
-alimama_tks.txt_s='»•Ã‘±¶π∫ŒÔ';
-alimama_tks.hot_i=1;
-alimama_tks.hc_c='#403C3F';
-alimama_tks.c_i=1;
-alimama_tks.cid_i=1101;
-</script>
-<script type='text/javascript' src='http://a.alimama.cn/inf.js'></script> 
-	
-	</Center>
-	<%}%>
-	<!-- advertisement end ... -->
 		<%Cookie[] cs = request.getCookies();
 			if (cs != null) {
 				for (Cookie c : cs) {
@@ -63,9 +23,8 @@ alimama_tks.cid_i=1101;
 			}%>
 		<% if (request.getAttribute("source") != null) request.setAttribute("source", null);%>
 		<%if (request.getAttribute("page_source") != null)request.setAttribute("page_source", null);%>
-		<center>
-		
-		<div id="myContent" class="myContent" >
+<center>
+<div id="myContent" class="myContent" >
 			<h1 id="title" onmouseover="this.style.color = '#CCFFFF'"
 				onmouseout="this.style.color = '#FFFFCC'">
 				Get url create by t ...
@@ -76,7 +35,7 @@ alimama_tks.cid_i=1101;
 				<table id="commander" cellspacing="0" cellpadding="0" border="1">
 					<tr>
 						<th align="left">
-							«Î ‰»ÎÕ¯÷∑:
+							ËØ∑ËæìÂÖ•ÁΩëÂùÄ:
 						</th>
 						<td colspan="2">
 							<input type="text" id="url" name="url" value="" size="50" ondblclick="createTip();" class="txtout">
@@ -90,18 +49,18 @@ alimama_tks.cid_i=1101;
 							<span onclick="getSuffix(this)"><span id="replacement"
 								onmouseover="this.style.backgroundColor = '#FF00FF'"
 								onmouseout="this.style.backgroundColor = '#CCFF00'">^_^</span></span>
-							<input type='radio' name='sel' id='selAll' onclick='selectA()' ><label for='selAll'>»´—°</label>
-							<input type='radio' name='sel' id='revAll' onclick='reverseA()' ><label for='revAll'>∑¥—°</label>
+							<input type='radio' name='sel' id='selAll' onclick='selectA()' ><label for='selAll'>ÂÖ®ÈÄâ</label>
+							<input type='radio' name='sel' id='revAll' onclick='reverseA()' ><label for='revAll'>ÂèçÈÄâ</label>
 						</td>
 					</tr>
 					<tr>
 						<th align="left">
-							–≠“È:
+							ÂçèËÆÆ:
 						</th>
 						<td>
 							<input name="protocols" type="checkbox" id="http" value="http">
 							<label for="http">http</label>
-							<input name="protocols" type="checkbox" id="https" value=""https">
+							<input name="protocols" type="checkbox" id="https" value="https">
 							<label for="http">https</label>
 							<input name="protocols" type="checkbox" id="ftp" value="ftp">
 							<label for="ftp">ftp</label>
@@ -116,7 +75,7 @@ alimama_tks.cid_i=1101;
 					</tr>
 					<tr>
 						<th align="left">
-							∫Û◊∫:
+							ÂêéÁºÄ:
 						</th>
 						<td>
 							<input name="suffixs" type="checkbox" id="gif" value="gif">
@@ -159,7 +118,7 @@ alimama_tks.cid_i=1101;
 							<span id="login" onclick='login(this)'><span
 								id="replacement"
 								onmouseover="this.style.backgroundColor = '#FF00FF'"
-								onmouseout="this.style.backgroundColor = '#CCFF00'">µ«¬º</span>
+								onmouseout="this.style.backgroundColor = '#CCFF00'">ÁôªÂΩï</span>
 							</span>
 						</td>
 						<td>
@@ -187,7 +146,6 @@ alimama_tks.cid_i=1101;
 						</td>
 					</tr>
 				</table>
-				<center>
 					<a href="unescape.html">unescape</a>
 					<br>
 					<a href="search.jsp">search</a>
@@ -195,41 +153,27 @@ alimama_tks.cid_i=1101;
 					<a href="g_a_m_e.jsp">Game</a>
 					<br>
 					<a href="db.jsp">DB</a>
-				</center>
 			</form>
-			
-	<!-- advertisement start ....  -->		
-	<%if (!"dolphin".equals(session.getAttribute("role"))) { %>
-	<Center>
-	<!-- close the advertisement  
-		<div style="border: 1px solid yellow;" id="advert_down">
-			<a href="http://tg.sdo.com/index.aspx?gameid=4&id=725238484" target="_blank"><img src="http://image.178.sdo.com/Static/178/Image/MiddleWebSiteBonus/gif/mir2/mir2_20100125_480_190.gif" border="0" /></a>
-			<a href="#close" onclick="this.parentElement.style.display = 'none';"><span  onmouseover="this.style.color = '#CCFFFF'" style="position:absolute;">X</span></a>
-		</div>
-	 close the advertisement  -->	
-	</Center>
-	<%}%>
-	<!-- advertisement end ....    -->
-			<center>
+
+	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://dolphincode.googlecode.com/svn/trunk/tancode/s4jdk/js/init.js');document.body.appendChild(e);})())">LINKS</a>
+	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://dolphincode.googlecode.com/svn/trunk/tancode/s4jdk/js/close.js');document.body.appendChild(e);})())">CLOSE</a>
+	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://fishstar.googlecode.com/svn/trunk/init.js');document.body.appendChild(e);})())">fishstar</a>
+	<a href="http://dolphinmaple.appspot.com">Dolphinmaple</a>
 				<div align="center">
-					<!-- “‡∏Ëøÿ÷∆¿∏ø™ º -->
+					<!-- ‰∫¶Ê≠åÊéßÂà∂Ê†èÂºÄÂßã -->
 					<div id="controller_t">
-						<!-- øÿ÷∆∆˜ΩÁ√Ê≤ø∑÷ -->
+						<!-- ÊéßÂà∂Âô®ÁïåÈù¢ÈÉ®ÂàÜ -->
 						<div id="playPauseBtn_1g1g"></div>
-						<!-- ≤•∑≈/‘›Õ£∞¥≈• -->
+						<!-- Êí≠Êîæ/ÊöÇÂÅúÊåâÈíÆ -->
 						<div id="nextBtn_1g1g"></div>
-						<!-- œ¬“ª ◊∞¥≈• -->
+						<!-- ‰∏ã‰∏ÄÈ¶ñÊåâÈíÆ -->
 						<div id="displayText_1g1g"></div>
-						<!-- ∏Ë√˚/∏Ë¥ œ‘ æ -->
+						<!-- Ê≠åÂêç/Ê≠åËØçÊòæÁ§∫ -->
 					</div>
 					<script type="text/javascript" src="jslib/1g1g.js"></script>
 				</div>
-			</center>
-		</center>
-		</div>
-		<!-- tips for the utr text box -->
-		<div id="tips" style="display : none;"></div>
-		<!--  For ∞¢¿Ô¬Ë¬Ë  -->
-		<p id="cp">&copy;2010 &nbsp;<a href="javascript:var DI=document.links;var R=0; var x1=.1; var y1=.05; var x2=.25; var y2=.24; var x3=1.6; var y3=.24; var x4=300;var y4=200; var x5=300; var y5=200;  var DIL=DI.length; function A(){for(i=0;i-DIL;i++){var DIS=DI[i].style;DIS.position='absolute';DIS.left=Math.sin(R*x1+i*x2+x3)*x4+x5;DIS.top=Math.cos(R*y1+i*y2+y3)*y4+y5;}R++;} setInterval('A()',5);void(0);">Dolphin Code&nbsp;</a><a href="#readme">Readme</a>&nbsp;<a href="#xxxxx">XXXXXX∫≈</a></p>
+</center>
+</div>
+		<p id="cp">&copy;2010 &nbsp;<a href="javascript:var DI=document.links;var R=0; var x1=.1; var y1=.05; var x2=.25; var y2=.24; var x3=1.6; var y3=.24; var x4=300;var y4=200; var x5=300; var y5=200;  var DIL=DI.length; function A(){for(i=0;i-DIL;i++){var DIS=DI[i].style;DIS.position='absolute';DIS.left=Math.sin(R*x1+i*x2+x3)*x4+x5;DIS.top=Math.cos(R*y1+i*y2+y3)*y4+y5;}R++;} setInterval('A()',5);void(0);">Dolphin Code&nbsp;</a><a href="#readme">Readme</a>&nbsp;<a href="#xxxxx">XXXXXXÂè∑</a></p>
 	</body>
 </html>

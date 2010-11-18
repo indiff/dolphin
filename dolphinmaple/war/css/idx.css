@@ -1,30 +1,9 @@
-/**
- *
 body {
 	background-color: #403C3F; 
  	margin: 100px;
 	padding: 10px;
 	color: #FFFFCC;
-	font-family: 宋体;
-}
-a {color: #FFCCFF; text-decoration: none;}
-a:hover {color:#FFCCFF; text-decoration: underline;}		
-a:active {color: yellow;}
-table#commander {
-	border-color: #FFCCFF;
-}
- *
- *
- *
- **/
- 
- 
-body {
-	background-color: #403C3F; 
- 	margin: 100px;
-	padding: 10px;
-	color: #FFFFCC;
-	font-family: 宋体;
+	font-family: 微软黒雅;
 }
 a {color: #FFCCFF; text-decoration: none;}
 a:hover {color:#FFCCFF; text-decoration: underline;}		
@@ -35,6 +14,9 @@ table#commander {
 a {color: white; text-decoration: none;}
 a:hover {color: white; text-decoration: underline;}		
 
+div.myContent {
+	margin-left: 100px;
+}
 h1#title {
 	margin: 10pt;
 }
