@@ -17,5 +17,6 @@
 					inputs[i].style.border = '1px solid #555555';
 				}
 			}
-			document.write('<fieldset style="margin: 0px; padding: 0px;background-color: #494949; color: black;filter: grow(strength:50, color: black) alpha(opacity:50); top: 0%; position: absolute;"><legend>悼念</legend><h1>深切悼念玉树地震死难同胞</h1></fieldset>');
+			//document.write('<fieldset style="margin: 0px; padding: 0px;background-color: #494949; color: black;filter: grow(strength:50, color: black) alpha(opacity:50); top: 0%; position: absolute;"><legend>悼念</legend><h1>深切悼念玉树地震死难同胞</h1></fieldset>');
 		</script>
+Dolphin Code.

@@ -69,10 +69,13 @@ function showPopup(msg){
 			<div id='links' style='display:none'>
 				<a href='javascript:history.go(-1)'>Back</a><BR>
 				<a href='./'>Home</a><BR>
-				<a href='http://www.baid.com'>Baidu</a><BR>
+				<a href='http://www.baidu.com'>Baidu</a><BR>
 				<a href='http://www.google.cn'>Google</a><BR>
 				<a href='http://www.%71%71.com'>QQ</a><BR>
 				<a href='http://www.csdn.net'>CSDN</a><BR>
+				<a href='http://www.javaeye.com'>JavaEye</a><BR>
+				<a href='http://joytyping.appspot.com'>Joytyping</a><BR>
+				<a href='http://adgmtt.appspot.com'>Adgmtt</a><BR>
 			</div>
 			<a id='opener' href='#open' onclick='cls(this)'>Open</a><BR>
 		</div>

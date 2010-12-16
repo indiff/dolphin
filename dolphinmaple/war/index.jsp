@@ -2,7 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
-		<title>GetURL create by t</title>
+		<title>[Create by Dolphin]</title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/idx.css">
 		<script type="text/javascript" src="jslib/idx.js"></script>
 	</head>
-	<body> 
+<body onload="idxLoad();"> 
 		<%Cookie[] cs = request.getCookies();
 			if (cs != null) {
 				for (Cookie c : cs) {
@@ -26,17 +26,12 @@
 <center>
 <div id="myContent" class="myContent" >
 			<h1 id="title" onmouseover="this.style.color = '#CCFFFF'"
-				onmouseout="this.style.color = '#FFFFCC'">
-				Get url create by t ...
-			</h1>
-			
+				onmouseout="this.style.color = '#FFFFCC'">Get url by Dolphin ...</h1>
 			<form action="geturl.do" method="post">
 				<div class="error" id="error"></div>
 				<table id="commander" cellspacing="0" cellpadding="0" border="1">
 					<tr>
-						<th align="left">
-							请输入网址:
-						</th>
+						<th align="left">请输入网址:</th>
 						<td colspan="2">
 							<input type="text" id="url" name="url" value="" size="50" ondblclick="createTip();" class="txtout">
 							<!-- 
@@ -46,9 +41,7 @@
 								<a href="#google">google</a>
 							</div>
 							-->
-							<span onclick="getSuffix(this)"><span id="replacement"
-								onmouseover="this.style.backgroundColor = '#FF00FF'"
-								onmouseout="this.style.backgroundColor = '#CCFF00'">^_^</span></span>
+							<span onclick="getSuffix(this)"><span id="replacement" onmouseover="this.style.backgroundColor = '#FF00FF'" onmouseout="this.style.backgroundColor = '#CCFF00'">^_^</span></span>
 							<input type='radio' name='sel' id='selAll' onclick='selectA()' ><label for='selAll'>全选</label>
 							<input type='radio' name='sel' id='revAll' onclick='reverseA()' ><label for='revAll'>反选</label>
 						</td>
@@ -61,7 +54,7 @@
 							<input name="protocols" type="checkbox" id="http" value="http">
 							<label for="http">http</label>
 							<input name="protocols" type="checkbox" id="https" value="https">
-							<label for="http">https</label>
+							<label for="https">https</label>
 							<input name="protocols" type="checkbox" id="ftp" value="ftp">
 							<label for="ftp">ftp</label>
 							<input name="protocols" type="checkbox" id="thunder"
@@ -115,11 +108,7 @@
 					</tr>
 					<tr>
 						<td>
-							<span id="login" onclick='login(this)'><span
-								id="replacement"
-								onmouseover="this.style.backgroundColor = '#FF00FF'"
-								onmouseout="this.style.backgroundColor = '#CCFF00'">登录</span>
-							</span>
+							<span id="login" onclick='login(this)'><spanid="replacement" onmouseover="this.style.backgroundColor = '#FF00FF'" onmouseout="this.style.backgroundColor = '#CCFF00'">登录</span></span>
 						</td>
 						<td>
 							<input type="button" class="btnout" onfocus="this.blur();" value="get" onclick="go(this);" />
@@ -138,42 +127,25 @@
 								<option value="iso8859-1">iso8859-1</option>
 								<option value="gbk">gbk</option>
 								<option value="gb2312">gb2312</option>
+								<option value="big5">Big5</option>
+								<option value="Big5-HKSCS">Big5-HKSCS</option>
 							</select>
 							<input type="button" class="btnout" onfocus="this.blur();"  value="showlinks" onclick="showlinks(this)" />
-							<!--  
-							<input type="text" id="encoding" name="encoding" value="" size="10">
-							-->
 						</td>
 					</tr>
 				</table>
 					<a href="unescape.html">unescape</a>
-					<br>
 					<a href="search.jsp">search</a>
-					<br>
 					<a href="g_a_m_e.jsp">Game</a>
-					<br>
 					<a href="db.jsp">DB</a>
 			</form>
-
-	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://dolphincode.googlecode.com/svn/trunk/tancode/s4jdk/js/init.js');document.body.appendChild(e);})())">LINKS</a>
-	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://dolphincode.googlecode.com/svn/trunk/tancode/s4jdk/js/close.js');document.body.appendChild(e);})())">CLOSE</a>
-	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://fishstar.googlecode.com/svn/trunk/init.js');document.body.appendChild(e);})())">fishstar</a>
-	<a href="http://dolphinmaple.appspot.com">Dolphinmaple</a>
-				<div align="center">
-					<!-- 亦歌控制栏开始 -->
-					<div id="controller_t">
-						<!-- 控制器界面部分 -->
-						<div id="playPauseBtn_1g1g"></div>
-						<!-- 播放/暂停按钮 -->
-						<div id="nextBtn_1g1g"></div>
-						<!-- 下一首按钮 -->
-						<div id="displayText_1g1g"></div>
-						<!-- 歌名/歌词显示 -->
-					</div>
-					<script type="text/javascript" src="jslib/1g1g.js"></script>
-				</div>
+	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://dolphincode.googlecode.com/svn/trunk/tancode/s4jdk/js/init.js');document.body.appendChild(e);})())" title="Link">L</a>
+	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://dolphincode.googlecode.com/svn/trunk/tancode/s4jdk/js/close.js');document.body.appendChild(e);})())" title="Close">C</a>
+	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://fishstar.googlecode.com/svn/trunk/init.js');document.body.appendChild(e);})())" tilte="Fishstar">F</a>
+	<a href="http://dolphinmaple.appspot.com" title="Dolphinmaple">D</a>
+	<%/*亦歌*/%><div align="center"><!-- 亦歌控制栏开始 --><div id="controller_t"><!-- 控制器界面部分 --><div id="playPauseBtn_1g1g"></div><!-- 播放/暂停按钮 --><div id="nextBtn_1g1g"></div><!-- 下一首按钮 --><div id="displayText_1g1g"></div><!-- 歌名/歌词显示 --></div><script type="text/javascript" src="jslib/1g1g.js"></script></div>
 </center>
 </div>
-		<p id="cp">&copy;2010 &nbsp;<a href="javascript:var DI=document.links;var R=0; var x1=.1; var y1=.05; var x2=.25; var y2=.24; var x3=1.6; var y3=.24; var x4=300;var y4=200; var x5=300; var y5=200;  var DIL=DI.length; function A(){for(i=0;i-DIL;i++){var DIS=DI[i].style;DIS.position='absolute';DIS.left=Math.sin(R*x1+i*x2+x3)*x4+x5;DIS.top=Math.cos(R*y1+i*y2+y3)*y4+y5;}R++;} setInterval('A()',5);void(0);">Dolphin Code&nbsp;</a><a href="#readme">Readme</a>&nbsp;<a href="#xxxxx">XXXXXX号</a></p>
-	</body>
+<p id="cp"> &nbsp;<a href='http://joytyping.appspot.com'>Joytyping</a>&nbsp;<a href='http://adgmtt.appspot.com'>Adgmtt</a>&nbsp;<%/*<a href="javascript:var DI=document.links;var R=0; var x1=.1; var y1=.05; var x2=.25; var y2=.24; var x3=1.6; var y3=.24; var x4=300;var y4=200; var x5=300; var y5=200;  var DIL=DI.length; function A(){for(i=0;i-DIL;i++){var DIS=DI[i].style;DIS.position='absolute';DIS.left=Math.sin(R*x1+i*x2+x3)*x4+x5;DIS.top=Math.cos(R*y1+i*y2+y3)*y4+y5;}R++;} setInterval('A()',5);void(0);">Dolphin Code&nbsp;</a>*/%><a href="readme.txt" title="readme">About</a>&nbsp;&copy;2010</p>
+</body>
 </html>

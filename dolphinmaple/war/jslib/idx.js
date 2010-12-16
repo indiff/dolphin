@@ -24,5 +24,13 @@ function show(button) {
 		f.submit();
 	}
 }
+function idxLoad() {
+	var d = new Date();
+	var now = function() {
+		var old = document.title;
+		return [old, d.getYear() , 'Äê', (d.getMonth() + 1) , 'ÔÂ', d.getDate(), 'ÈÕ', d.getHours() ,':', d.getMinutes() , ':', d.getSeconds()].join('');
+	};
+	document.title = now();	
+}
 
 

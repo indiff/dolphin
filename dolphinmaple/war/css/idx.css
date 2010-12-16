@@ -6,7 +6,7 @@ body {
 	font-family: 微软黒雅;
 }
 a {color: #FFCCFF; text-decoration: none;}
-a:hover {color:#FFCCFF; text-decoration: underline;}		
+a:hover {color:#FFCCFF;border:1px solid #00ff00;}		
 a:active {color: yellow;}
 table#commander {
 	border-color: #FFCCFF;
@@ -14,22 +14,25 @@ table#commander {
 a {color: white; text-decoration: none;}
 a:hover {color: white; text-decoration: underline;}		
 
+/*
 div.myContent {
 	margin-left: 100px;
-}
+}*/
+
 h1#title {
 	margin: 10pt;
 }
+
 span#replacement {
 	background-color: #CCFF00;
 	color: black;
 }
+
 p#cp {
-	position:absolute;
 	bottom:0px;
 	text-align:center;
 	z-index:2;
-	left: 40%;
+	left: 55%;
 }
 
 div#controller_t {
@@ -120,7 +123,6 @@ input.txton {
 /*
  * 定义按钮和文本框的式样	end ...
  */
-
 #sidemenu{
 	background: url('../Picture/yifei1.jpg') no-repeat scroll 25% ;
 	float: right;
@@ -138,6 +140,4 @@ h1,h2,h3 {
 	font-family: 宋体;
 	line-height: 0;
 }
-div#myContent {
-	position: absolute;
-}
+
