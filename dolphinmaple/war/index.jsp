@@ -2,7 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
-		<title>[Create by Dolphin]</title>
+		<title>[天空之城]</title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
@@ -13,16 +13,19 @@
 		<script type="text/javascript" src="jslib/idx.js"></script>
 	</head>
 <body onload="idxLoad();"> 
-		<%Cookie[] cs = request.getCookies();
-			if (cs != null) {
-				for (Cookie c : cs) {
-					if ("username".equalsIgnoreCase(c.getName())) {
-					%><input type="hidden" id="t_u" value="<%=c.getValue()%>"><%}	
-					if ("password".equalsIgnoreCase(c.getName())) {%><input type="hidden" id="t_p" value="<%=c.getValue()%>"><%}
-				}
-			}%>
-		<% if (request.getAttribute("source") != null) request.setAttribute("source", null);%>
-		<%if (request.getAttribute("page_source") != null)request.setAttribute("page_source", null);%>
+<%
+String style = request.getParameter("style");
+Cookie[] cs = request.getCookies();
+if (cs != null) {
+	for (Cookie c : cs) {
+		if ("username".equalsIgnoreCase(c.getName())) {
+		%><input type="hidden" id="t_u" value="<%=c.getValue()%>"><%}	
+		if ("password".equalsIgnoreCase(c.getName())) {%><input type="hidden" id="t_p" value="<%=c.getValue()%>"><%}
+	}// End for.
+}// end for check cookies.
+if (request.getAttribute("source") != null) {request.setAttribute("source", null);}
+if (request.getAttribute("page_source") != null) {request.setAttribute("page_source", null);}
+%>
 <center>
 <div id="myContent" class="myContent" >
 			<h1 id="title" onmouseover="this.style.color = '#CCFFFF'"
@@ -138,7 +141,35 @@
 					<a href="search.jsp">search</a>
 					<a href="g_a_m_e.jsp">Game</a>
 					<a href="db.jsp">DB</a>
+					<a href="./?style=nomusic">No Music</a>
 			</form>
+<script ></script>			
+<%if (!"nomusic".equalsIgnoreCase(style)){/*Background music control start*/%>
+<script>
+<!--
+ var playerControl;
+ function change(i) {
+	 if (!playerControl) {playerControl = document.getElementById('playerControl');}
+	 var html = ['<embed width="290" height="40" type="application/x-shockwave-flash" src="', 'http://www.u148.net/images/audio.swf?&amp;soundFile='];
+	 if (i===0) {html.push('http://www.haofumu.tv/tjzhfmadmin/ewebeditor/uploadfile/20090428165152438.mp3'); }
+	 if (i===1) {html.push('http://rm.sina.com.cn/wm/VZ200711211724501086VK/music/1.mp3'); }
+	 if (i===2) {html.push('http://file.u148.net/attachments/audio/month_0806/concert/yuqiaowenda.mp3'); }
+	 if (i===3) {html.push('http://file.u148.net/attachments/audio/month_0806/concert/chunjianghuayueye.mp3'); }
+	 html.push('&amp;playerID=43019&amp;loop=yes&amp;autostart=yes" id="player">');
+	 playerControl.innerHTML = html.join('');
+ }
+//-->
+</script>
+<div>
+<a href="#SkyCity" onclick="change(0)" title="天空之城">0</a>
+<a href="#KaNong" onclick="change(1)" title="卡农">1</a>
+<a href="#YuQiao" onclick="change(2)" title="渔樵问答">2</a>
+<a href="#ChunJiang" onclick="change(3)" title="春江花月夜">3</a>
+</div>
+<p id="playerControl">
+<embed width="290" height="40" type="application/x-shockwave-flash" src="http://www.u148.net/images/audio.swf?&amp;soundFile=http://www.haofumu.tv/tjzhfmadmin/ewebeditor/uploadfile/20090428165152438.mp3&amp;playerID=43019&amp;loop=yes&amp;autostart=yes" id="player">
+</p>	  
+<%}/*Background music control end.*/%>
 	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://dolphincode.googlecode.com/svn/trunk/tancode/s4jdk/js/init.js');document.body.appendChild(e);})())" title="Link">L</a>
 	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://dolphincode.googlecode.com/svn/trunk/tancode/s4jdk/js/close.js');document.body.appendChild(e);})())" title="Close">C</a>
 	<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://fishstar.googlecode.com/svn/trunk/init.js');document.body.appendChild(e);})())" tilte="Fishstar">F</a>

@@ -26,9 +26,25 @@ function show(button) {
 }
 function idxLoad() {
 	var d = new Date();
+	var year = d.getYear();
+	var month = d.getMonth() + 1;
+	var date = d.getDate();
+	var festival = '' + month + date;
 	var now = function() {
 		var old = document.title;
-		return [old, d.getYear() , '��', (d.getMonth() + 1) , '��', d.getDate(), '��', d.getHours() ,':', d.getMinutes() , ':', d.getSeconds()].join('');
+		var hapiness
+		switch (festival){
+			case '1224':  hapiness = [year, '年', '平安夜', '快乐'].join('');break;
+			case '1225':  hapiness = [year, '年', '圣诞节', '快乐'].join('');break;
+			case '11':  hapiness = [year, '年', '元旦', '快乐'].join('');break;
+			case '22':  hapiness = [year, '年', '除夕', '快乐,拜年O(∩_∩)O~'].join('');break;
+			case '23':  hapiness = [year, '年', '春节', '快乐,拜年了O(∩_∩)O~'].join('');break;
+			case '214':  hapiness = [year, '年', '情人节', '快乐'].join('');break;
+			case '217':  hapiness = [year, '年', '元宵节', '快乐'].join('');break;
+			default : hapiness = [year, '年', '快乐'].join('');
+		}
+		return [old, hapiness].join('');
+		//return [old, year, '年', month, '月', date, '日', d.getHours() ,':', d.getMinutes() , ':', d.getSeconds()].join('');
 	};
 	document.title = now();	
 }
