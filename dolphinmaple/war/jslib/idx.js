@@ -1,4 +1,6 @@
-var cache = ''; 
+var cache = '';
+var userAgent=navigator.userAgent.toLowerCase();
+var IE = userAgent.indexOf("msie") >= 0;
 function $(sid) {return document.getElementById(sid);} 
 String.prototype.trim = function(){ return this.replace(/(^\s*)|(\s*$)/g, ''); }  
 function getUrl(button) { if(!isUrl($('url'))) {alert('Please intput url'); } else {var f = document.forms[0]; alert(f.action); f.action = f.action + "?suffix=" + button.name; f.submit(); } } 
@@ -15,18 +17,40 @@ var ie = (navigator.userAgent.toLowerCase().indexOf('msie') > 0);
 var firefox = (navigator.userAgent.toLowerCase().indexOf('firefox') > 0);
 function parse(button) { if (!isUrl($("url"))) {alert("Please intput url"); } else {var f = document.forms[0]; 	f.action = "parse.tan"; 	f.submit(); } }   function showlinks(button){ if(!isUrl($('url'))) { alert('Please intput url'); } else {  button.value = "Showing...";   var f = document.forms[0];   f.action = "showlinks.do";    f.submit();  }  } function pushSite(l) { 	$('url').value = l.innerHTML; 	var tips = $('tips'); 	var content = $('myContent'); 	tips.innerHTML = ''; 	tips.style.display = 'none'; 	if (ie) content.style.filter = 'alpha(opacity=100)'; 	if (firefox) content.style.opacity = '';	 } function createTip() { var tips = $('tips'); tips.style.display = ''; var content = $('myContent'); if (ie) content.style.filter = 'alpha(opacity=50)'; if (firefox) content.style.opacity = '0.5'; var link1 = "<a href='#baidu' onclick='pushSite(this);'>http://www.baidu.com</a><BR>"; var link2 = "<a href='#google' onclick='pushSite(this);'>http://www.google.com</a><BR>"; var link3 = "<a href='#qq' onclick='pushSite(this);'>http://www.qq.com</a><BR>"; var link4 = "<a href='#minisite' onclick='pushSite(this);'>http://minisite.qq.com/others8</a><BR><a href='#close' onclick='pushSite(this);'>Close</a><BR>"; var websites = new Array(link1, link2, link3, link4); tips.innerHTML = websites.join(''); }
 function show(button) {
+	var f = document.forms[0];
+	var w = f.elements['wiki'];
+	var u = f.elements['url'];
+	var wiki = w.value;
+	if (wiki && wiki.length > 0) {
+		u.value = 'http://zh.wikipedia.org/wiki/' + encodeURIComponent(wiki);
+		w.value = '';
+	}
 	if (!isUrl($("url"))) {
 		alert("Please intput url");
 	} else {
 		button.value = "Showing...";
-		var f = document.forms[0];
 		f.action = "show.do";
 		f.submit();
 	}
 }
+function changeTarget(type) {
+	var t = parseInt(type.value);
+	var f = document.forms[0];
+	if (t == 0) {
+		f.target = '_self';
+	} else if (t == 1) {
+		f.target = '_blank';
+	} else if (t == 2) {
+		f.target = '_parent';
+	} else if (t == 3) {
+		f.target = '_top';
+	}
+}
 function idxLoad() {
 	var d = new Date();
-	var year = d.getYear();
+	var year; 
+	if (IE) {year=d.getYear();}
+	else {year = d.getFullYear();}
 	var month = d.getMonth() + 1;
 	var date = d.getDate();
 	var festival = '' + month + date;
@@ -44,9 +68,6 @@ function idxLoad() {
 			default : hapiness = [year, '年', '快乐'].join('');
 		}
 		return [old, hapiness].join('');
-		//return [old, year, '年', month, '月', date, '日', d.getHours() ,':', d.getMinutes() , ':', d.getSeconds()].join('');
 	};
 	document.title = now();	
 }
-
-

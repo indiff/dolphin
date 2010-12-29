@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
 /**
  * 获取url地址网页中的link 或者下载地址
  * @autor tan
@@ -13,6 +12,22 @@ import java.nio.charset.Charset;
 public final class GetURL {
 	//存放结果
 	private static StringBuffer result = new StringBuffer();
+	
+	private static final int BUFFER_SIZE = 1024 * 2;
+	
+	/**
+	 * TODO
+	 * @param url
+	 * @param encoding
+	 * @return
+	 */
+	public static String getSource(final String url, final String encoding) {
+		StringBuilder builder = new StringBuilder();
+		byte[] buf = new byte[BUFFER_SIZE];
+		int len = -1;
+		
+		return builder.toString();
+	}
 	
 	/**
 	 * 通过url获取下载链接
@@ -22,39 +37,39 @@ public final class GetURL {
 	 * @return 下载的link或者地址
 	 */		
 	public static String getSourceA(String url, String encoding) {
+		byte[] b = new byte[BUFFER_SIZE];
+		int len = -1;
+		StringBuilder builder = new StringBuilder();
 		URL u = null ;
+		InputStream in = null;
+		
 		if (encoding == null || encoding.trim().length() == 0) {
 			encoding = "gb18030";
 		}
-		StringBuilder builder = new StringBuilder();
-		if (url != null && url.length() != 0)
+		if (url != null && url.trim().length() != 0){
 			try {
 				u = new URL(url);
 			} catch (MalformedURLException e2) {
 				e2.printStackTrace();
 			}
-		InputStream in = null;
-		BufferedInputStream bis = null;
+		}
 		try {
 			in = u.openStream();
-			bis = new BufferedInputStream(in);
-			byte[] b = new byte[8192];
-			int len = -1;
-			while ((len = bis.read(b, 0, b.length)) != -1) {
+			while (-1 != (len = in.read(b, 0, BUFFER_SIZE))) {
 				builder.append(addJavascriptEvent(new String(b, 0, len, encoding)));
-//				builder.append(filter(new String(b, 0, len, "gb18030")));
 			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} finally {
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
 			try {
-				if (bis != null) {
-					bis.close();
+				if (in != null) {
+					in.close();
 				}
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
 		}
+		
 		return builder.toString();
 	}
 	
@@ -74,9 +89,9 @@ public final class GetURL {
 			URL url = new URL(url_str);
 			in = url.openStream();
 			bufIn = new BufferedInputStream(in);
-			byte[] b = new byte[8192];
+			byte[] b = new byte[BUFFER_SIZE];
 			int len = -1;
-			while ((len = bufIn.read(b, 0, b.length)) != -1)	
+			while ((len = bufIn.read(b, 0, BUFFER_SIZE)) != -1)	
 				result = result.append(new String(b, 0, len, "gb2312")) ;
 			analyze(result.toString().trim(), protocols, suffixs);
 		} catch (Exception e){
@@ -107,8 +122,9 @@ public final class GetURL {
 		String demo = "src='/fdasfdadfhttp://www.fdsa.fdsfs.com/some.GIF	";
 		demo = demo.trim().replaceAll("[hH][tT]{2}[pP]", "http");
 		demo = demo.trim().replaceAll("[gG][iI][fF]","gif");
-		System.out.println(getSourceA("http://www.baidu.com", null));
-		System.out.println(addJavascriptEvent("fdaonfdsa <a"));
+		System.out.println(demo);
+//		System.out.println(getSourceA("http://www.baidu.com", null));
+//		System.out.println(addJavascriptEvent("fdaonfdsa <a"));
 //		char[] cs = "我是中国人".toCharArray();
 //		System.out.println(cs[2]);
 	}

@@ -31,6 +31,24 @@
   	<url-pattern>/showlinks.do</url-pattern>
   </servlet-mapping>
   
+  <!--wap-->
+  <servlet>
+  	<servlet-name>wap</servlet-name>
+  	<servlet-class>com.tan.servlet.WapServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>wap</servlet-name>
+  	<url-pattern>/wap</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>wiki</servlet-name>
+  	<servlet-class>com.tan.servlet.WikiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>wiki</servlet-name>
+  	<url-pattern>/wiki/*</url-pattern>
+  </servlet-mapping>
   
   <!--  show servlet-->
   <servlet>

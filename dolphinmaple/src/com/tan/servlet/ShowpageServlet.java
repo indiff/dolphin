@@ -22,7 +22,7 @@ public final class ShowpageServlet extends HttpServlet{
 	@Override
 	public final void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = request.getParameter("url");
-		String prefix = request.getParameter("prefix");
+		String prefix = request.getParameter("pref0ix");
 		String encoding = request.getParameter("encoding");
 		if (prefix != null && prefix.trim().length() > 0) {
 			prefix = new String(request.getParameter("prefix").getBytes("ISO8859_1"), "utf-8");

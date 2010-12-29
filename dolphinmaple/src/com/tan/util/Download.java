@@ -4,22 +4,28 @@ public final class Download {
 	/**
 	 * return the download's file name
 	 * @param url
-	 * @param filters
+	 * @param suffixs
 	 * @return file's name
 	 */
-	public final static String getFilename(String url,String ... filters) {
+	public final static String getFilename(final String url,String ... suffixs) {
 		if (url ==  null || url.trim().length() == 0) {
-			return null;
+			return "tan";
 		}
-		StringBuilder result = new StringBuilder("tan_custom.");
-		filters = filterWhiteSpace(filters);
-		if (filters != null && filters.length != 0) {
-			for (String f : filters) {
+		int idx = url.lastIndexOf("/");
+		String name = "tan";
+		if (idx >= 0) {
+			idx++;
+			name = url.substring(idx);
+		}
+		StringBuffer result = new StringBuffer(name);
+		suffixs = filterWhiteSpace(suffixs);
+		if (suffixs != null && suffixs.length != 0) {
+			for (String f : suffixs) {
 				result.append(f);
 			}
 			return result.toString();
 		}
-		return "tan" + url.substring(url.lastIndexOf(".")) ;
+		return "tan" + name ;
 	}
 	
 	public final static String getFileName() {
@@ -28,6 +34,7 @@ public final class Download {
 	
 	public static void main(String args[]){
 		System.out.println(getFilename("http://www.fdafdsafdsa.com/fdsafdsa/false.wmv", "filter   ", "   hello"));
+		System.out.println(getFilename("false.wmv", "filter   ", "   hello"));
 	}
 	
 	/**
