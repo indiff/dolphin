@@ -55,12 +55,10 @@ function paste(){
 		for (Cookie c : cs) {
 			if ("username".equalsIgnoreCase(c.getName())) {
 %><input type="hidden" id="t_u" value="<%=c.getValue()%>">
-<%
-	}
+<% 			}// End if username.
 			if ("password".equalsIgnoreCase(c.getName())) {
 %><input type="hidden" id="t_p" value="<%=c.getValue()%>">
-<%
-	}
+<%			}// End if password.
 		}// End for.
 	}// end for check cookies.
 	if (request.getAttribute("source") != null) {
@@ -75,12 +73,12 @@ function paste(){
 <h1 id="title" onmouseover="this.style.color = '#CCFFFF'" onmouseout="this.style.color = '#FFFFCC'" title="<%=now()%>">O(∩_∩)O~</h1>
 <form action="geturl.do" method="post" >
 <div class="error" id="error"></div>
-<table id="commander" cellspacing="0" cellpadding="0" border="1">
+<table cellspacing="0" cellpadding="0">
 	<tr>
-		<th align="left">请输入网址:</th>
+		<th align="left">网址:</th>
 		<td colspan="2">
-			<input type="text" id="url" name="url" value="" onmouseover="paste();" size="50" ondblclick="createTip();" class="txtout">
-			<input type="text" id="wiki" name="wiki" class="txtout">
+			<input type="text" id="url" name="url" value="" title="请输入网址" onmouseover="paste();" size="40" ondblclick="createTip();" class="txtout">
+			<input type="text" id="wiki" name="wiki" class="txtout" title="wiki">
 			<span onclick="getSuffix(this)"><span id="replacement" onmouseover="this.style.backgroundColor = '#FF00FF'" onmouseout="this.style.backgroundColor = '#CCFF00'">^_^
 			</span></span>
 			<input type='radio' name='sel' id='selAll' onclick='selectA()'><label for='selAll'>全选</label>
@@ -164,30 +162,30 @@ function paste(){
 <%if (!"nomusic".equalsIgnoreCase(style)) {/*Background music control start*/%>
 <div>
 <%
-	// join the by stringbuffer
-		String[][] musics = new String[][] { { "#SkyCity", "天空之城" },
-				{ "#KaNong", "卡农" }, { "#YuQiao", "渔樵问答" },
-				{ "#ChunJiang", "春江花月夜" }, { "#BeacuseOfYou", "因为你" },
-				{ "#MoonFlow", "Moon Flow" }, { "#illusion", "错觉" },
-				{ "#YoungForYou", "Young For You" } };
-		StringBuilder jsArray = new StringBuilder("<script>var musics = ["); 
-		for (byte i = 0; i < musics.length; i++) {
-			if (i == (musics.length - 1)) {jsArray.append('\"' + musics[i][1] + '\"');}
-			else {jsArray.append('\"' + musics[i][1] + "\",");}
-		}
-		jsArray.append("];</script>");
-		StringBuilder builder = new StringBuilder(jsArray);
-		for (byte i = 0; i < musics.length; i++) {
-			builder.append("<A HREF=\"").append(musics[i][0])
-					.append("\" ONCLICK=\"music(").append(i)
-					.append(")\" TITLE=\"").append(musics[i][1])
-					.append("\">").append(i).append("</A> ");
-		}
-		out.println(builder);
+// join the by stringbuffer
+	String[][] musics = new String[][] { { "#SkyCity", "天空之城" },
+			{ "#KaNong", "卡农" }, { "#YuQiao", "渔樵问答" },
+			{ "#ChunJiang", "春江花月夜" }, { "#BeacuseOfYou", "因为你" },
+			{ "#MoonFlow", "Moon Flow" }, { "#illusion", "错觉" },
+			{ "#YoungForYou", "Young For You" } };
+	StringBuilder jsArray = new StringBuilder("<script>var musics = ["); 
+	for (byte i = 0; i < musics.length; i++) {
+		if (i == (musics.length - 1)) {jsArray.append('\"' + musics[i][1] + '\"');}
+		else {jsArray.append('\"' + musics[i][1] + "\",");}
+	}
+	jsArray.append("];</script>");
+	StringBuilder builder = new StringBuilder(jsArray);
+	for (byte i = 0; i < musics.length; i++) {
+		builder.append("<A HREF=\"").append(musics[i][0])
+				.append("\" ONCLICK=\"music(").append(i)
+				.append(")\" TITLE=\"").append(musics[i][1])
+				.append("\">").append(i).append("</A> ");
+	}
+	out.println(builder);
 %>
 </div>
 <script type="text/javascript" src="jslib/music.js"></script>
-<p id="playerControl"></p>
+<script>music(random(<%=musics.length%>));</script>
 <%}/*<embed width="290" height="40" type="application/x-shockwave-flash" src="http://www.u148.net/images/audio.swf?&amp;soundFile=http://www.haofumu.tv/tjzhfmadmin/ewebeditor/uploadfile/20090428165152438.mp3&amp;playerID=43019&amp;loop=yes&amp;autostart=yes" id="player">Background music control end.*/%>
 <%/*Output the Links Start.*/%>
 <script type="text/javascript">
@@ -213,8 +211,5 @@ document.write([j('dolphincode','tancode/s4jdk/js/init.js','Link', 'L'), j('dolp
 <p id="cp">&nbsp;<a href='http://joytyping.appspot.com' title="Joytyping">Joytyping</a>&nbsp;<a href='http://adgmtt.appspot.com' title="Adgmtt">Adgmtt</a>&nbsp;<%
 	/*<a href="javascript:var DI=document.links;var R=0; var x1=.1; var y1=.05; var x2=.25; var y2=.24; var x3=1.6; var y3=.24; var x4=300;var y4=200; var x5=300; var y5=200;  var DIL=DI.length; function A(){for(i=0;i-DIL;i++){var DIS=DI[i].style;DIS.position='absolute';DIS.left=Math.sin(R*x1+i*x2+x3)*x4+x5;DIS.top=Math.cos(R*y1+i*y2+y3)*y4+y5;}R++;} setInterval('A()',5);void(0);">Dolphin Code&nbsp;</a>*/
 %><a href="readme.txt" title="[Create by Dolphin]]">About</a>&nbsp;&copy;2010</p>
-<%if (!"nomusic".equalsIgnoreCase(style)) {/*Background music control start*/%>
-<script>music(random(8));</script>
-<%}%>
 </body>
 </html>
