@@ -24,7 +24,7 @@ public final class ShowServlet extends HttpServlet{
 	@Override
 	public final void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = request.getParameter("url");
-		String prefix = request.getParameter("prefix");
+		//String prefix = request.getParameter("prefix");
 		String encoding = request.getParameter("encoding");
 		ServletOutputStream out = response.getOutputStream();
 		/**
@@ -98,13 +98,12 @@ public final class ShowServlet extends HttpServlet{
 			while (-1 != (len = in.read(buf, 0, 2048)) ) {
 				out.write(buf, 0, len);
 			}
-			
-			// Finished.
 			conn.disconnect();
-			in.close();
-			in = null;
 			out.flush();
 			out.close();
+			in.close();
+			// Finished.
+			in = null;
 			out = null;
 			u = null;
 			conn = null;
@@ -115,7 +114,7 @@ public final class ShowServlet extends HttpServlet{
 		//out.write("Length\t" + length + "<br>Encoding\t" + contentEncoding + "<br>type\t" + contentType+ "<a href='./index.jsp'>Home</a>");
 	}
 
-	private final boolean hasSuffix(HttpServletRequest request,
+	/*private final boolean hasSuffix(HttpServletRequest request,
 			HttpServletResponse response, String u) throws ServletException,
 			IOException {
 		if (!u.endsWith(".com") && !u.endsWith(".cn")
@@ -135,5 +134,5 @@ public final class ShowServlet extends HttpServlet{
 			return false;
 		}
 		return true;
-	}
+	}*/
 }
