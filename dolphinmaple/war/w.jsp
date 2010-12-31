@@ -47,17 +47,34 @@
 <body>
 <%
 	String[][] links = {
-		{"http://3g.baidu.com", "baidu"}, 
-		{"http://wap.sina.com.cn/", "sina"}, 
-		{"http://3g.baidu.com/news", "news"}, 
-		{"http://m.google.com/", "google"}};
+		{"http://3g.baidu.com", "百度"}, 
+		{"http://wap.sina.com.cn/", "新浪"}, 
+		{"http://3g.163.com/", "网易"}, 
+		{"http://3g.baidu.com/news", "新闻"}, 
+		{"http://m.google.com/", "谷歌"},
+		{"http://3g.baidu.com/game", "游戏"},
+		{"http://wapiknow.baidu.com/", "知道"},
+		{"http://3g.baidu.com/xs", "小说"},
+		{"http://wapp.baidu.com", "贴吧"},
+		{"http://3g.baidu.com/img", "图片"},
+		{"http://gate.baidu.com/tc", "娱乐"},
+		{"http://wapbaike.baidu.com", "百科"},
+		{"http://m.baidu.com/tq", "天气"},
+		{"http://wap.baidu.com/pub/rebang.php", "风云榜"},
+		{"http://wap.baidu.com/pub/more.php", "更多"},
+		{"http://dolphinmaple.appspot.com", "主页"}};
 	StringBuilder linksBuilder = new StringBuilder();
 	for (byte i = 0; i < links.length; i++) {
-		linksBuilder.append("<A HREF=\"" + links[i][0] +  "\">" + links[i][1] + "</A>|");
+		if (i != 0 && i % 5 == 0) {
+			linksBuilder.append("<A HREF=\"" + links[i][0] +  "\">" + links[i][1] + "</A><BR/>");
+		} else {
+			linksBuilder.append("<A HREF=\"" + links[i][0] +  "\">" + links[i][1] + "</A>|");
+		}
 	}
 	out.println(linksBuilder.substring(0, linksBuilder.length() - 1));
 	linksBuilder = null;
+	links = null;
 %>
-<form action="wap" method="post" ><input type="hidden" id="code" name="code" value="" /><input type="radio" name="site" id="s0" value="0" checked /><label for="s0">baidu</label><input type="hidden" id="enc" name="enc" value="" /><input type="radio" name="site" id="s1" value="1" /><label for="s1">wiki</label><input type="radio" name="site" value="2" id="s2" /><label for="s2">google</label><input type="text" id="word" name="word" value="" /><input type="submit" value="submit" onclick="check();"/></form>
+<form action="wap" method="post" ><input type="hidden" id="code" name="code" value="" /><input type="radio" name="site" id="s0" value="0" checked />百度<input type="hidden" id="enc" name="enc" value="" /><input type="radio" name="site" id="s1" value="1" />维基<input type="radio" name="site" value="2" id="s2" />谷歌<br/><input type="text" id="word" name="word" value="" /><input type="submit" value="提交" onclick="check();"/></form>
 </body>
 </html>

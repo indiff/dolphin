@@ -1,7 +1,14 @@
 package com.tan.servlet;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.URL;
 import java.net.URLEncoder;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -17,7 +24,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 public final class WapServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	/*static {
+		try {
+			PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(InetAddress.getByName("proxy2.zte.com.cn"), 80));
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static Proxy PROXY ;*/
+	
 	@Override
 	protected final void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -35,7 +52,7 @@ public final class WapServlet extends HttpServlet {
 		//req.setCharacterEncoding("utf-8");
 		// Check site.
 		if (site == null) {
-			out.print("<h1>Please select the site.</h1>");return;
+			out.print("<h1>Please select the site.</h1><a href=w.jsp>Home</a>");return;
 		}//end for site.
 		
 		// Check word.
@@ -57,9 +74,60 @@ public final class WapServlet extends HttpServlet {
 			resp.sendRedirect("http://3g.baidu.com/s?word=" + word);
 		}
 		else if ('1' == s) { // Wiki.
-			resp.sendRedirect("http://dolphinmaple.appspot.com/show.do?url=" + URLEncoder.encode("http://zh.m.wikipedia.org/wiki?search=", "utf-8") + word);
-		}
-		else if ('2' == s) { // Google.
+			
+			/**
+			 * 方法一: send redirect.
+			 */
+			//resp.sendRedirect("http://dolphinmaple.appspot.com/show.do?url=" + URLEncoder.encode("http://zh.m.wikipedia.org/wiki?search=", "utf-8") + word);
+			
+			/**
+			 * Process the wiki's request.
+			 */
+///////////////////////////////////////////////////////// Process the wiki for wap servlet end.
+			resp.reset();
+			String u = "http://zh.m.wikipedia.org/wiki?search=" + word;
+			URL url = new URL(u);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection(); // use PROXY.
+			String type = conn.getContentType();
+			InputStream in = null;
+			byte[] buf = null;
+			int len = -1,bufSize = 2046;
+			/*if (length <= 0) {
+				resp.reset();
+				out.print("<h1>The request can not be execute!ContentLength </h1><font color=red>" + "http://zh.m.wikipedia.org/wiki?search=" + word + '\t' + length + "</font><a href=w.jsp>[Home]</a>");
+				return;
+			} else if (length <= 1024) {
+				bufSize = 512;
+			} else if (length <= 2048) {
+				bufSize = 1024;
+			} else if (length <= 4096) {
+				bufSize = 2048;
+			} else if (length > 4096) {
+				bufSize = 4096;
+			}*/
+			buf = new byte[bufSize];
+			
+			// Get the input stream.
+			in = conn.getInputStream();
+			if (null != in) {
+				resp.setContentType(type);
+				while (-1 != (len = in.read(buf, 0, bufSize))) {
+					out.write(buf, 0, len);
+				}
+				// finish.
+				out.flush();
+				in.close();
+				in = null;
+			}
+			
+			conn.disconnect();
+			buf = null;
+			conn = null;
+			type = null;
+			url = null;
+			u = null;
+///////////////////////////////////////////////////////// Process the wiki for wap servlet end.
+		} else if ('2' == s) { // Google.
 			resp.sendRedirect("http://www.google.com/m?gl=cn&source=ihp&hl=zh_cn&q=" + word);
 		}
 	}
