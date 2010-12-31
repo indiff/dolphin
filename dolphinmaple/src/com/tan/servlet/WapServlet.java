@@ -3,13 +3,10 @@ package com.tan.servlet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -19,13 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
-// * @author Dolphin.
- *
+ * @author Dolphin.
+ * 
  */
 public final class WapServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	/*static {
+/*	static {
 		try {
 			PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(InetAddress.getByName("proxy2.zte.com.cn"), 80));
 		} catch (UnknownHostException e) {
@@ -86,38 +83,51 @@ public final class WapServlet extends HttpServlet {
 ///////////////////////////////////////////////////////// Process the wiki for wap servlet end.
 			resp.reset();
 			String u = "http://zh.m.wikipedia.org/wiki?search=" + word;
+			String userAgent = getUserAgent(req, "User-Agent");
 			URL url = new URL(u);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection(); // use PROXY.
 			String type = conn.getContentType();
+			String encoding = conn.getContentEncoding();
+			// parse the encoding.
+			if (null == encoding) {
+				encoding = getEncodingByContentType(type);
+			}
 			InputStream in = null;
 			byte[] buf = null;
 			int len = -1,bufSize = 2046;
-			/*if (length <= 0) {
-				resp.reset();
-				out.print("<h1>The request can not be execute!ContentLength </h1><font color=red>" + "http://zh.m.wikipedia.org/wiki?search=" + word + '\t' + length + "</font><a href=w.jsp>[Home]</a>");
-				return;
-			} else if (length <= 1024) {
-				bufSize = 512;
-			} else if (length <= 2048) {
-				bufSize = 1024;
-			} else if (length <= 4096) {
-				bufSize = 2048;
-			} else if (length > 4096) {
-				bufSize = 4096;
-			}*/
 			buf = new byte[bufSize];
 			
 			// Get the input stream.
 			in = conn.getInputStream();
 			if (null != in) {
 				resp.setContentType(type);
+				String title = null;
+				boolean changedTitle = false;
+				int titleStart,titleEnd;
 				while (-1 != (len = in.read(buf, 0, bufSize))) {
-					out.write(buf, 0, len);
+					if (changedTitle) {
+						out.write(buf, 0, len);
+					} else {
+						// change the title.
+						title =  new String(buf, 0, len, encoding);
+						if ((titleStart = title.indexOf("<title>")) >= 0 
+								&& (titleEnd = title.indexOf("</title>")) >= 0) {
+							title = title.substring(0, titleStart + "<title>".length()) + (enc == null ? enc : word) + title.substring(titleEnd);
+							changedTitle = true;
+							out.write(title.getBytes(encoding));
+						}
+					}
 				}
+				// Add the javascript for change the title. When the agent is IE or firefox.
+				if (null != userAgent && (userAgent.indexOf("firefox") >= 0 || userAgent.indexOf("msie") >= 0)) {
+					out.print(generateChangeTitleJs());
+				}
+				
 				// finish.
 				out.flush();
 				in.close();
 				in = null;
+				title = null;
 			}
 			
 			conn.disconnect();
@@ -126,12 +136,73 @@ public final class WapServlet extends HttpServlet {
 			type = null;
 			url = null;
 			u = null;
+			
 ///////////////////////////////////////////////////////// Process the wiki for wap servlet end.
 		} else if ('2' == s) { // Google.
 			resp.sendRedirect("http://www.google.com/m?gl=cn&source=ihp&hl=zh_cn&q=" + word);
 		}
 	}
-
+	
+	/**
+	 * Get the header information from the request.
+	 * @param req
+	 * @return
+	 */
+	private String getUserAgent(HttpServletRequest req, String header) {
+		String result = req.getHeader(header);
+		if (result != null) {
+			return result.toLowerCase();
+		}
+		return null;
+	}
+	
+	/**
+	 * Generate the change title js.
+	 * @return
+	 */
+	private String generateChangeTitleJs() {
+		String functionName = "______________title" + new Date().getTime() + "()";
+		String flg = "________flg" + new Date().getTime();
+		StringBuilder builder = new StringBuilder();
+		builder.append("<script>var ")
+			   .append(flg)
+			   .append(" = true;function ")
+			   .append(functionName)
+			   .append(" {document.title = ")
+			   .append(flg)
+			   .append("?decodeURIComponent(document.title):encodeURIComponent(document.title);")
+			   .append(flg)
+			   .append("=!")
+			   .append(flg)
+			   .append(";}</script><input type=\"button\" value=\"Title\" onclick=\"")
+			   .append(functionName)
+			   .append(";\" style=\"position:absolute;left:0px;top:0px;height:20px;width:230px;\"/>");
+		return  builder.toString();
+	}
+	
+	/**
+	 * Get the encoding from the content-type.
+	 * @param type
+	 * @return
+	 */
+	private static String getEncodingByContentType(String type) {
+		if (type != null) {type=type.toLowerCase();}
+		if (type.indexOf("utf-8") >= 0) {return "utf-8";}
+		if (type.indexOf("gbk") >= 0) {return "gbk";}
+		if (type.indexOf("gb2312") >= 0) {return "gb2312";}
+		if (type.indexOf("gb18030") >= 0) {return "gb18030";}
+		if (type.indexOf("big5") >= 0) {return "big5";}
+		if (type.indexOf("shift-jis") >= 0 || type.indexOf("shift-jis") >= 0) {return "shift-jis";}
+		if (type.indexOf("ms932") >= 0) {return "ms932";}
+		return "utf-8";
+	}
+	
+	/**
+	 * Decrypt the encryptation by the ^.
+	 * @param encryptation
+	 * @param code
+	 * @return
+	 */
 	private static String decrypt(String encryptation, String code) {
 		if (null == code) {
 			return encryptation;
@@ -149,6 +220,13 @@ public final class WapServlet extends HttpServlet {
 		return buf.toString();
 	}
 	
+	/**
+	 * Split the string , which had the comma ",".
+	 * For example : "1234,232,454" --> new String[]{[1234,232,454];}
+	 * @param string
+	 * @param keyword
+	 * @return
+	 */
 	static String[] split(final String string, final String keyword) {
 		// Check string.
 		if (null == string || null == keyword){

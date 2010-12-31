@@ -71,7 +71,11 @@
 			linksBuilder.append("<A HREF=\"" + links[i][0] +  "\">" + links[i][1] + "</A>|");
 		}
 	}
-	out.println(linksBuilder.substring(0, linksBuilder.length() - 1));
+	if (linksBuilder.charAt(linksBuilder.length() - 1) == '|') {
+		out.println(linksBuilder.substring(0, linksBuilder.length() - 1));
+	} else {
+		out.println(linksBuilder.toString());
+	}
 	linksBuilder = null;
 	links = null;
 %>
