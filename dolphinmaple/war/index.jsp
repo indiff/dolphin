@@ -31,14 +31,15 @@
 <script type="text/javascript" src="jslib/idx.js"></script>
 <script type="text/javascript">
 function u(type) {
-	var url=document.getElementById("url");
 	var u;
+	type = parseInt(type);
 	switch (type) {
 		case 0: u = "%68%74%74%70%3a%2f%2f%77%77%77%2e%77%75%6a%69%65%2e%6e%65%74%2f%64%6f%77%6e%6c%6f%61%64%2f%75%2e%7a%69%70"; break;
 		case 1: u = "%68%74%74%70%3a%2f%2f%77%77%77%2e%77%75%6a%69%65%2e%6e%65%74%2f%64%6f%77%6e%6c%6f%61%64%2f%75%2e%7a%69%70"; break;
 		default: u = = "%68%74%74%70%3a%2f%2f%77%77%77%2e%67%70%61%73%73%31%2e%63%6f%6d%2f%64%6f%77%6e%6c%6f%61%64%2f%47%50%61%73%73%2e%7a%69%70";
-	}
-	if(url){url.value=decodeURIComponent(u2);}
+	} 
+	var url=document.getElementById("url");
+	if(url){url.value=decodeURIComponent(u);}
 }
 
 function paste(){
@@ -167,7 +168,7 @@ function paste(){
 <a href="./w.jsp">[手机版]</a> 
 <a href="./?style=nomusic">[No Music]</a> 
 <a href="db.jsp">DB</a>
-<a href="#" onclick="u();">U</a>
+<a href="#" onclick="return u(0);">U</a>
 </form>
 <%if (!"nomusic".equalsIgnoreCase(style)) {/*Background music control start*/%>
 <div>
