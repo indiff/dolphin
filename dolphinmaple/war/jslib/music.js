@@ -1,7 +1,7 @@
 var playerControl;
 function music(i) {
 	 if (!playerControl) {playerControl = document.getElementById('playerControl');}
-	 var html = ['<embed width="290" height="40" type="application/x-shockwave-flash" src="', 'http://www.u148.net/images/audio.swf?&amp;soundFile='];
+	 var html = ['<embed width="290" height="40" type="application/x-shockwave-flash" src="', 'resources/audio.swf?&amp;soundFile='];
 	 i = parseInt(i);
 	 if(i===0){html.push('http://www.haofumu.tv/tjzhfmadmin/ewebeditor/uploadfile/20090428165152438.mp3');}
 	 if(i===1){html.push('http://rm.sina.com.cn/wm/VZ200711211724501086VK/music/1.mp3');}

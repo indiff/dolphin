@@ -4,38 +4,40 @@
 	// Hold the last time's link reference.
 	var bak = [];
 
-	for (var i = 0; i < lns.length; i++) {
-		lns[i].onclick = function() {
-			var h = this.href;
-			copyToClipboard(h);
-			// Method 1.
-			var pop = bak.pop();
-			if (pop){
-				pop.style.backgroundColor = '';
-			}
-
-			bak.push(this);
-
-			// method2.
-			/*
-				var last2 = bak[bak.length - 2];
-				if (last2) {
-					last2.style.backgroundColor = '';
+	if (lns && lsn.length > 0) {
+		for (var i = 0; i < lns.length; i++) {
+			lns[i].onclick = function() {
+				var h = this.href;
+				copyToClipboard(h);
+				// Method 1.
+				var pop = bak.pop();
+				if (pop){
+					pop.style.backgroundColor = '';
 				}
-			*/
 
-			// method3.
-			/*
-				// iterate the bak. waste the memory.
-				for (var i = 0; i < bak.length; i++) {
-					this.style.backgroundColor = '';
-				}
-			*/
-	
-			this.style.backgroundColor = '#006600';
-			delete h, pop;
-			return false;
-		};
+				bak.push(this);
+
+				// method2.
+				/*
+					var last2 = bak[bak.length - 2];
+					if (last2) {
+						last2.style.backgroundColor = '';
+					}
+				*/
+
+				// method3.
+				/*
+					// iterate the bak. waste the memory.
+					for (var i = 0; i < bak.length; i++) {
+						this.style.backgroundColor = '';
+					}
+				*/
+		
+				this.style.backgroundColor = '#006600';
+				delete h, pop;
+				return false;
+			};
+		}
 	}
 //-->
 </script>
