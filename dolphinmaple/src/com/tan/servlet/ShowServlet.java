@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -12,6 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 
+ * @author Dolphin.
+ *
+ */
 public final class ShowServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -58,25 +64,13 @@ public final class ShowServlet extends HttpServlet{
 		if (!url.startsWith("http://")) {
 			url = "http://" + url;
 		}
-		
-		/**
-		 * 2. Encoding.
-		 */		
-		// check for encoding.
-		if (encoding == null || encoding.trim().length() == 0) {
-			// set the default encoding.
-			encoding = "gb2312";
-		}
-		
-		// check for prefix.
-		request.setCharacterEncoding(encoding);
-		response.setCharacterEncoding(encoding);
-		response.reset();
+
 		URL u = null;
 		try {
 			u = new URL(url);
 		} catch (MalformedURLException e) {
 			out.write("<h1 color='red'>URL is blank!</h1><a href='./index.jsp'>HOME</a>".getBytes());
+			return;
 		}
 		// connection.
 		HttpURLConnection conn = (HttpURLConnection) u.openConnection();
@@ -85,20 +79,59 @@ public final class ShowServlet extends HttpServlet{
 		
 		conn.setConnectTimeout(10 * 1000); // Time out 10 seconds.
 		
-		
-		// set response's header information.
-		response.setContentType(contentType);
-		response.setContentLength(length);
+		/**
+		 * 2. Check Encoding.
+		 */	
+		encoding = getEncoding(contentType);
 		
 		InputStream in = conn.getInputStream();
+		
+		// check for prefix.
+		request.setCharacterEncoding(encoding);
+		response.reset();
+		// set response's header information.
+		response.setCharacterEncoding(encoding);
+		response.setContentType(contentType);
+		response.setContentLength(length);
 		
 		if (null != in) {
 			byte[] buf = new byte[2048]; // Buf.
 			int len = -1;
+			
+			
+			out.print("<BASE HREF=\"" + getSite(url) + "\"/>");
+			
 			while (-1 != (len = in.read(buf, 0, 2048)) ) {
 				out.write(buf, 0, len);
 			}
-			conn.disconnect();
+			
+/*			// Arguments for find the base.
+			//////////替换base. 替换标签 </head>
+			boolean replacedBase = false;
+			String data = null;
+			int idx = -1;
+			while (-1 != (len = in.read(buf, 0, 2048)) ) {
+				if (replacedBase) {
+					out.write(buf, 0, len);
+				} else {
+					data = new String(buf, 0,len, encoding).toLowerCase(Locale.ENGLISH);
+					idx = data.indexOf("</head>");
+					if (idx >= 0) {
+						data = data.replace("</head>", "<base href=\"" + getSite(url) + "\" /></head>");
+						out.write(data.getBytes(encoding));
+						replacedBase = true;
+					}else {
+						out.write(buf, 0,len);
+					}
+				}
+			}
+			//////////替换base. 替换标签 </head>
+*/			conn.disconnect();
+			
+			// End of the  output print the javascript to change the base uri.
+			
+//			out.print("<script>document.baseURI = '" + getSite(url) + "';</script>");
+			
 			out.flush();
 			out.close();
 			in.close();
@@ -108,10 +141,44 @@ public final class ShowServlet extends HttpServlet{
 			u = null;
 			conn = null;
 			buf = null;
+//			data = null;
 		}
 		
 		// Debug the information of the connection.
 		//out.write("Length\t" + length + "<br>Encoding\t" + contentEncoding + "<br>type\t" + contentType+ "<a href='./index.jsp'>Home</a>");
+	}
+	
+	private static String getEncoding(String value) {
+		value = value.toLowerCase();
+		// 	text/html; charset=utf-8
+		int idx = value.indexOf("charset=");
+		if (idx >= 0) {
+			return value.substring(idx + 8);
+		} else {
+			return "utf-8";
+		}
+	}
+
+	/**
+	 * "http://localhost/dm/fdafdsajlfkdsafdsa/k.jsp?p=2"; --> http://localhost/dm/fdafdsajlfkdsafdsa/
+	 * "http://www.baidu.com/"; --> http://www.baidu.com/
+	 * @param url
+	 * @return
+	 */
+	private static String getSite(final String url) {
+		int idx = url.lastIndexOf("/");
+		if (idx > 7 && idx >= 0){
+			String last = url.substring(idx + 1);
+			if (last.matches("[a-zA-Z0-9]+")){
+				last = null;
+				return url + '/';
+			}
+			return url.substring(0, idx + 1);
+		}
+		if (url.length() - 1 == idx){
+			return url;
+		}
+		return url + '/';
 	}
 
 	/*private final boolean hasSuffix(HttpServletRequest request,
