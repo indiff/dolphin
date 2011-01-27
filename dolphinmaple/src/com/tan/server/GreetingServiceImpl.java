@@ -1,7 +1,7 @@
 package com.tan.server;
 
-import com.tan.client.GreetingService;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.tan.client.GreetingService;
 
 /**
  * The server side implementation of the RPC service.

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tan.util.StringUtil;
+
 /**
  * 
  * @author Dolphin.
@@ -48,12 +50,12 @@ public final class WapServlet extends HttpServlet {
 		ServletOutputStream out = resp.getOutputStream();
 		//req.setCharacterEncoding("utf-8");
 		// Check site.
-		if (site == null) {
-			out.print("<h1>Please select the site.</h1><a href=w.jsp>Home</a>");return;
+		if (site == null) {// set default site.
+			site = "0";
 		}//end for site.
 		
 		// Check word.
-		if (word != null  && word.trim().length() == 0) {
+		if (StringUtil.isEmpty(word) && StringUtil.isEmpty(enc) && StringUtil.isEmpty(code)) {
 			out.print("<h1>The word is blank.</h1>");return; 
 		} else {
 			// decrypt the word with the enc and code.
@@ -69,9 +71,7 @@ public final class WapServlet extends HttpServlet {
 		// Check the site type.
 		if ('0' == s) { // Baidu.
 			resp.sendRedirect("http://3g.baidu.com/s?word=" + word);
-		}
-		else if ('1' == s) { // Wiki.
-			
+		} else if ('1' == s) { // Wiki.
 			/**
 			 * 方法一: send redirect.
 			 */
@@ -89,7 +89,7 @@ public final class WapServlet extends HttpServlet {
 			String type = conn.getContentType();
 			String encoding = conn.getContentEncoding();
 			// parse the encoding.
-			if (null == encoding) {
+			if (StringUtil.isEmpty(encoding)) {
 				encoding = getEncodingByContentType(type);
 			}
 			InputStream in = null;
@@ -139,7 +139,15 @@ public final class WapServlet extends HttpServlet {
 			
 ///////////////////////////////////////////////////////// Process the wiki for wap servlet end.
 		} else if ('2' == s) { // Google.
-			resp.sendRedirect("http://www.google.com/m?gl=cn&source=ihp&hl=zh_cn&q=" + word);
+//			resp.sendRedirect("http://www.google.com/m?gl=cn&source=ihp&hl=zh_cn&q=" + word);
+			process(out, resp, "http://www.google.com/m?gl=cn&source=ihp&hl=zh_cn&q=" + word);
+		} else if ('3' == s) { // 115网盘.
+			//http://115.com/s?q=%E5%BF%90%E5%BF%91&type=news
+			//http://115.com/s?q=%E5%BF%90%E5%BF%91
+			//http://v.115.com/?q=%E5%BF%90%E5%BF%91
+			//http://115.com/?q=%E5%BF%90%E5%BF%91&type=soft
+//			resp.sendRedirect("http://115.com/?q=" + word  + "&type=u");
+			process(out, resp, "http://www.115.com/?q=" + word  + "&type=u");
 		}
 	}
 	
@@ -248,6 +256,69 @@ public final class WapServlet extends HttpServlet {
 		return (String[]) (results.toArray(new String[results.size()]));
 	}
 	
+	
+	private static void process(final ServletOutputStream out,final HttpServletResponse response, final String u) {
+		URL url = null;
+		HttpURLConnection conn = null;
+		InputStream in = null;
+		int length, len= -1;
+		String message = null, contentType ;
+		try {
+			url = new URL(u);
+			conn = (HttpURLConnection) url.openConnection();
+		} catch (Throwable e) {
+			message = e.getMessage();
+		}
+		
+		// if happen the exception.
+		if (!StringUtil.isEmpty(message)) {
+			try {
+				out.println(message);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+		
+		length = conn.getContentLength();
+		contentType = conn.getContentType();
+		if (length != -1) {
+			response.setContentLength(length);
+		}
+		if (!StringUtil.isEmpty(contentType)) {
+			response.setContentType(contentType);
+		}
+		response.reset();
+		
+		try {
+			conn.setReadTimeout(10 * 1000);
+			conn.connect();
+			
+			in = conn.getInputStream();
+			
+			byte[] buf = new byte[2046];
+
+			if (in != null) {
+				
+				out.print("<BASE HREF=\"" + StringUtil.getSite(u) + "\"/>");
+				
+				while (-1 != (len = in.read(buf,0, 2046))) {
+					out.write(buf, 0, len);
+				}
+				out.flush();
+				conn.disconnect();
+				in.close();
+				in = null;
+				conn = null;
+				buf = null;
+				url = null;
+				message = null; contentType = null;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	public static void main(String[] args) {
 		String value = "1212,34,54,5,7,8";
 		int index = value.lastIndexOf(",");

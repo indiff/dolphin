@@ -36,7 +36,7 @@ function u(type) {
 	switch (type) {
 		case 0: u = "%68%74%74%70%3a%2f%2f%77%77%77%2e%77%75%6a%69%65%2e%6e%65%74%2f%64%6f%77%6e%6c%6f%61%64%2f%75%2e%7a%69%70"; break;
 		case 1: u = "%68%74%74%70%3a%2f%2f%77%77%77%2e%77%75%6a%69%65%2e%6e%65%74%2f%64%6f%77%6e%6c%6f%61%64%2f%75%2e%7a%69%70"; break;
-		default: u = = "%68%74%74%70%3a%2f%2f%77%77%77%2e%67%70%61%73%73%31%2e%63%6f%6d%2f%64%6f%77%6e%6c%6f%61%64%2f%47%50%61%73%73%2e%7a%69%70";
+		default: u = "%68%74%74%70%3a%2f%2f%77%77%77%2e%67%70%61%73%73%31%2e%63%6f%6d%2f%64%6f%77%6e%6c%6f%61%64%2f%47%50%61%73%73%2e%7a%69%70";
 	} 
 	var url=document.getElementById("url");
 	if(url){url.value=decodeURIComponent(u);}
@@ -152,6 +152,7 @@ function paste(){
 					<option value="gbk">gbk</option>
 					<option value="big5">Big5</option>
 					<option value="Big5-HKSCS">Big5-HKSCS</option>
+					<option value=""> </option>
 			</select> 
 			<select name="t" onchange="changeTarget(this)">
 					<option value="0" selected></option>
@@ -168,7 +169,9 @@ function paste(){
 <a href="./w.jsp">[手机版]</a> 
 <a href="./?style=nomusic">[No Music]</a> 
 <a href="db.jsp">DB</a>
-<a href="#" onclick="return u(0);">U</a>
+<a href="#" onclick="return u(0);">U0</a>
+<a href="#" onclick="return u(1);">U1</a>
+<a href="#" onclick="return u();">U</a>
 </form>
 <%if (!"nomusic".equalsIgnoreCase(style)) {/*Background music control start*/%>
 <div>
@@ -221,6 +224,6 @@ document.write([j('dolphincode','tancode/s4jdk/js/init.js','Link', 'L'), j('dolp
 </div>
 <p id="cp">&nbsp;<a href='http://joytyping.appspot.com' title="Joytyping">Joytyping</a>&nbsp;<a href='http://adgmtt.appspot.com' title="Adgmtt">Adgmtt</a>&nbsp;<%
 	/*<a href="javascript:var DI=document.links;var R=0; var x1=.1; var y1=.05; var x2=.25; var y2=.24; var x3=1.6; var y3=.24; var x4=300;var y4=200; var x5=300; var y5=200;  var DIL=DI.length; function A(){for(i=0;i-DIL;i++){var DIS=DI[i].style;DIS.position='absolute';DIS.left=Math.sin(R*x1+i*x2+x3)*x4+x5;DIS.top=Math.cos(R*y1+i*y2+y3)*y4+y5;}R++;} setInterval('A()',5);void(0);">Dolphin Code&nbsp;</a>*/
-%><a href="readme.txt" title="[Create by Dolphin]]">About</a>&nbsp;&copy;2010</p>
+%><a href="readme.txt" title="[Create by Dolphin]]">About</a>&nbsp;&copy;2011</p>
 </body>
 </html>

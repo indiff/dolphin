@@ -5,13 +5,14 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.tan.util.StringUtil;
 
 /**
  * 
@@ -21,6 +22,17 @@ import javax.servlet.http.HttpServletResponse;
 public final class ShowServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
+	
+	
+/*	private static Proxy PROXY ;
+	
+	static {
+		try {
+			PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(InetAddress.getByName("proxy2.com.cn"), 80));
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+	}*/
 
 	@Override
 	public final void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,12 +44,16 @@ public final class ShowServlet extends HttpServlet{
 		String url = request.getParameter("url");
 		//String prefix = request.getParameter("prefix");
 		String encoding = request.getParameter("encoding");
+		
+		// get the special url, if the url is a number.
+		url = StringUtil.url(url);
+		
 		ServletOutputStream out = response.getOutputStream();
 		/**
 		 * 1. string url format.
 		 */
 		// check for url.
-		if (null == url || url.trim().length() == 0) {
+		if (StringUtil.isEmpty(url)) {
 			out.write("<h1 color='red'>URL is blank!</h1><a href='./index.jsp'>HOME</a>".getBytes());
 			return;
 		}
@@ -64,7 +80,7 @@ public final class ShowServlet extends HttpServlet{
 		if (!url.startsWith("http://")) {
 			url = "http://" + url;
 		}
-
+		
 		URL u = null;
 		try {
 			u = new URL(url);
@@ -73,21 +89,23 @@ public final class ShowServlet extends HttpServlet{
 			return;
 		}
 		// connection.
-		HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+		HttpURLConnection conn = (HttpURLConnection) u.openConnection(); // PROXY.
 		int length  = conn.getContentLength();
 		String contentType = conn.getContentType();
 		
-		conn.setConnectTimeout(10 * 1000); // Time out 10 seconds.
+		
 		
 		/**
 		 * 2. Check Encoding.
 		 */	
-		encoding = getEncoding(contentType);
+		if (StringUtil.isEmpty(encoding)) {
+			encoding = getEncoding(contentType);
+		}
 		
+		conn.setConnectTimeout(10 * 1000); // Time out 10 seconds.
+		conn.connect();
 		InputStream in = conn.getInputStream();
 		
-		// check for prefix.
-		request.setCharacterEncoding(encoding);
 		response.reset();
 		// set response's header information.
 		response.setCharacterEncoding(encoding);
@@ -98,8 +116,8 @@ public final class ShowServlet extends HttpServlet{
 			byte[] buf = new byte[2048]; // Buf.
 			int len = -1;
 			
-			
-			out.print("<BASE HREF=\"" + getSite(url) + "\"/>");
+			// Print the base information At the begin of the document.
+			out.print("<BASE HREF=\"" + StringUtil.getSite(url) + "\"/>");
 			
 			while (-1 != (len = in.read(buf, 0, 2048)) ) {
 				out.write(buf, 0, len);
@@ -128,10 +146,6 @@ public final class ShowServlet extends HttpServlet{
 			//////////替换base. 替换标签 </head>
 */			conn.disconnect();
 			
-			// End of the  output print the javascript to change the base uri.
-			
-//			out.print("<script>document.baseURI = '" + getSite(url) + "';</script>");
-			
 			out.flush();
 			out.close();
 			in.close();
@@ -159,27 +173,7 @@ public final class ShowServlet extends HttpServlet{
 		}
 	}
 
-	/**
-	 * "http://localhost/dm/fdafdsajlfkdsafdsa/k.jsp?p=2"; --> http://localhost/dm/fdafdsajlfkdsafdsa/
-	 * "http://www.baidu.com/"; --> http://www.baidu.com/
-	 * @param url
-	 * @return
-	 */
-	private static String getSite(final String url) {
-		int idx = url.lastIndexOf("/");
-		if (idx > 7 && idx >= 0){
-			String last = url.substring(idx + 1);
-			if (last.matches("[a-zA-Z0-9]+")){
-				last = null;
-				return url + '/';
-			}
-			return url.substring(0, idx + 1);
-		}
-		if (url.length() - 1 == idx){
-			return url;
-		}
-		return url + '/';
-	}
+
 
 	/*private final boolean hasSuffix(HttpServletRequest request,
 			HttpServletResponse response, String u) throws ServletException,
