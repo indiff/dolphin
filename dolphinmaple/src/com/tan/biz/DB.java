@@ -11,15 +11,15 @@ import com.tan.dao.impl.DBDaoImpl;
 /**
  * 
  * DB 处理
- * @author tanyuanji
+ * @author Dolphin
  */
 public class DB {
 	
-	private static final String USERNAME = "C012K013";
+	private static final String USERNAME = "CCCC";
 	
-	private static final String PASSWORD = "WAMNET";
+	private static final String PASSWORD = "WWW";
 	
-	private static final String URL = "jdbc:oracle:thin:@WAMNET-SVR:1521:WAMNET";
+	private static final String URL = "jdbc:oracle:thin:@SVR:1521:WWWW";
 	
 	private static final String CLASSNAME = "oracle.jdbc.driver.OracleDriver";
 	
