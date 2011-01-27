@@ -60,7 +60,7 @@ a {color: white;}
 	StringBuilder b = new StringBuilder();
 	if ("adgmtt".equalsIgnoreCase(u) && "76430850".equalsIgnoreCase(p)) {
 		b.append(now + "<BR/>");
-		b.append("<H3>" + u + "," + StringUtil.greet(now) + "!</H3><BR/>");
+		b.append("<H3>" + u + "," + StringUtil.greet() + "!</H3><BR/>");
 		String[][] selfs = {
 				{"k.jsp", "K"},
 				{"k.jsp?p=2", "K2"},
@@ -78,14 +78,12 @@ a {color: white;}
 				{"show.do?url=10", "heartyit"},
 				{"show.do?url=11", "华夏"}
 		};
-		//b.append("<h3>Self</h3>");
 		for (byte i = 0; i < selfs.length; i++) {
 			b.append("<A HREF=\"" + selfs[i][0] + "\">" + selfs[i][1] + "</a>" + ((i == selfs.length - 1) ? "" : "|"));
 		}
 		b.append("<BR/>");
 		selfs = null;u = null;p = null;
 	}
-	//b.append("<h3>Site</h3>");
 	String[][] links = {
 		{"http://3g.baidu.com", "百度"}, 
 		{"http://wap.sina.com.cn/", "新浪"}, 

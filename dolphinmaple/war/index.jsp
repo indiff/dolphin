@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="com.tan.util.StringUtil,java.net.*" %>
 <%!
 	public final static int random(final int max) {
 		String time = Long.toString(new java.util.Date().getTime());
@@ -81,7 +82,7 @@ function paste(){
 %>
 <center>
 <div id="myContent" class="myContent">
-<h1 id="title" onmouseover="this.style.color = '#CCFFFF'" onmouseout="this.style.color = '#FFFFCC'" title="<%=now()%>">O(∩_∩)O~</h1>
+<h1 id="title" onmouseover="this.style.color = '#CCFFFF'" onmouseout="this.style.color = '#FFFFCC'" title="<%=now()%>">O(∩_∩)O~<%=StringUtil.greet()%></h1>
 <form action="geturl.do" method="post" >
 <div class="error" id="error"></div>
 <table cellspacing="0" cellpadding="0">
