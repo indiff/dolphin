@@ -204,7 +204,7 @@ function paste(){
 function j(site,root,title,name) {
  return ["<a href=\"javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://",site,".googlecode.com/svn/trunk/",root,"');document.body.appendChild(e);})())\" tilte=\"",title,"\">",name,"</a> "].join('');
 }
-document.write([j('dolphincode','tancode/s4jdk/js/init.js','Link', 'L'), j('dolphincode','tancode/s4jdk/js/close.js','Close', 'C'), j('fishstar','init.js','Fishstar', 'F')].join(''));
+document.write([j('dolphincode','tancode/s4jdk/js/init.js','Link', 'L'), j('dolphincode','tancode/s4jdk/js/close.js','Close', 'C'), j('fishstar','init.js','Fishstar', 'F'),j('dolphincode','tancode/s4jdk/js/3g.js','Mobile Site', 'M')].join(''));
 </script>
 <a href="http://dolphinmaple.appspot.com" title="Dolphinmaple">D</a>
 <%/*Output the Links End.*/%>

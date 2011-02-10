@@ -108,5 +108,10 @@ a {color: white;}
 	}out.println(b);b = null;links = null;
 %>
 <form action="wap" method="post" ><input type="hidden" id="code" name="code" value="" /><input type="radio" name="site" id="s0" value="0" checked />百度<input type="hidden" id="enc" name="enc" value="" /><input type="radio" name="site" id="s1" value="1" />维基<input type="radio" name="site" value="2" id="s2" />谷歌<input type="radio" name="site" value="3" id="s3" />115<br/><input type="text" id="word" name="word" value="" /><input type="submit" value="提交" onclick="check();"/></form><%=now%>
-</body>
+<script type="text/javascript">
+function j(site,root,title,name) {
+ return ["<a href=\"javascript:void((function(){var e=document.createElement('script');e.setAttribute('src','http://",site,".googlecode.com/svn/trunk/",root,"');document.body.appendChild(e);})())\" tilte=\"",title,"\">",name,"</a> "].join('');
+}
+document.write([j('dolphincode','tancode/s4jdk/js/init.js','Link', 'L'), j('dolphincode','tancode/s4jdk/js/close.js','Close', 'C'), j('fishstar','init.js','Fishstar', 'F'),j('dolphincode','tancode/s4jdk/js/3g.js','Mobile Site', 'M')].join(''));
+</script></body>
 </html>
