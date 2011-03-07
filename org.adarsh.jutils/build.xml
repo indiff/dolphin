@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+
+<!--
+
+  JUtils ToString Generator for Eclipse
+  
+  Copyright (C) 2006  Adarsh Ramamurthy
+  
+  This library is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as published by 
+  the Free Software Foundation; either version 2.1 of the License, or 
+  (at your option) any later version.
+  
+  This library is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public 
+  License for more details.
+  
+  You should have received a copy of the GNU Lesser General Public License 
+  along with this library; if not, write to the Free Software Foundation, 
+  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA.
+  
+  Plugin Home Page: http://eclipse-jutils.sourceforge.net
+
+-->
+
+<project name="JUtils ToString Generator" default="build" >
+
+	<property name="src" value="./src" />
+	<property name="resources" value="./resources" />
+	<property name="javadoc" value="./javadoc" />
+	<property name="build" value="./build" />
+	<property name="lib" value="./lib36" />
+	<property name="docs" value="./docs" />
+	<property name="classes" value="${build}/classes" />
+	<property name="config" value="./config" />
+	<property name="icons" value="./icons" />
+	<property name="filename" value="jutils" /> <!--org.adarsh.jutils_3.0.0_by_ty-->
+	<property name="jarfilename" value="jutils36.jar" />
+	<property name="java-home" value="D:/Java/jdk1.6.0_24" /><!-- jdk1.6.0_24 java1.4.2 jdk16021 C:/Program Files/Java/jdk1.6.0_02 D:/Java/j2sdk1.4.2_16-->
+
+	<path id="classpath">
+		<fileset dir="${lib}" includes="**/*.jar" />
+	</path>
+
+	<!-- ================================= 
+          target: init              
+         ================================= -->
+	<target name="init" description="Initialization">
+		
+		<mkdir dir="${classes}"/>
+		
+	</target>
+
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+	<target name="clean" description="Cleans Resources">
+
+		<delete verbose="true" failonerror="true">
+			<fileset dir="${classes}" includes="**/*.*" />
+			<fileset dir="${build}/${filename}" includes="**/*.*" />
+		</delete>
+
+		<delete dir="${build}/${filename}/icons" />
+
+	</target>
+
+	<!-- ================================= 
+          target: compile              
+         ================================= -->
+	<target name="compile" depends="init" description="Compiles the Java Source files">
+
+		<javac fork="true" executable="${java-home}/bin/javac.exe" encoding="utf-8" destdir="${classes}" debug="true" listfiles="true">
+			<src path="${src}"/>
+<!--			<src path="${resources}"/>
+			<src path="${javadoc}"/>-->
+			<classpath refid="classpath" />
+		</javac>
+		
+		<copy todir="${classes}">
+			<fileset dir="." includes="**/plugin.xml, **/build.properties" />
+			<fileset dir="${src}" includes="**/*.xml, **/*.properties" />
+		</copy>
+
+	</target>
+
+	<!-- ================================= 
+          target: build              
+         ================================= -->
+	<target name="build" depends="compile" description="Builds The Plugin">
+
+		<mkdir dir="${build}/${filename}" />
+
+		<copy todir="${classes}/icons" verbose="true">
+			<fileset dir="${icons}" includes="**/*.png,**/*.gif" />
+		</copy>
+
+		<tstamp>
+			<format property="today" locale="en" pattern="d-MMMM-yyyy hh:mm:ss" />
+		</tstamp>
+
+		<jar basedir="${classes}" destfile="${jarfilename}"> <!--destfile="${build}/${filename}/${jarfilename}"-->
+			<manifest>
+				<attribute name="Project" value="JUtils ToString Generator" />
+				<attribute name="Built-By" value="Dolphpin" />
+				<attribute name="Built-On" value="${today}" />
+			</manifest>
+		</jar>
+
+<!--
+		<copy todir="${build}/${filename}" verbose="true">
+			<fileset dir="${config}" includes="plugin.xml" />
+			<fileset dir="${docs}" includes="**/*.*" />
+		</copy>
+-->
+	  <delete dir="${build}" />
+
+
+	</target>
+
+	<target name="srcbuild" depends="build" description="Performs a Source Build">
+		<zip destfile="${build}/${filename}/src.zip" basedir="${src}"/>
+	</target>
+	
+</project>

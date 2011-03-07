@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+  JUtils ToString Generator for Eclipse
+  
+  Copyright (C) 2007  Adarsh Ramamurthy
+  
+  This library is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as published by 
+  the Free Software Foundation; either version 2.1 of the License, or 
+  (at your option) any later version.
+  
+  This library is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public 
+  License for more details.
+  
+  You should have received a copy of the GNU Lesser General Public License 
+  along with this library; if not, write to the Free Software Foundation, 
+  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA.
+  
+  Plugin Home Page: http://eclipse-jutils.sourceforge.net
+
+-->
+
+<configuration>
+    <to-string>
+        <java-doc><![CDATA[
+/**
+ * Constructs a <code>String</code> with all attributes
+ * in name = value format.
+ *
+ * @return a <code>String</code> representation 
+ * of this object.
+ */
+		]]>
+        </java-doc>
+
+        <implementation type="string"><![CDATA[
+public String toString()
+{
+    final String TAB = "    ";
+    
+    String retValue = "";
+    
+    retValue = "${class_name} ( "
+        + super.toString() + TAB
+        + "${attribute} = " + this.${attribute} + TAB
+        + " )";
+
+    return retValue;
+}
+		]]>
+        </implementation>
+
+        <implementation type="stringbuffer"><![CDATA[
+public String toString()
+{
+    final String TAB = "    ";
+    
+    StringBuffer retValue = new StringBuffer();
+    
+    retValue.append("${class_name} ( ")
+        .append(super.toString()).append(TAB)
+        .append("${attribute} = ").append(this.${attribute}).append(TAB)
+        .append(" )");
+    
+    return retValue.toString();
+}
+		]]>
+        </implementation>
+
+        <implementation type="stringbuilder"><![CDATA[
+public String toString()
+{
+    final String TAB = "    ";
+
+    StringBuilder retValue = new StringBuilder();
+    
+    retValue.append("${class_name} ( ")
+        .append(super.toString()).append(TAB)
+        .append("${attribute} = ").append(this.${attribute}).append(TAB)
+        .append(" )");
+    
+    return retValue.toString();
+}
+		]]>
+        </implementation>
+    </to-string>
+
+    <copy-constructor>
+        <java-doc><![CDATA[
+/**
+ * Copy Constructor
+ *
+ * @param ${class_instance} a <code>${class_name}</code> object
+ */
+        ]]>
+        </java-doc>
+
+        <implementation><![CDATA[
+public ${class_name}(${class_name} ${class_instance}) 
+{
+    this.${attribute} = ${class_instance}.${attribute};
+}
+    	]]>
+
+        </implementation>
+    </copy-constructor>
+</configuration>

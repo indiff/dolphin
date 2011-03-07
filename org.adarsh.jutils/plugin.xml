@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+
+  JUtils ToString Generator for Eclipse
+  
+  Copyright (C) 2007  Adarsh Ramamurthy
+  
+  This library is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as published by 
+  the Free Software Foundation; either version 2.1 of the License, or 
+  (at your option) any later version.
+  
+  This library is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public 
+  License for more details.
+  
+  You should have received a copy of the GNU Lesser General Public License 
+  along with this library; if not, write to the Free Software Foundation, 
+  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA.
+  
+  Plugin Home Page: http://eclipse-jutils.sourceforge.net
+
+-->
+
+<plugin
+   id="org.adarsh.jutils"
+   name="JUtils Plug-in"
+   version="3.1.0"
+   provider-name="Adarsh"
+   class="org.adarsh.jutils.JUtilsPlugin">
+
+<!--
+   <runtime>
+      <library name="jutils.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+-->
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.core.filebuffers"/>
+      <import plugin="org.eclipse.jdt"/>
+      <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+   </requires>
+   
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="viewerContribution"
+            targetID="#CompilationUnitEditorContext">
+         <action
+               label="Generate to&amp;String()"
+               class="org.adarsh.jutils.actions.ToStringGeneratorVAD"
+               icon="icons/tostring.gif"
+               menubarPath="generate.viewer/string"
+               id="tostring.viewerContribution.action"/>
+               
+         <action
+               label="Generate Dummy Setter"
+               class="org.adarsh.jutils.actions.DummySetterGeneratorVAD"
+               icon="icons/tostring.gif"
+               menubarPath="generate.viewer/string"
+               id="dummySetter.viewerContribution.action"/>
+         <action
+               label="Generate Dummy Java"
+               class="org.adarsh.jutils.actions.DummyJavaGeneratorVAD"
+               icon="icons/tostring.gif"
+               menubarPath="generate.viewer/string"
+               id="dummyJava.viewerContribution.action"/>
+                              
+         <action
+               label="Generate Copy &amp;Constructor"
+               icon="icons/constructor.gif"
+               class="org.adarsh.jutils.actions.CopyConstructorGeneratorVAD"
+               menubarPath="generate.viewer/constructor"
+               id="constructor.viewerContribution.action"/>               
+         <menu
+               label="&amp;JUtils"
+               path="group.additions"
+               id="generate.viewer">
+            <groupMarker name="string"/>
+            <groupMarker name="constructor"/>
+         </menu>
+      </viewerContribution>
+      
+      <objectContribution
+            adaptable="false"
+            id="objectContribution"
+            objectClass="org.eclipse.jdt.core.ICompilationUnit">
+         <action
+               label="Generate to&amp;String()"
+               icon="icons/tostring.gif"
+               class="org.adarsh.jutils.actions.ToStringGeneratorOAD"
+               menubarPath="generate.object/string"
+               id="tostring.objectContribution.action"/>
+         <action
+               label="Generate Copy &amp;Constructor"
+               icon="icons/constructor.gif"
+               class="org.adarsh.jutils.actions.CopyConstructorGeneratorOAD"
+               menubarPath="generate.object/constructor"
+               id="constructor.objectContribution.action"/>               
+         <menu
+               label="&amp;JUtils"
+               path="group.additions"
+               id="generate.object">
+            <groupMarker name="string"/>
+            <groupMarker name="constructor"/>
+         </menu>
+      </objectContribution>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.adarsh.jutils.preferences.JUtilsPreferencesPage"
+            id="jutils"
+            name="JUtils"/>
+      <page
+            class="org.adarsh.jutils.preferences.ToStringPreferencesPage"
+            category="jutils"
+            name="toString()"
+            id="tostring.page">
+      </page>
+      <page
+            class="org.adarsh.jutils.preferences.CopyConstructorPreferencesPage"
+            category="jutils"
+            name="Copy Constructor"
+            id="constructor.page"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.adarsh.jutils.preferences.PreferenceInitializer"/>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Sample Action Set"
+            visible="true"
+            id="jExplorer.actionSet">
+         <action
+               label="&amp;定位"
+               icon="icons/jExplorer.png"
+               class="jexplorer.actions.Action"
+               tooltip="定位"
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               id="jexplorer.actions.Action">
+         </action>
+      </actionSet>
+   </extension>
+   
+   
+
+</plugin>
