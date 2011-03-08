@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
 
@@ -37,7 +37,7 @@
 	<property name="icons" value="./icons" />
 	<property name="filename" value="jutils" /> <!--org.adarsh.jutils_3.0.0_by_ty-->
 	<property name="jarfilename" value="jutils36.jar" />
-	<property name="java-home" value="D:/Java/jdk1.6.0_24" /><!-- jdk1.6.0_24 java1.4.2 jdk16021 C:/Program Files/Java/jdk1.6.0_02 D:/Java/j2sdk1.4.2_16-->
+	<property name="java-home" value="D:\Java\jdk1.6.0_24" /><!-- jdk1.6.0_24 java1.4.2 jdk16021 C:/Program Files/Java/jdk1.6.0_02 D:/Java/j2sdk1.4.2_16-->
 
 	<path id="classpath">
 		<fileset dir="${lib}" includes="**/*.jar" />
@@ -97,14 +97,15 @@
 		</copy>
 
 		<tstamp>
-			<format property="today" locale="en" pattern="d-MMMM-yyyy hh:mm:ss" />
+			<format property="today" locale="zh" pattern="yyyy年MM月dd日 hh:mm:ss" />
 		</tstamp>
 
 		<jar basedir="${classes}" destfile="${jarfilename}"> <!--destfile="${build}/${filename}/${jarfilename}"-->
 			<manifest>
 				<attribute name="Project" value="JUtils ToString Generator" />
-				<attribute name="Built-By" value="Dolphpin" />
+				<attribute name="Built-By" value="Dolphpin Code" />
 				<attribute name="Built-On" value="${today}" />
+				<attribute name="Built-jdk" value="${java-home}" />
 			</manifest>
 		</jar>
 
