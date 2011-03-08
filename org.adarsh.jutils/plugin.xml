@@ -32,13 +32,11 @@
    provider-name="Adarsh"
    class="org.adarsh.jutils.JUtilsPlugin">
 
-<!--
    <runtime>
       <library name="jutils.jar">
          <export name="*"/>
       </library>
    </runtime>
--->
 
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
@@ -154,8 +152,6 @@
                icon="icons/jExplorer.png"
                class="jexplorer.actions.Action"
                tooltip="定位"
-               menubarPath="sampleMenu/sampleGroup"
-               toolbarPath="sampleGroup"
                id="jexplorer.actions.Action">
          </action>
       </actionSet>
