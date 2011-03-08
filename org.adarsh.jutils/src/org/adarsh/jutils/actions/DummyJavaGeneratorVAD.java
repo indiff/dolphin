@@ -37,7 +37,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IField;
 import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.ISourceRange;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
@@ -133,7 +132,7 @@ public class DummyJavaGeneratorVAD implements IEditorActionDelegate {
 //				SourceManipulator.createToStringWithJavaDoc(theType);
 				
 				IField[] fields = theType.getFields();
-				IMethod[] method = theType.getMethods();
+//				IMethod[] method = theType.getMethods();
 //				IAnnotation[] annotations = theType.getAnnotations();
 				
 				
