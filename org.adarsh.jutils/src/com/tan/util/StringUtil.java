@@ -216,7 +216,18 @@ public final class StringUtil {
 		
 		System.out.println(replace("fdsajfdlsajf/fdsafdsafds/replaceMent/3232", "replaceMent/", ""));
 	}
-
+	
+	/**
+	 * 过滤字符串. 类似 String.replace("replaceMent", "content");
+	 * 
+	 * @param value
+	 *            .
+	 * @param replaceMent
+	 *            .
+	 * @param content
+	 *            .
+	 * @return
+	 */
 	public static String replace(String value, String replaceMent, String content) {
 		if (isEmpty(value)) {
 			return null;
