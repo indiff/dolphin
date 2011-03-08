@@ -39,7 +39,7 @@ public class Action implements IWorkbenchWindowActionDelegate {
 	private String systemBrowser = "explorer";
 	private String line;
 	private boolean isWindows;
-	private boolean isLogger = true; // Debug.
+	private boolean isLogger = false; // Debug.
 
 	
 	public Action() {
