@@ -28,7 +28,6 @@ import org.adarsh.jutils.JUtilsException;
 import org.adarsh.jutils.JUtilsPlugin;
 import org.adarsh.jutils.Messages;
 import org.adarsh.jutils.internal.Logger;
-import org.adarsh.jutils.internal.SourceManipulator;
 import org.adarsh.jutils.preferences.PreferenceConstants;
 import org.eclipse.core.internal.resources.ResourceInfo;
 import org.eclipse.core.internal.resources.Workspace;
