@@ -52,7 +52,11 @@ function paste(){
 		}
 	}
 }
+
+var _contents = '<%=StringUtil.greet()%>';
 </script>
+
+<script type="text/javascript" src="jslib/type.js"></script>
 </head>
 <body onload="idxLoad()">
 <%
@@ -76,9 +80,12 @@ function paste(){
 		request.setAttribute("page_source", null);
 	}
 %>
-<%=StringUtil.greet()%>
+
 <center>
 <div id="myContent" class="myContent">
+<!-- type  contents -->
+<pre id = "content"></pre> 
+<!-- type  contents -->
 <h1 id="title" onmouseover="this.style.color = '#CCFFFF'" onmouseout="this.style.color = '#FFFFCC'" title="<%=StringUtil.now()%>">O(∩_∩)O~</h1>
 <form action="geturl.do" method="post" >
 <div class="error" id="error"></div>
@@ -175,11 +182,18 @@ function paste(){
 <div>
 <%
 // join the by stringbuffer
-	String[][] musics = new String[][] { { "#SkyCity", "天空之城" },
-			{ "#KaNong", "卡农" }, { "#YuQiao", "渔樵问答" },
-			{ "#ChunJiang", "春江花月夜" }, { "#BeacuseOfYou", "因为你" },
-			{ "#MoonFlow", "Moon Flow" }, { "#illusion", "错觉" },
-			{ "#YoungForYou", "Young For You" } };
+	String[][] musics = new String[][] { 
+			{ "#SkyCity", "天空之城" },//1
+			{ "#KaNong", "卡农" }, //2
+			{ "#YuQiao", "渔樵问答" },//3
+			{ "#ChunJiang", "春江花月夜" }, //4
+			{ "#BeacuseOfYou", "因为你" },//5
+			{ "#MoonFlow", "Moon Flow" }, //6
+			{ "#illusion", "错觉" },//7
+			{ "#YoungForYou", "Young For You" },//8
+			{ "#LoneLiness Moon", "孤星独吟" },//9
+			{ "#PIANOVERSION", "冰菊物语" }//10
+			};
 	StringBuilder jsArray = new StringBuilder("<script>var musics = ["); 
 	for (byte i = 0; i < musics.length; i++) {
 		if (i == (musics.length - 1)) {jsArray.append('\"' + musics[i][1] + '\"');}
@@ -220,6 +234,7 @@ document.write([j('dolphincode','tancode/s4jdk/js/init.js','Link', 'L'), j('dolp
 <script type="text/javascript" src="jslib/1g1g.js"></script></div>
 </center>
 </div>
+<script type="text/javascript" >_type();</script>
 <p id="cp">&nbsp;<a href='http://joytyping.appspot.com' title="Joytyping">Joytyping</a>&nbsp;<a href='http://adgmtt.appspot.com' title="Adgmtt">Adgmtt</a>&nbsp;<%
 	/*<a href="javascript:var DI=document.links;var R=0; var x1=.1; var y1=.05; var x2=.25; var y2=.24; var x3=1.6; var y3=.24; var x4=300;var y4=200; var x5=300; var y5=200;  var DIL=DI.length; function A(){for(i=0;i-DIL;i++){var DIS=DI[i].style;DIS.position='absolute';DIS.left=Math.sin(R*x1+i*x2+x3)*x4+x5;DIS.top=Math.cos(R*y1+i*y2+y3)*y4+y5;}R++;} setInterval('A()',5);void(0);">Dolphin Code&nbsp;</a>*/
 %><a href="readme.txt" title="[Create by Dolphin]]">About</a>&nbsp;&copy;2011 &nbsp;<%=StringUtil.now()%></p>

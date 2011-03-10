@@ -193,7 +193,7 @@ public class StringUtil {
 			} else if (h == 12) {
 				return "中午好，吃饭！" + newYearGreet;
 			} else if (h > 12 && h <= 13) {
-				return "中午，可以听歌，午休一下！" + newYearGreet;
+				return "中午了，可以听听歌，午休一下！" + newYearGreet;
 			} else if (h > 13 && h <= 16) {
 				return "下午好!" + newYearGreet;
 			} else if (h > 16 && h <= 17) {

@@ -12,6 +12,8 @@ function music(i) {
 	 if(i===6){html.push('http://qq.345655.com/345655/%E9%9F%B3%E4%B9%90%E5%BF%83%E6%83%85/%E9%94%99%E8%A7%89_%E7%8E%8B%E9%9C%B2%E5%87%9D.mp3');}
 	 if(i===7){html.push('http://c2.api.ning.com/files/lmgkjmB8BXuDne7ur995ovJM4BdrBFj*MK1fRONMyvrUfch0bLfAxidgmBarVk1COnonwoYJz98aOlpFX1EYRU*SFEMa9OLD/oqN6o6SmsJuho6SlpJegp5-MqJmikGmMfqlXWDU$.mp3');}
 	 if(i===8){html.push('http://www.haofumu.tv/tjzhfmadmin/ewebeditor/uploadfile/20090428165152438.mp3');}
+	 if(i===9){html.push('http://www.lin255188.com/Music2/%A1%B6%CA%AE%CA%D7%B1%AF%C7%E9%C7%E1%D2%F4%C0%D6%A1%B7/200812685582441.mp3');}
+	 if(i===10){html.push('http://www.kngyp.com/11.mp3');}
 	 html.push('&amp;playerID=43019&amp;loop=yes&amp;autostart=yes" id="player">');
 	 if (!playerControl) {
 		 html.unshift("<p id=\"playerControl\">");
