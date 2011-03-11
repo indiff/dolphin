@@ -32,12 +32,12 @@
    provider-name="Adarsh"
    class="org.adarsh.jutils.JUtilsPlugin">
 
-   <runtime>
+<!--   <runtime>
       <library name="jutils.jar">
          <export name="*"/>
       </library>
    </runtime>
-
+-->
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.core.resources"/>
@@ -152,11 +152,20 @@
                icon="icons/jExplorer.png"
                class="jexplorer.actions.Action"
                tooltip="定位"
-               id="jexplorer.actions.Action">
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               id="jexplorer.actions.Action1">
+         </action>
+         
+       	<action
+               label="&amp;Editplus打开"
+               icon="icons/editplus.png"
+               class="jexplorer.actions.EditplusAction"
+               tooltip="Editplus打开"
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               id="jexplorer.actions.EditplusAction">
          </action>
       </actionSet>
    </extension>
-   
-   
-
 </plugin>

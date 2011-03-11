@@ -1,7 +1,10 @@
 package com.tan.util;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 
 public final class StringUtil {
 	/**
@@ -205,16 +208,29 @@ public final class StringUtil {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(getComment("none", "//common comment 3. public static void main", false));
-		System.out.println(getComment("none", "//java comment 4. \r\n private float height;", false));
-		System.out.println(getComment("none", "//java comment 5. \n private float height;", false));
-		System.out.println(getComment("none", " \n private float height; //java comment 6.;", false));
-		System.out.println(getComment("none", "// some thing. \n private Field field; // fdsafdsafdsao 7.;", false));
-		System.out.println(getComment("none", " \r\n \n private float height; //java comment 8.;", false));
-		System.out.println(getComment("none", " ", true));
+//		System.out.println(getComment("none", "//common comment 3. public static void main", false));
+//		System.out.println(getComment("none", "//java comment 4. \r\n private float height;", false));
+//		System.out.println(getComment("none", "//java comment 5. \n private float height;", false));
+//		System.out.println(getComment("none", " \n private float height; //java comment 6.;", false));
+//		System.out.println(getComment("none", "// some thing. \n private Field field; // fdsafdsafdsao 7.;", false));
+//		System.out.println(getComment("none", " \r\n \n private float height; //java comment 8.;", false));
+//		System.out.println(getComment("none", " ", true));
+//		
+//		
+//		System.out.println(replace("fdsajfdlsajf/fdsafdsafds/replaceMent/3232", "replaceMent/", ""));
+//		try
+//        {
+//		    
+//            System.out.println(Arrays.toString(Preferences.userRoot().node("/shell").keys()));
+//            System.out.println(Arrays.toString(Preferences.systemRoot().node("/Software").keys()));
+//        }
+//        catch (BackingStoreException e)
+//        {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        };
+        
 		
-		
-		System.out.println(replace("fdsajfdlsajf/fdsafdsafds/replaceMent/3232", "replaceMent/", ""));
 	}
 	
 	/**
