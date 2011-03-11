@@ -1,46 +1,31 @@
-@ECHO OFF Jar文件个数:606个
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\net.sourceforge.lpg.lpgjavaruntime_1.1.0.v200803061910.jar net.sourceforge.lpg.lpgjavaruntime_1.1.0.v200803061910.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.core.runtime.compatibility.auth_3.2.100.v20070502.jar org.eclipse.core.runtime.compatibility.auth_3.2.100.v20070502.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.core.runtime.compatibility.registry_3.2.200.v20080610\runtime_registry_compatibility.jar runtime_registry_compatibility.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.core.runtime.compatibility_3.2.0.v20071008.jar org.eclipse.core.runtime.compatibility_3.2.0.v20071008.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.core.runtime_3.4.0.v20080512.jar org.eclipse.core.runtime_3.4.0.v20080512.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.datatools.enablement.jdt.classpath_1.0.1.v200805152355.jar org.eclipse.datatools.enablement.jdt.classpath_1.0.1.v200805152355.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.apt.core_3.3.100.v20080513-1235.jar org.eclipse.jdt.apt.core_3.3.100.v20080513-1235.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.apt.pluggable.core_1.0.100.v20080407-1345.jar org.eclipse.jdt.apt.pluggable.core_1.0.100.v20080407-1345.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.apt.ui_3.3.100.v20080407-1345.jar org.eclipse.jdt.apt.ui_3.3.100.v20080407-1345.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.compiler.apt_1.0.100.v20080513-1235.jar org.eclipse.jdt.compiler.apt_1.0.100.v20080513-1235.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.compiler.tool_1.0.100.v_874.jar org.eclipse.jdt.compiler.tool_1.0.100.v_874.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.core.manipulation_1.2.0.v20080603-2000.jar org.eclipse.jdt.core.manipulation_1.2.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.core_3.4.0.v_874.jar org.eclipse.jdt.core_3.4.0.v_874.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.debug.ui_3.3.0.v20080603.jar org.eclipse.jdt.debug.ui_3.3.0.v20080603.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.doc.user_3.4.0.v20080612-1340.jar org.eclipse.jdt.doc.user_3.4.0.v20080612-1340.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.junit.runtime_3.3.0.v20080603-2000.jar org.eclipse.jdt.junit.runtime_3.3.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.junit.runtime_3.3.0.v20080603-2000.jar org.eclipse.jdt.junit.runtime_3.3.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.junit4.runtime_1.0.200.v20080603-2000.jar org.eclipse.jdt.junit4.runtime_1.0.200.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.junit4.runtime_1.0.200.v20080603-2000.jar org.eclipse.jdt.junit4.runtime_1.0.200.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.junit_3.4.0.v20080603-2000.jar org.eclipse.jdt.junit_3.4.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.launching_3.4.0.v20080529-1300.jar org.eclipse.jdt.launching_3.4.0.v20080529-1300.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt.ui_3.4.0.v20080603-2000.jar org.eclipse.jdt.ui_3.4.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jdt_3.4.0.v20080603-2000.jar org.eclipse.jdt_3.4.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jem.workbench_2.0.100.v200806051600.jar org.eclipse.jem.workbench_2.0.100.v200806051600.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jface.databinding_1.2.0.I20080515-2000a.jar org.eclipse.jface.databinding_1.2.0.I20080515-2000a.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jface.text_3.4.0.v20080603-2000.jar org.eclipse.jface.text_3.4.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jface.text_3.4.0.v20080603-2000.jar org.eclipse.jface.text_3.4.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jface_3.4.0.I20080606-1300.jar org.eclipse.jface_3.4.0.I20080606-1300.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jst.j2ee.xdoclet.runtime_1.1.102.v200805140135.jar org.eclipse.jst.j2ee.xdoclet.runtime_1.1.102.v200805140135.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.jst.jsf.common.runtime_1.0.0.v20080605.jar org.eclipse.jst.jsf.common.runtime_1.0.0.v20080605.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.mylyn.context.core_3.0.0.v20080619-1900.jar org.eclipse.mylyn.context.core_3.0.0.v20080619-1900.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.mylyn.context.ui_3.0.0.v20080619-1900.jar org.eclipse.mylyn.context.ui_3.0.0.v20080619-1900.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.osgi.services_3.1.200.v20071203.jar org.eclipse.osgi.services_3.1.200.v20071203.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.osgi.util_3.1.300.v20080303.jar org.eclipse.osgi.util_3.1.300.v20080303.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.osgi_3.4.0.v20080605-1900.jar org.eclipse.osgi_3.4.0.v20080605-1900.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.pde.junit.runtime_3.4.0.v20080529-1800.jar org.eclipse.pde.junit.runtime_3.4.0.v20080529-1800.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.pde.runtime_3.4.0.v20080530-1200.jar org.eclipse.pde.runtime_3.4.0.v20080530-1200.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.swt.win32.win32.x86_3.4.0.v3448f.jar org.eclipse.swt.win32.win32.x86_3.4.0.v3448f.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.swt_3.4.0.v3448f.jar org.eclipse.swt_3.4.0.v3448f.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.text_3.4.0.v20080605-1800.jar org.eclipse.text_3.4.0.v20080605-1800.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.ui.workbench.texteditor_3.4.0.v20080603-2000.jar org.eclipse.ui.workbench.texteditor_3.4.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.ui.workbench.texteditor_3.4.0.v20080603-2000.jar org.eclipse.ui.workbench.texteditor_3.4.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.ui.workbench.texteditor_3.4.0.v20080603-2000.jar org.eclipse.ui.workbench.texteditor_3.4.0.v20080603-2000.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.ui.workbench_3.4.0.I20080606-1300.jar org.eclipse.ui.workbench_3.4.0.I20080606-1300.jar
-@COPY /Y D:\Eclipses\Personal-Eclipse\plugins\org.eclipse.wst.common.emfworkbench.integration_1.1.200.v200805140020.jar org.eclipse.wst.common.emfworkbench.integration_1.1.200.v200805140020.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.core.runtime_3.3.100.v20070530.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.osgi_3.3.2.R33x_v20080105.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.equinox.common_3.3.0.v20070426.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.core.jobs_3.3.1.R33x_v20070709.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.core.runtime.compatibility.registry_3.2.100.v20070316\runtime_registry_compatibility.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.equinox.registry_3.3.1.R33x_v20070802.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.equinox.preferences_3.2.101.R33x_v20080117.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.core.contenttype_3.2.100.v20070319.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.equinox.app_1.0.1.R33x_v20070828.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.core.resources_3.3.1.R33x_v20080205.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.core.filebuffers_3.3.1.r331_v20070829.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.jdt_3.3.1.r332_v20080131.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.jdt.ui_3.3.2.r332_20080128.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.jdt.core_3.3.3.v_793_R33x.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.jdt.compiler.apt_1.0.1.R33x_v20071002-2100.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.jdt.compiler.tool_1.0.1.v_793_R33x.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.jface.text_3.3.2.r332_20071017-0800.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.text_3.3.0.v20070606-0010.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.ui_3.3.1.M20071128-0800.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.swt_3.3.2.v3349d.jar
+copy /y D:\MyEclipse65\eclipse\plugins\com.spket.scintilla.win32_1.6.18.jar
+copy /y D:\MyEclipse65\eclipse\plugins\com.spket.swt_1.6.18.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.swt.win32.win32.x86_3.3.3.v3349.jar
+copy /y D:\MyEclipse65\myeclipse\eclipse\plugins\com.genuitec.javascript.debug.mozilla_6.5.0.zmyeclipse650200806\browser.jar
+copy /y D:\MyEclipse65\myeclipse\eclipse\plugins\com.genuitec.javascript.debug.mozilla_6.5.0.zmyeclipse650200806\htmltransferfix.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.jface_3.3.2.M20080207-0800.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.core.commands_3.3.0.I20070605-0010.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.ui.workbench_3.3.2.M20080207-0800.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.ui.ide_3.3.2.M20080207-0800.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.ui.workbench.texteditor_3.3.2.r332_20080109-0800.jar
+copy /y D:\MyEclipse65\eclipse\plugins\org.eclipse.ui.views_3.2.101.M20080207-0800.jar

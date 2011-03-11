@@ -1,10 +1,7 @@
 package com.tan.util;
 
 import java.text.MessageFormat;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.prefs.BackingStoreException;
-import java.util.prefs.Preferences;
 
 public final class StringUtil {
 	/**

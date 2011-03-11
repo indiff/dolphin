@@ -1,7 +1,7 @@
 @Echo off
 REM del /f /s /q jutils.jar
 rmdir /s /q bin/.svn
-set FILENAME=jtuils34.jar
+set FILENAME=jtuils366666666666.jar
 set java_home=D:\Java\jdk1.6.0_24
 COPY /Y "plugin.xml" "bin/plugin.xml"
 xcopy /E /H /K /C /Y icons "bin/icons"

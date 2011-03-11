@@ -235,6 +235,4 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 	public void init(IWorkbenchWindow w) {
 		window = w;
 	}
-
-
 }
