@@ -40,7 +40,6 @@ public class Action implements IWorkbenchWindowActionDelegate {
 	private String line;
 	private boolean isWindows;
 	private boolean isLogger = false; // Debug.
-
 	
 	public Action() {
 		String os = System.getProperty("osgi.os");

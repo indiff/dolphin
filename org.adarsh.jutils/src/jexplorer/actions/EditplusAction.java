@@ -42,6 +42,7 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 	private boolean isWindows;
 	private boolean isLogger = true; // Debug.
 	private String editplusPath = null;// "\"C:\\Program Files\\EditPlus 3\\EDITPLUS.EXE\"";
+	private boolean isEditplusRight;
 	
 	public EditplusAction() {
 		String os = System.getProperty("osgi.os");
@@ -57,9 +58,53 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 		log(new Object[]{
 				"操作系统:",os,line
 		});
+		
+		checkEditplusRight();
+	}
+
+	private void checkEditplusRight() {
+		if (StringUtil.isEmpty(editplusPath)) {
+			log(
+					new Object[]{
+							"Editplus路径为空:", editplusPath
+					}
+			);
+			return;
+		} else {
+			File f ;
+			String absolutePath = editplusPath;
+			if (absolutePath.charAt(0) == '\"') {
+				absolutePath = absolutePath.substring(1);
+			}
+			int len = absolutePath.length();
+			if (absolutePath.charAt(len - 1) == '\"')  {
+				absolutePath = absolutePath.substring(0, len - 1);
+			}
+			f = new File(absolutePath);
+			if (f.exists() && 
+				f.isFile() && 
+				f.getName().toLowerCase().indexOf(".exe") >= 0) {
+				isEditplusRight = true;
+			} else {
+				log(
+						new Object[] {
+								"文件不存在或者是目录或者文件后缀名不为Exe:",editplusPath
+						}
+				);
+			}
+			f = null;
+			absolutePath = null;
+		}
 	}
 
 	public void run(IAction action) {
+		if (!isEditplusRight) {
+			MessageDialog.openInformation(null,
+					"Editplus文件未找到",
+					"Editplus文件未找到,请安装或配置!");
+			action.setEnabled(false);
+			return;
+		}
 		if (currentSelection instanceof ITextSelection) {
 			run();
 			return;
