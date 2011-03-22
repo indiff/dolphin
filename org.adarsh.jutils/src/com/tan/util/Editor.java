@@ -1,10 +1,17 @@
 package com.tan.util;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Editor {
-
+	private static String EDITPLUS_PATH = null; // 缓存 Editplus路径.
+	final static String ABSOLUTE_PATH = "HKEY_CLASSES_ROOT\\Applications\\EDITPLUS.EXE\\shell\\edit\\command"; //注册表的绝对项
+	final static String DATA_TYPE = "REG_SZ"; //注册表的值的数据类型
+	final static String[] EIDTPLUS_KYE_WORDS = { "EDITPLUS.EXE",
+			"EDITPLUS1.EXE", "EDITPLUS2.EXE", "EDITPLUS3.EXE", "EDITPLUS4.EXE",
+			"EDITPLUS5.EXE", "EDITPLUS6.EXE" }; //查找Editplus注册表的关键字.
 	/**
 	 * @param args
 	 * @throws Exception
@@ -12,21 +19,25 @@ public class Editor {
 	public static void main(String[] args) throws Exception {
 		System.out.println(getEditplusPath());
 	}
+
 	public static String getEditplusPath() {
-		try {
-			return "\"" + analyse(readCmd(ABSOLUTE_PATH)) + "\"";
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (EDITPLUS_PATH != null) {
+			return EDITPLUS_PATH;
+		} else {
+			String absolutePath = null;
+			try {
+				absolutePath = analyse(readCmd(ABSOLUTE_PATH));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (null != absolutePath && new File(absolutePath).isFile()) {
+				EDITPLUS_PATH = "\"" + absolutePath + "\"";
+			}
 		}
-		return null;
+		return EDITPLUS_PATH;
 	}
 
-	final static String ABSOLUTE_PATH = "HKEY_CLASSES_ROOT\\Applications\\EDITPLUS.EXE\\shell\\edit\\command";
-	final static String DATA_TYPE = "REG_SZ";
-	final static String[] EIDTPLUS_KYE_WORDS = {
-			"EDITPLUS.EXE",
-			"EDITPLUS1.EXE", "EDITPLUS2.EXE", "EDITPLUS3.EXE", "EDITPLUS4.EXE",
-			"EDITPLUS5.EXE", "EDITPLUS6.EXE"};
+
 
 	final static String analyse(final String data) {
 		final String dataUpperCase = data.toUpperCase();
@@ -53,17 +64,12 @@ public class Editor {
 			return null;
 		}
 	}
-	
-	
-	
-	
-	
-	
+
 	private static String readCmd(String path) throws IOException {
 		Process p = Runtime.getRuntime().exec(
 				"reg query \"" + path + "\" /ve /t " + DATA_TYPE);
-		BufferedReader reader = new BufferedReader(new InputStreamReader(p
-				.getInputStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+				p.getInputStream()));
 		String line;
 		StringBuffer buf = new StringBuffer();
 		while (null != (line = reader.readLine())) {

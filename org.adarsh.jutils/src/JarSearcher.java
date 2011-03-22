@@ -15,7 +15,9 @@ public class JarSearcher {
 	private File file;
 	private List lists;
 	private String keyWord;
-
+	private String[] fileSuffixs;
+	
+	
 	public JarSearcher(final String dir) {
 		lists = new ArrayList();
 		init(dir);
@@ -79,11 +81,15 @@ public class JarSearcher {
 
 	public void searchJarContent(final String name, final JarFile jarFile,
 			final JarEntry jarEntry) {
-		if (!jarEntry.isDirectory() && name.endsWith(".properties")
-		// !name.endsWith(".png") &&
-		// !name.endsWith(".jpg") &&
-		// !name.endsWith(".classes") &&
-		// !name.endsWith(".gif")
+		
+		boolean isRightSuffix = false;
+		String[] suffixs = getFileSuffixs();
+		for (int i = 0; i < suffixs.length; i++) {
+			if (name.endsWith('.' + suffixs[i])) {
+				isRightSuffix = true; break;
+			}
+		}
+		if (!jarEntry.isDirectory() && isRightSuffix
 		) {
 			if (search(jarFile, jarEntry)) {
 				System.out.println(jarFile.getName() + "\t" + jarEntry);
@@ -91,10 +97,11 @@ public class JarSearcher {
 		}
 	}
 
-	public void searchClass(final String name, final File jarFile, final JarEntry jarEntry) {
+	public void searchClass(String name, final File jarFile, final JarEntry jarEntry) {
 		if (name.endsWith(".class")) {
-
-			if (name.indexOf("Tomcat".toLowerCase()) >= 0) {
+			name = name.replace('/', '.').replaceAll(".class", "");
+			//System.out.println(name);
+			if (keyWord.equals(name)) {
 				System.out.println(jarFile + "\t" + jarEntry);
 			}
 		}
@@ -104,16 +111,16 @@ public class JarSearcher {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		final String path = "D:\\MyEclipse65\\myeclipse\\eclipse\\plugins\\";
+		final String path = "D:\\Eclipse-jee-helios\\eclipse\\plugins\\";
 		JarSearcher searcher = new JarSearcher(path);
 		System.out.println("Jar文件数:" + searcher.size());
-		boolean searchClass = false;
-		searcher.setKeyWord("show custom locations");
+		boolean searchClass = true;
+		searcher.setKeyWord("org.eclipse.jface.text.ITextHoverExtension2");
 		searcher.process(searchClass);
 	}
 
 	private void setKeyWord(final String keyWord) {
-		this.keyWord = keyWord;
+		this.keyWord = keyWord.toLowerCase();
 	}
 
 	private static boolean search(JarFile jarFile, JarEntry jarEntry) {
@@ -144,6 +151,20 @@ public class JarSearcher {
 			builder = null;
 		}
 		return false;
+	}
+
+	public String[] getFileSuffixs() {
+		if (null == fileSuffixs) {
+			fileSuffixs = new String[]{
+					"properties",
+					"xml",
+			};
+		}
+		return fileSuffixs;
+	}
+
+	public void setFileSuffixs(String[] fileSuffixs) {
+		this.fileSuffixs = fileSuffixs;
 	}
 
 }
