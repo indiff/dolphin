@@ -17,6 +17,16 @@ public final class Generate {
 				+ "());" + N
 		);
 	}
+	public final static void generateDummyGetter(final StringBuffer b, final String name,
+			final String comment) {
+		if (name == null || "serialVersionUID".equals(name)){
+			return;
+		}
+		String methodSuffix = Character.toUpperCase(name.charAt(0)) +  name.substring(1);
+		b.append(INDENT + "// 获取" + comment + N + 
+				 INDENT + "System.out.println(po.get" + methodSuffix + "());" + N
+		);
+	}
 
 
 	public final static void generateDummyObjects(final StringBuffer b, final String javaName) {

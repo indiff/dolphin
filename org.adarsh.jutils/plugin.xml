@@ -75,6 +75,13 @@
                icon="icons/tostring.gif"
                menubarPath="generate.viewer/string"
                id="dummyJava.viewerContribution.action"/>
+               
+         <action
+               label="Generate Dummy Getter"
+               class="org.adarsh.jutils.actions.DummyGetterGeneratorVAD"
+               icon="icons/tostring.gif"
+               menubarPath="generate.viewer/string"
+               id="dummyGetter.viewerContribution.action"/>
                               
          <action
                label="Generate Copy &amp;Constructor"
