@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 
 public class Editor {
 	private static String EDITPLUS_PATH = null; // 缓存 Editplus路径.
+	
 	final static String ABSOLUTE_PATH = "HKEY_CLASSES_ROOT\\Applications\\EDITPLUS.EXE\\shell\\edit\\command"; //注册表的绝对项
 	final static String DATA_TYPE = "REG_SZ"; //注册表的值的数据类型
 	final static String[] EIDTPLUS_KYE_WORDS = { "EDITPLUS.EXE",
@@ -25,11 +26,7 @@ public class Editor {
 			return EDITPLUS_PATH;
 		} else {
 			String absolutePath = null;
-			try {
-				absolutePath = analyse(readCmd(ABSOLUTE_PATH));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			absolutePath = analyse(readCmd(ABSOLUTE_PATH));
 			if (null != absolutePath && new File(absolutePath).isFile()) {
 				EDITPLUS_PATH = "\"" + absolutePath + "\"";
 			}
@@ -65,17 +62,33 @@ public class Editor {
 		}
 	}
 
-	private static String readCmd(String path) throws IOException {
-		Process p = Runtime.getRuntime().exec(
-				"reg query \"" + path + "\" /ve /t " + DATA_TYPE);
+	private static String readCmd(final String path) {
+		Process p = null;
+		final String command = "reg query \"" + path + "\" /ve "; ///t " + DATA_TYPE;
+		try {
+			p = Runtime.getRuntime().exec(command);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				p.getInputStream()));
 		String line;
 		StringBuffer buf = new StringBuffer();
-		while (null != (line = reader.readLine())) {
-			buf.append(line);
+		try {
+			while (null != (line = reader.readLine())) {
+				buf.append(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (null != reader) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		reader.close();
 		return StringUtil.replace(buf.toString(), path, "").trim();
 	}
 

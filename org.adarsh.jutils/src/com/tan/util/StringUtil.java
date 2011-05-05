@@ -243,12 +243,12 @@ public final class StringUtil {
 	 */
 	public static String replace(String value, String replaceMent, String content) {
 		if (isEmpty(value)) {
-			return null;
+			return "";
 		}
 		int idx = value.indexOf(replaceMent);
 		if (idx >= 0) {
 			return value.substring(0, idx) + value.substring(idx + replaceMent.length());
 		}
-		return null;
+		return "";
 	}
 }
