@@ -113,11 +113,12 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 				&& ((currentSelection instanceof TreeSelection))) {
 			TreeSelection treeSelection = (TreeSelection) currentSelection;
 			TreePath[] paths = treeSelection.getPaths();
+			StringBuffer locations = new StringBuffer();
 			for (int i = 0; i < paths.length; i++) {
 				TreePath path = paths[i];
 				IResource resource = null;
-				Object segment = path.getLastSegment();
 				String location = null;
+				Object segment = path.getLastSegment();
 				if ((segment instanceof IResource))
 					resource = (IResource) segment;
 				else if ((segment instanceof IJavaElement)) {
@@ -157,32 +158,33 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 					} else {
 						location = resource.getLocation().toOSString();
 					}
-					command(location); 
+					
+					locations.append(" \"" + location + "\"");
 				}
 			}
+			command(locations.toString()); 
 			paths = null;
 		}
 	}
-	private void command(String location) {
+	private void command(final String locations) {
+		if (StringUtil.isEmpty(locations)) {
+			return;
+		}
 		StringBuffer command = new StringBuffer();
 		Runtime runtime = Runtime.getRuntime();
 		try {
 			if (isWindows) {
 				command.append(editplusPath)
-				.append(" \"")
-				.append(location)
-				.append("\"");
+				.append(locations);
 			} 
 			else {
 				command.append(systemBrowser)
-				.append(" \"")
-				.append(location)
-				.append("\"");
+				.append(locations);
 			}
 			runtime.exec(command.toString());
 		} catch (IOException e) {
 			MessageDialog.openError(window.getShell(),
-					"jExploer Error", "Can't open " + location);
+					"jExploer Error", "Can't open " + locations);
 			e.printStackTrace();
 		} finally {
 			log(new Object[]{
@@ -190,7 +192,6 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 			});
 			command = null;
 			runtime = null;
-			location = null;
 		}
 	}
 
