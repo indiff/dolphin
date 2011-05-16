@@ -159,8 +159,8 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 						location = resource.getLocation().toOSString();
 					}
 					
-					// 如果问文件的话，并且不是目录.
-					if (new File(location).isFile()) {
+					// 如果问文件的话，并且不是目录, 不是jar文件.
+					if (new File(location).isFile()  && !location.toLowerCase().endsWith(".jar")) {
 						locations.append(" \"" + location + "\"");
 					}
 				}
