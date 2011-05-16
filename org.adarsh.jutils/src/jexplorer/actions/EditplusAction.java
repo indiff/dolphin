@@ -159,7 +159,10 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 						location = resource.getLocation().toOSString();
 					}
 					
-					locations.append(" \"" + location + "\"");
+					// 如果问文件的话，并且不是目录.
+					if (new File(location).isFile()) {
+						locations.append(" \"" + location + "\"");
+					}
 				}
 			}
 			command(locations.toString()); 
