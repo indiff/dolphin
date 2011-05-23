@@ -149,19 +149,19 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 				
 				if (null == location) {
 					if ((resource instanceof IFile)) {
-						IFile file = (IFile) resource;
+						final IFile file = (IFile) resource;
 						if (file.exists()) {
-							location = file.getLocation().toOSString();
+							location = file.getLocation().toOSString() ;
 						} else {
-							location = file.getParent().getLocation().toOSString();
+							location =  file.getParent().getLocation().toOSString() ;
 						}
 					} else {
-						location = resource.getLocation().toOSString();
+						location =  resource.getLocation().toOSString() ;
 					}
 					
 					// 如果问文件的话，并且不是目录, 不是jar文件.
 					if (new File(location).isFile()  && !location.toLowerCase().endsWith(".jar")) {
-						locations.append(" \"" + location + "\"");
+						locations.append( " \"" ).append(location).append( "\"" );
 					}
 				}
 			}
@@ -169,14 +169,14 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 			paths = null;
 		}
 	}
-	private void command(final String locations) {
-		if (StringUtil.isEmpty(locations)) {
+	private void command( final String locations ) {
+		if ( StringUtil.isEmpty( locations ) ) {
 			return;
 		}
 		StringBuffer command = new StringBuffer();
 		Runtime runtime = Runtime.getRuntime();
 		try {
-			if (isWindows) {
+			if ( isWindows ) {
 				command.append(editplusPath)
 				.append(locations);
 			} 
@@ -247,11 +247,11 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 		path = path.replace('/', File.separatorChar).replace('\\',
 				File.separatorChar);
 		if (isFile(path)) {
-			command(path);
+			command(" \"" + path + "\"");
 		} else {// 项目名和项目路径名不同.
 			path = StringUtil.replace(path, projectName + File.separatorChar, "");
 			if (isFile(path)) {
-				command(path);
+				command(" \"" + path + "\"");
 			}
 		}
 	}
