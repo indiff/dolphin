@@ -1,8 +1,11 @@
 package com.tan.util;
 
-import org.eclipse.jdt.core.IField;
 
-
+/**
+ * 生成代码.
+ * @author TanYuanji
+ *
+ */
 public final class Generate {
 	private final static String INDENT = "\t";
 	private final static String N = System.getProperty("line.separator", "\r\n");

@@ -276,4 +276,9 @@ public class PreferenceConstants {
 	 */
 	public static final String STRING_BUILDER_LABEL = Messages
 			.getString("preferences.tostring.stringbuilder");
+
+	public static final String EDITOR_PATH = "editor.path";
+
+	public static final String GETTER_SETTER_DESCRIPTION = Messages
+			.getString("getter.setter.desc");
 }

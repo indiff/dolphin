@@ -148,7 +148,13 @@
             category="jutils"
             name="Copy Constructor"
             id="constructor.page"/>
-   </extension>
+      <page
+            class="org.adarsh.jutils.preferences.GetterSetterPreferencesPage"
+            category="jutils"
+            name="GetterSetter样式"
+            id="getterSetter.page"/>
+			
+	</extension>
    
    <extension
          point="org.eclipse.core.runtime.preferences">
