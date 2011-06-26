@@ -36,9 +36,9 @@
 	<property name="config" value="./config" />
 	<property name="icons" value="./icons" />
 	<property name="filename" value="jutils" /> <!--org.adarsh.jutils_3.0.0_by_ty-->
-	<property name="jarfilename" value="jutils3366.jar" />
-	<property name="outputJarDir" value="E:\fishstar\org.adarsh.jutils" /> <!--D:\Designer-Eclipse\eclipse\plugins-->
-	<property name="java-home" value="D:\Java\jdk1.6.0_24" /><!-- jdk1.6.0_24 java1.4.2 jdk16021 C:/Program Files/Java/jdk1.6.0_02 D:/Java/j2sdk1.4.2_16-->
+	<property name="jarfilename" value="jutils.jar" />
+	<property name="outputJarDir" value="D:\Eclipse-Plugins\myplugins\eclipse\plugins" /> <!--D:\Designer-Eclipse\eclipse\plugins-->
+	<property name="java-home" value="D:\Java\jdk1.6.0_25" /><!-- jdk1.6.0_24 java1.4.2 jdk16021 C:/Program Files/Java/jdk1.6.0_02 D:/Java/j2sdk1.4.2_16-->
 
 	<path id="classpath">
 		<fileset dir="${lib}" includes="**/*.jar" />

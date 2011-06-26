@@ -1,7 +1,12 @@
 package com.tan.util;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
+
+import org.eclipse.jdt.core.Signature;
 
 public final class StringUtil {
 	/**
@@ -12,6 +17,14 @@ public final class StringUtil {
 	 */
 	public final static boolean isEmpty(String v) {
 		return v == null || v.trim().length() == 0;
+	}
+	
+	public final static void append( final StringBuffer b, final Object ... args ) {
+		if ( null != args && args.length > 0 ) {
+			for ( int i = 0; i < args.length; i++ ) {
+				b.append( args[i] );
+			}
+		}
 	}
 	
 	/**
@@ -204,7 +217,7 @@ public final class StringUtil {
 		return string;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 //		System.out.println(getComment("none", "//common comment 3. public static void main", false));
 //		System.out.println(getComment("none", "//java comment 4. \r\n private float height;", false));
 //		System.out.println(getComment("none", "//java comment 5. \n private float height;", false));
@@ -228,6 +241,38 @@ public final class StringUtil {
 //        };
         
 		
+		Field[] fs = Signature.class.getFields();
+		
+		
+		for ( Field f : fs ) {
+			Class c = f.getType();
+			if ( Modifier.isPublic( f.getModifiers() )
+					&&  Modifier.isStatic( f.getModifiers() ) 
+				) {
+				
+				if ( false &&  c == Character.TYPE ) {
+					System.out.println("case Signature." + f.getName()
+							+ ": { return \"\"; } "
+						);
+					/**
+					 * case Signature.C_BOOLEAN: { return "false"; }
+					 */
+				} else if ( false && c == String.class) {
+					System.out.println("else if ( Signature." + f.getName()
+							+ ".equals( typeSignature ) ) { return \"\";}"
+							);
+					/**
+//					 *  else if ( Signature.SIG_BOOLEAN.equals( typeSignature ) ) { return "false";}
+					 */
+				} else {
+					System.out.println( c + "\t" + f.getName() );
+				}
+			}
+		}
+		
+		
+		System.out.println( getDummyField( "QPerson;" ) );
+		System.out.println( getDummyField( "QSet<QString;>;" ) );
 	}
 	
 	/**
@@ -251,4 +296,93 @@ public final class StringUtil {
 		}
 		return "";
 	}
+
+	public static String getDummyField( String typeSignature, String ... strings ) {
+		if ( isEmpty( typeSignature ) ) {
+			return null;
+		}
+		if ( typeSignature.length() == 1 ) {
+			char c = typeSignature.charAt( 0 );
+			
+			switch (c) {
+			case Signature.C_BOOLEAN: { return " false "; } 
+			case Signature.C_BYTE: { return " (byte) 1 "; } 
+			case Signature.C_CHAR: { return " \'A\' "; } 
+			case Signature.C_DOUBLE: { return " 1d "; } 
+			case Signature.C_FLOAT: { return " 1f "; } 
+			case Signature.C_INT: { return "1"; } 
+			case Signature.C_COLON: { return ""; } 
+			case Signature.C_LONG: { return "1L"; } 
+			case Signature.C_SHORT: { return " (short) 2 "; } 
+			case Signature.C_VOID: { return ""; } 
+			case Signature.C_TYPE_VARIABLE: { return ""; } 
+			case Signature.C_STAR: { return ""; } 
+			case Signature.C_EXCEPTION_START: { return ""; } 
+			case Signature.C_EXTENDS: { return ""; } 
+			case Signature.C_SUPER: { return ""; } 
+			case Signature.C_DOT: { return ""; } 
+			case Signature.C_DOLLAR: { return ""; } 
+			case Signature.C_ARRAY: { return ""; } 
+			case Signature.C_RESOLVED: { return ""; } 
+			case Signature.C_UNRESOLVED: { return ""; } 
+			case Signature.C_NAME_END: { return ""; } 
+			case Signature.C_PARAM_START: { return ""; } 
+			case Signature.C_PARAM_END: { return ""; } 
+			case Signature.C_GENERIC_START: { return ""; } 
+			case Signature.C_GENERIC_END: { return ""; } 
+			case Signature.C_CAPTURE: { return ""; } 
+			}
+		} else if ( typeSignature.charAt(0) == 'Q' ) {
+			typeSignature = typeSignature.replaceAll( ";", "" ).replaceAll( "<Q", "<");
+			String type = typeSignature.substring( 1 );
+			if ( "String".equals( type ) ) {
+				if ( null != strings && strings.length > 0  ) {
+						if (  !isEmpty( strings[0] ) ) {
+							return " \"" + strings[0] + "\" ";
+						} else if ( strings.length > 1 && !isEmpty( strings[1] ) ) {
+							return " \"" + strings[1] + "\" ";
+						}
+				}
+				return " \"string\" ";
+			} else if ( "Integer".equals( type ) ) {
+				return " Integer.valueOf(1) ";
+			} else if ( "Double".equals( type ) ) {
+				return " Double.valueOf( 1d ) ";
+			} else if ( "Float".equals( type ) ) {
+				return " Float.valueOf( 1f ) ";
+			} else if ( "Short".equals( type ) ) {
+				return " Short.valueOf( (short) 1 ) ";
+			} else if ( "Boolean".equals( type ) ) {
+				return " Boolean.valueOf( false ) ";
+			} else if ( "Long".equals( type ) ) {
+				return " Long.valueOf( 1L ) ";
+			} else if ( "Character".equals( type ) ) {
+				return " Character.valueOf( 'A' ) ";
+			} else if ( "Byte".equals( type ) ) {
+				return " Byte.valueOf( (byte) 1 ) ";
+			} 
+			else if ( "BigInteger".equals( type ) ) {
+				return " new BigInteger( \"100\" ) ";
+			}else if ( "BigDecimal".equals( type ) ) {
+				return " new BigDecimal( \"100\" ) ";
+			}
+			else if ( type.indexOf( '<' ) >= 0 && type.indexOf( '>' ) >= 0 ) {
+				int idx1 = type.indexOf( '<' ), idx2 = type.indexOf( '>' );
+				
+				if ( type.indexOf( "List<" ) >= 0) {
+					return " new ArrayList" + type.substring( idx1, idx2 + 1 ) + "() ";
+				} else if ( type.indexOf( "Set<" ) >= 0) {
+					return " new HashSet" + type.substring( idx1, idx2 + 1 ) + "() ";
+				} else if ( type.indexOf( "Map<" ) >= 0) {
+					String str = type.substring( idx1, idx2 + 1 ).replace( 'Q', ',' );
+					return " new HashMap" + str + "() ";
+				}
+
+			} 
+			return " new " + type + "() ";
+		}
+		return null;
+	}
+	
+	
 }

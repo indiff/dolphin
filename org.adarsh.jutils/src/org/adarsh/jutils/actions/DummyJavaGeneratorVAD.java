@@ -167,7 +167,7 @@ public class DummyJavaGeneratorVAD implements IEditorActionDelegate {
 									);
 						}
 					}
-				 Generate.generateDummyCode(b, fields[i].getElementName(), comment);
+				 Generate.generateDummyCode(b, fields[i], comment);
 				//	b.append("\t// 设置 " +  comment +  "//" + f.getTypeSignature() + " "  +  f.getElementName()  + "\r\n");
 				}
 				
