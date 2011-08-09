@@ -1,9 +1,8 @@
 package com.tan.util;
 
+import org.adarsh.jutils.preferences.PreferenceConstants;
 import org.eclipse.jdt.core.IField;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jdt.core.Signature;
-import org.eclipse.jdt.internal.core.SourceField;
 
 
 /**
@@ -15,9 +14,12 @@ public final class Generate {
 	private final static String INDENT = "\t";
 	private final static String N = System.getProperty("line.separator", "\r\n");
 	
+			
 	public final static void generateDummyCode(final StringBuffer b, 
 			final IField field,
-			final String comment) {
+			final String comment,
+			final String style
+			) {
 		final String name = field.getElementName();
 		if (name == null || "serialVersionUID".equals(name)){
 			return;
@@ -30,11 +32,17 @@ public final class Generate {
 			e.printStackTrace();
 		}
 		
-		if ( null != typeSignature ) {
-			dummy = StringUtil.getDummyField( typeSignature , comment, name );
+		if (  PreferenceConstants.STR_STYLE2.equals( style )  ) {
+			generateDummyCode( b,  name, comment );
+		}  else if (  PreferenceConstants.STR_STYLE3.equals( style )  ) {
+			generateDummyCode( b,  name, comment );
+		} else if ( null != typeSignature ) {
+			// 样式1 根据类型创建假数据
+			generateDummyCode( b,  name, comment , StringUtil.getDummyField( typeSignature , comment, name ));
+		} else {
+			generateDummyCode( b,  name, comment );
 		}
 		
-		generateDummyCode( b,  name, comment , dummy);
 	}
 	
 	

@@ -104,6 +104,9 @@ public class DummyJavaGeneratorVAD implements IEditorActionDelegate {
 		ICompilationUnit compUnit = manager.getWorkingCopy(editorInput);
 
 		Shell shell = this.editorPart.getSite().getShell();
+		
+		
+		final String style = SourceManipulator.PREF_STORE.getString(PreferenceConstants.GETTER_SETTER_STYLE);
 
 		try {
 			IJavaElement suspect = compUnit.getElementAt(selection.getOffset());
@@ -167,7 +170,12 @@ public class DummyJavaGeneratorVAD implements IEditorActionDelegate {
 									);
 						}
 					}
-				 Generate.generateDummyCode(b, fields[i], comment);
+					Generate.generateDummyCode(
+							b, 
+							fields[i], 
+							comment,
+							style
+							);
 				//	b.append("\t// 设置 " +  comment +  "//" + f.getTypeSignature() + " "  +  f.getElementName()  + "\r\n");
 				}
 				

@@ -281,4 +281,18 @@ public class PreferenceConstants {
 
 	public static final String GETTER_SETTER_DESCRIPTION = Messages
 			.getString("getter.setter.desc");
+
+	public static final String STYLE1 = Messages.getString("getter.setter.style1");
+
+	public static final String STYLE2 = Messages.getString("getter.setter.style2");
+
+	public static final String STYLE3 = Messages.getString("getter.setter.style3");
+
+	public static final String STR_STYLE1 = "1";
+	public static final String STR_STYLE2 = "2";
+	public static final String STR_STYLE3 = "3";
+
+	public static final String GETTER_SETTER_STYLE = "getter.setter.style";
+
+	public static final String GETTER_SETTER_STYLE_LABEL = Messages.getString("getter.setter.style.label");
 }

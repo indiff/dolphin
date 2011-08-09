@@ -23,9 +23,12 @@
 package org.adarsh.jutils.preferences;
 
 import org.adarsh.jutils.JUtilsPlugin;
+import org.adarsh.jutils.internal.Util;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.RadioGroupFieldEditor;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -50,6 +53,8 @@ public class GetterSetterPreferencesPage extends FieldEditorPreferencePage
 	
 	
 	private String editorPath;
+	
+	private String style = "1"; // 1,2,3
 	/**
 	 * The preference store associated with this plugin.
 	 */
@@ -93,6 +98,9 @@ public class GetterSetterPreferencesPage extends FieldEditorPreferencePage
 		
 		this.prefStore.setValue(PreferenceConstants.EDITOR_PATH,
 				editorPath);
+		
+		this.prefStore.setValue(PreferenceConstants.GETTER_SETTER_STYLE,
+				 style );
 	}
 
 	/**
@@ -125,10 +133,49 @@ public class GetterSetterPreferencesPage extends FieldEditorPreferencePage
 		FileFieldEditor editorPathEditor = new FileFieldEditor(PreferenceConstants.EDITOR_PATH, 
 				"&编辑器:", getFieldEditorParent());
 		
+		RadioGroupFieldEditor rgfe = new RadioGroupFieldEditor(
+				PreferenceConstants.GETTER_SETTER_STYLE,
+				PreferenceConstants.GETTER_SETTER_STYLE_LABEL,
+				3,
+				new String[][] {
+						{ PreferenceConstants.STYLE1,
+								PreferenceConstants.STR_STYLE1 },
+						{ PreferenceConstants.STYLE2,
+								PreferenceConstants.STR_STYLE2 },
+						{ PreferenceConstants.STYLE3,
+								PreferenceConstants.STR_STYLE3 } }, parent,
+				true);
+
+		addField(rgfe);
+		
 		if ( null != editorPath ) {
 			editorPathEditor.setStringValue( editorPath );
 		}
 		
 		addField(editorPathEditor);
+	}
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void propertyChange(PropertyChangeEvent event) {
+		super.propertyChange(event);
+
+		// indicates if a different radio button is selected.
+		boolean isChanged = !event.getNewValue().equals(event.getOldValue());
+
+		// changed and string selected... populate appropriate values.
+		
+		if ( isChanged ) {
+			if ( PreferenceConstants.STR_STYLE1.equals(event.getNewValue()) ) {
+				style = PreferenceConstants.STR_STYLE1;
+			} else if ( PreferenceConstants.STR_STYLE2.equals(event.getNewValue()) ) {
+				style = PreferenceConstants.STR_STYLE2;
+			} else if ( PreferenceConstants.STR_STYLE3.equals(event.getNewValue()) ) {
+				style = PreferenceConstants.STR_STYLE3;
+			}
+		}
+		
 	}
 }

@@ -62,7 +62,7 @@ public class SourceManipulator {
 	/**
 	 * The preference store associated with the plugin.
 	 */
-	private static final IPreferenceStore PREF_STORE = JUtilsPlugin
+	public static final IPreferenceStore PREF_STORE = JUtilsPlugin
 			.getDefault().getPreferenceStore();
 
 	/**
@@ -422,127 +422,13 @@ public class SourceManipulator {
 	 */
 	public static void createDummySetterWithJavaDoc(IType type, final String generated)
 			throws JUtilsException {
+		IProgressMonitor monitor = new NullProgressMonitor();
 		try {
-			String elemName = type.getElementName();
-	
-			IProgressMonitor monitor = new NullProgressMonitor();
-	
-			String javaDoc = SourceManipulator.PREF_STORE
-					.getString(PreferenceConstants.TOSTRING_JAVADOC_STORE_KEY);
-	
-			if (Util.isNullString(javaDoc)) {
-				javaDoc = Util.getDefaultToStringJavaDoc();
-			}
-	
-			javaDoc = CLSS_PAT.matcher(javaDoc).replaceAll(elemName);
-	
-			String impl = SourceManipulator.PREF_STORE
-					.getString(PreferenceConstants.TOSTRING_BODY_STORE_KEY);
-	
-			if (Util.isNullString(impl)) {
-				impl = Util.getDefaultToStringImplementation();
-			}
-	
-			impl = CLSS_PAT.matcher(impl).replaceAll(elemName);
-	
-			Matcher matcher = ATTR_PAT1.matcher(impl);
-	
-			String attributesLine;
-	
-			StringBuffer attributesChunk = new StringBuffer("");
-	
-			String fieldName;
-	
-			IField[] fields = type.getFields();
-	
-			boolean isSort = SourceManipulator.PREF_STORE
-					.getBoolean("tostring.sort");
-	
-			if (isSort) {
-				Arrays.sort(fields, new Comparator() {
-					public int compare(Object arg1, Object arg2) {
-						IField field1 = (IField) arg1;
-						IField field2 = (IField) arg2;
-	
-						return field1.getElementName().compareTo(
-								field2.getElementName());
-					}
-				});
-			}
-	
-			// translate all variables into their values.
-			if (matcher.find()) {
-				attributesLine = matcher.group();
-	
-				for (int i = 0; i < fields.length; i++) {
-					// don't display static fields.
-					if (Flags.isStatic(fields[i].getFlags())) {
-						continue;
-					}
-					/// TODO fieldName.
-					fieldName = fields[i].getElementName();
-					
-					attributesChunk.append(
-							ATTR_PAT2.matcher(attributesLine).replaceAll(
-									fieldName)).append('\n');      
-					
-					// + "name = " + this.name + TAB
-				}
-	
-				attributesChunk = fields.length == 0 ? new StringBuffer("")
-						: new StringBuffer(attributesChunk.substring(0,
-								attributesChunk.lastIndexOf("\n")));
-			}
-	
-			impl = matcher.replaceAll(attributesChunk.toString());
-	
-			/*
-			 * Bug Fix: The very fist time after installation, if toString was
-			 * attempted to be generated on a class which already had toString,
-			 * auto overwrite feature was failing. This was because unless the
-			 * preference page is opened for the first time, the value of the
-			 * overwrite flag as fetched from the preference store will be false
-			 * as the preference store wouldn't have been initialized.
-			 * 
-			 * Now we assume a true value for overwrite flag if isDefault
-			 * fetches true.
-			 */
-	
-			boolean canOverwrite = SourceManipulator.PREF_STORE
-					.isDefault("tostring.overwrite")
-					|| SourceManipulator.PREF_STORE
-							.getBoolean("tostring.overwrite");
-	
-			IMethod[] existingToString = type.findMethods(type.getMethod(
-					"toString", new String[] {}));
-	
-			String method = new StringBuffer(javaDoc).append(impl).toString();
-	
-			String indent = getIndentation(type);
-	
-			if (existingToString == null) {
-				method = INDENT_PAT.matcher(method).replaceAll(indent);
-				
-				type.createMethod(
-						"public void dummy() {\n" +
-						generated + 
-						"}\n"
-						, null, true, monitor);
-//				type.createMethod(method, null, true, monitor);
-			} else {
-				if (canOverwrite) {
-					existingToString[0].delete(false, monitor);
-	
-					method = INDENT_PAT.matcher(method).replaceAll(indent);
-	
-					type.createMethod(
-							"public void dummy() {\n" +
-							generated + 
-							"}\n"
-							, null, true, monitor);
-//					type.createMethod(method, null, true, monitor);
-				}
-			}
+			type.createMethod(
+					"public void dummy() {\n" +
+					generated + 
+					"}\n"
+					, null, true, monitor);
 		} catch (JavaModelException e) {
 			throw new JUtilsException("Type " + type.getElementName()
 					+ " generated exception", e);
