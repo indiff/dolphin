@@ -6,7 +6,7 @@ import org.eclipse.jdt.core.JavaModelException;
 
 
 /**
- * 生成代码.
+ * 生成伪代码.
  * @author TanYuanji
  *
  */
@@ -14,12 +14,23 @@ public final class Generate {
 	private final static String INDENT = "\t";
 	private final static String N = System.getProperty("line.separator", "\r\n");
 	
-			
-	public final static void generateDummyCode(final StringBuffer b, 
+	/**
+	 * 根据Field类型生成对应的伪代码.		
+	 * @param b 字符串 string buffer
+	 * @param field Eclipse SDK 中对应的 Field 类型
+	 * @param comment 对应的Field的注释
+	 * @param style 样式类型 
+	 * <ul>
+	 * 	<li>PreferenceConstants.STR_STYLE1 样式1 vo.setAge( 2 );</li>
+	 * 	<li>PreferenceConstants.STR_STYLE2 样式2 vo.setAge( po.getAge() );</li>
+	 * 	<li>PreferenceConstants.STR_STYLE3 样式3 待设定</li>
+	 * </ul>
+	 */
+	public final static void generateDummyCode(
+			final StringBuffer b, 
 			final IField field,
 			final String comment,
-			final String style
-			) {
+			final String style ) {
 		final String name = field.getElementName();
 		if (name == null || "serialVersionUID".equals(name)){
 			return;
@@ -46,7 +57,7 @@ public final class Generate {
 	}
 	
 	
-	public final static void generateDummyCode(
+	private final static void generateDummyCode(
 			final StringBuffer b, 
 			final String name,
 			final String comment,

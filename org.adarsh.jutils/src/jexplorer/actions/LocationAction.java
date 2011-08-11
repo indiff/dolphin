@@ -28,10 +28,11 @@ import org.eclipse.ui.part.FileEditorInput;
 import com.tan.util.StringUtil;
 
 /**
+ * 定位Action
  * @author Dolphin.
  * @see IWorkbenchWindowActionDelegate
  */
-public class Action implements IWorkbenchWindowActionDelegate {
+public class LocationAction implements IWorkbenchWindowActionDelegate {
 	private IWorkbenchWindow window;
 	private ISelection currentSelection;
 	public static final String WINDOWS = "win32";
@@ -41,7 +42,7 @@ public class Action implements IWorkbenchWindowActionDelegate {
 	private boolean isWindows;
 	private boolean isLogger = false; // Debug.
 	
-	public Action() {
+	public LocationAction() {
 		String os = System.getProperty("osgi.os");
 		if (WINDOWS.equalsIgnoreCase(os)){
 			systemBrowser = "explorer";

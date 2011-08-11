@@ -111,7 +111,7 @@ public class JarSearcher {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		final String path = "D:\\Eclipse-jee-helios\\eclipse\\plugins\\";
+		final String path = "D:\\Eclipse-Plugins";
 		JarSearcher searcher = new JarSearcher(path);
 		System.out.println("Jar文件数:" + searcher.size());
 		boolean searchClass = true;

@@ -168,20 +168,20 @@
             visible="true"
             id="jExplorer.actionSet">
          <action
-               label="&amp;定位"
+               label="&amp;定位选中"
                icon="icons/jExplorer.png"
-               class="jexplorer.actions.Action"
-               tooltip="定位"
+               class="jexplorer.actions.LocationAction"
+               tooltip="定位选中"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="jexplorer.actions.Action1">
          </action>
          
        	<action
-               label="&amp;Editplus打开"
+               label="&amp;外部编辑器打开"
                icon="icons/editplus.png"
                class="jexplorer.actions.EditplusAction"
-               tooltip="Editplus打开"
+               tooltip="外部编辑器打开"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="jexplorer.actions.EditplusAction">

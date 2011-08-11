@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Locale;
 
+import org.adarsh.jutils.internal.SourceManipulator;
+import org.adarsh.jutils.preferences.PreferenceConstants;
 import org.eclipse.core.internal.resources.ResourceInfo;
 import org.eclipse.core.internal.resources.Workspace;
 import org.eclipse.core.resources.IFile;
@@ -40,18 +42,18 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 	private String systemBrowser = "explorer";
 	private String line;
 	private boolean isWindows;
-	private boolean isLogger = true; // Debug.
+	private boolean isLogger = false; // Debug.
 	private String editplusPath = null;// "\"C:\\Program Files\\EditPlus 3\\EDITPLUS.EXE\"";
+	private String configEditorPath = null; // 检查 editorPath 是否变更
 	private boolean isEditplusRight;
 	
 	public EditplusAction() {
-		String os = System.getProperty("osgi.os");
-		if (WINDOWS.equalsIgnoreCase(os)){
+		String os = System.getProperty( "osgi.os" );
+		if ( WINDOWS.equalsIgnoreCase(os) ){
 			systemBrowser = "explorer";
 			isWindows = true;
-			editplusPath = Editor.getEditplusPath();
 		}
-		else if (LINUX.equalsIgnoreCase(os)) {
+		else if (LINUX.equalsIgnoreCase(os) ) {
 			systemBrowser = "nautilus";
 		}
 		line = System.getProperty("line.separator", "\r\n");
@@ -59,20 +61,43 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 				"操作系统:",os,line
 		});
 		
-		checkEditplusRight();
 	}
 
-	private void checkEditplusRight() {
-		if (StringUtil.isEmpty(editplusPath)) {
+	private void loadEditplus() {
+		configEditorPath = SourceManipulator.PREF_STORE.getString(PreferenceConstants.EDITOR_PATH);
+		
+		// 如果配置了编辑器的路径
+		if ( StringUtil.isNotEmpty( configEditorPath ) ) {
+			
+			if ( !checkEditplusRight( configEditorPath ) ) {
+				log(
+						new Object[]{
+								"编辑器配置有误！:", configEditorPath
+						}
+				);
+			}
+		}
+		
+		editplusPath = configEditorPath;
+		
+		if ( StringUtil.isEmpty( editplusPath ) ) {
+			editplusPath = Editor.getEditplusPath();
+			checkEditplusRight( editplusPath );
+		}
+		
+	}
+
+	private boolean checkEditplusRight( final String path ) {
+		if (StringUtil.isEmpty( path )) {
 			log(
 					new Object[]{
-							"Editplus路径为空:", editplusPath
+							"Editplus路径为空:", path
 					}
 			);
-			return;
+			return false ;
 		} else {
 			File f ;
-			String absolutePath = editplusPath;
+			String absolutePath = path ;
 			if (absolutePath.charAt(0) == '\"') {
 				absolutePath = absolutePath.substring(1);
 			}
@@ -85,6 +110,7 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 				f.isFile() && 
 				f.getName().toLowerCase().indexOf(".exe") >= 0) {
 				isEditplusRight = true;
+				return true;
 			} else {
 				log(
 						new Object[] {
@@ -95,16 +121,11 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 			f = null;
 			absolutePath = null;
 		}
+		
+		return false;
 	}
 
 	public void run(IAction action) {
-		if (!isEditplusRight) {
-			MessageDialog.openInformation(null,
-					"Editplus文件未找到",
-					"Editplus文件未找到,请安装或配置!");
-			action.setEnabled(false);
-			return;
-		}
 		if (currentSelection instanceof ITextSelection) {
 			run();
 			return;
@@ -169,7 +190,23 @@ public class EditplusAction implements IWorkbenchWindowActionDelegate {
 			paths = null;
 		}
 	}
+	
+	
 	private void command( final String locations ) {
+		
+		if ( isWindows) { // 如果是 windows 则加载Editplus.
+			loadEditplus();
+		}
+		
+		if ( !isEditplusRight ) {
+			MessageDialog.openInformation(null,
+					"编辑器文件未找到",
+					"编辑器文件未找到,请安装或配置!");
+//			action.setEnabled(false);
+			return;
+		}
+		
+		
 		if ( StringUtil.isEmpty( locations ) ) {
 			return;
 		}

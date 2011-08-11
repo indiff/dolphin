@@ -296,43 +296,50 @@ public final class StringUtil {
 		}
 		return "";
 	}
-
+	
+	/**
+	 * 根据 Field 的 type 签名生成对应的伪代码.
+	 * @param typeSignature
+	 * @param strings
+	 * @return
+	 */
 	public static String getDummyField( String typeSignature, String ... strings ) {
 		if ( isEmpty( typeSignature ) ) {
 			return null;
 		}
-		if ( typeSignature.length() == 1 ) {
+		if ( typeSignature.length() == 1 ) { // 原生类型  primitive type.
 			char c = typeSignature.charAt( 0 );
 			
 			switch (c) {
-			case Signature.C_BOOLEAN: { return " false "; } 
-			case Signature.C_BYTE: { return " (byte) 1 "; } 
-			case Signature.C_CHAR: { return " \'A\' "; } 
-			case Signature.C_DOUBLE: { return " 1d "; } 
-			case Signature.C_FLOAT: { return " 1f "; } 
-			case Signature.C_INT: { return "1"; } 
-			case Signature.C_COLON: { return ""; } 
-			case Signature.C_LONG: { return "1L"; } 
-			case Signature.C_SHORT: { return " (short) 2 "; } 
-			case Signature.C_VOID: { return ""; } 
-			case Signature.C_TYPE_VARIABLE: { return ""; } 
-			case Signature.C_STAR: { return ""; } 
-			case Signature.C_EXCEPTION_START: { return ""; } 
-			case Signature.C_EXTENDS: { return ""; } 
-			case Signature.C_SUPER: { return ""; } 
-			case Signature.C_DOT: { return ""; } 
-			case Signature.C_DOLLAR: { return ""; } 
-			case Signature.C_ARRAY: { return ""; } 
-			case Signature.C_RESOLVED: { return ""; } 
-			case Signature.C_UNRESOLVED: { return ""; } 
-			case Signature.C_NAME_END: { return ""; } 
-			case Signature.C_PARAM_START: { return ""; } 
-			case Signature.C_PARAM_END: { return ""; } 
-			case Signature.C_GENERIC_START: { return ""; } 
-			case Signature.C_GENERIC_END: { return ""; } 
-			case Signature.C_CAPTURE: { return ""; } 
+				case Signature.C_BOOLEAN: { return " false "; } 
+				case Signature.C_BYTE: { return " (byte) 1 "; } 
+				case Signature.C_CHAR: { return " \'A\' "; } 
+				case Signature.C_DOUBLE: { return " 1d "; } 
+				case Signature.C_FLOAT: { return " 1f "; } 
+				case Signature.C_INT: { return " 1 "; } 
+				case Signature.C_LONG: { return "1L"; } 
+				case Signature.C_SHORT: { return " (short) 2 "; } 
+				case Signature.C_COLON: { return " : "; } 
+				case Signature.C_VOID: { return ""; } 
+				case Signature.C_TYPE_VARIABLE: { return ""; } 
+				case Signature.C_STAR: { return ""; } 
+				case Signature.C_EXCEPTION_START: { return ""; } 
+				case Signature.C_EXTENDS: { return ""; } 
+				case Signature.C_SUPER: { return ""; } 
+				case Signature.C_DOT: { return ""; } 
+				case Signature.C_DOLLAR: { return ""; } 
+				case Signature.C_ARRAY: { return ""; } 
+				case Signature.C_RESOLVED: { return ""; } 
+				case Signature.C_UNRESOLVED: { return ""; } 
+				case Signature.C_NAME_END: { return ""; } 
+				case Signature.C_PARAM_START: { return ""; } 
+				case Signature.C_PARAM_END: { return ""; } 
+				case Signature.C_GENERIC_START: { return ""; } 
+				case Signature.C_GENERIC_END: { return ""; } 
+				case Signature.C_CAPTURE: { return ""; } 
+				default : return "";
 			}
-		} else if ( typeSignature.charAt(0) == 'Q' ) {
+		} else if ( typeSignature.charAt(0) == 'Q' ) { // 对象类型
 			typeSignature = typeSignature.replaceAll( ";", "" ).replaceAll( "<Q", "<");
 			String type = typeSignature.substring( 1 );
 			if ( "String".equals( type ) ) {
@@ -380,6 +387,16 @@ public final class StringUtil {
 
 			} 
 			return " new " + type + "() ";
+		} else if (  typeSignature.charAt(0) == '[' ) { // primitive 数组类型 
+			switch ( typeSignature.charAt( 1 ) ) {
+				case Signature.C_BOOLEAN: { return " new boolean[]{ true, false } "; } 
+				case Signature.C_BYTE: { return " new byte[]{ 1, 2 } "; } 
+				case Signature.C_CHAR: { return " new char[]{ 1, 2 } "; } 
+				case Signature.C_DOUBLE: { return " new double[]{ 1d,2d } "; } 
+				case Signature.C_FLOAT: { return " new float[]{ 1f,2f }  "; } 
+				case Signature.C_INT: { return " new int[]{ 1,2 }  "; } 
+				case Signature.C_SHORT: { return " new short[]{1,2}  "; } 
+			}
 		}
 		return null;
 	}

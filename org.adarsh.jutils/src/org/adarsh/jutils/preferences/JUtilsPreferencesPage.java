@@ -96,6 +96,16 @@ public class JUtilsPreferencesPage extends PreferencePage implements
 		label = new Label(parent, SWT.NONE);
 		label.setText(PreferenceConstants.CLASS_NAME_DESCRIPTION);
 		label.setFont(new Font(Display.getCurrent(), "", 10, 0));
+		
+		
+
+		label = new Label(parent, SWT.NONE);
+		label.setFont(new Font(Display.getCurrent(), "", 10, 1));
+		label.setText(PreferenceConstants.MODIFY_AUTHOR);
+
+		label = new Label(parent, SWT.NONE);
+		label.setText(PreferenceConstants.MODIFY_AUTHOR_DESCRIPTION);
+		label.setFont(new Font(Display.getCurrent(), "", 10, 0));
 
 		return parent;
 	}
