@@ -170,21 +170,21 @@
          <action
                label="&amp;定位选中"
                icon="icons/jExplorer.png"
-               class="jexplorer.actions.LocationAction"
+               class="com.tan.actions.LocationAction"
                tooltip="定位选中"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
-               id="jexplorer.actions.Action1">
+               id="com.tan.actions.LocationAction">
          </action>
          
        	<action
                label="&amp;外部编辑器打开"
                icon="icons/editplus.png"
-               class="jexplorer.actions.EditplusAction"
+               class="com.tan.actions.EditplusAction"
                tooltip="外部编辑器打开"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
-               id="jexplorer.actions.EditplusAction">
+               id="com.tan.actions.EditplusAction">
          </action>
       </actionSet>
    </extension>
