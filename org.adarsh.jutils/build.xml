@@ -30,13 +30,13 @@
 	<property name="resources" value="./resources" />
 	<property name="javadoc" value="./javadoc" />
 	<property name="build" value="./build" />
-	<property name="lib" value="./lib38" />
+	<property name="lib" value="./lib36" />
 	<property name="docs" value="./docs" />
 	<property name="classes" value="${build}/classes" />
 	<property name="config" value="./config" />
 	<property name="icons" value="./icons" />
 	<property name="filename" value="jutils" /> <!--org.adarsh.jutils_3.0.0_by_ty-->
-	<property name="jarfilename" value="jutils38.jar" />
+	<property name="jarfilename" value="jutils36.jar" />
 	<property name="outputJarDir" value="D:\Svns\fishstar\org.adarsh.jutils" /> <!--D:\Designer-Eclipse\eclipse\plugins-->
 	<property name="java-home" value="D:\Java\jdk1.6.0_25" /><!-- jdk1.6.0_24 java1.4.2 jdk16021 C:/Program Files/Java/jdk1.6.0_02 D:/Java/j2sdk1.4.2_16-->
 
@@ -74,16 +74,16 @@
          ================================= -->
 	<target name="compile" depends="init" description="Compiles the Java Source files">
 
-		<javac fork="true" executable="${java-home}/bin/javac.exe" encoding="utf-8" destdir="${classes}" debug="true" listfiles="true">
+		<javac includeantruntime="fasle" fork="true" executable="${java-home}/bin/javac.exe" encoding="utf-8" destdir="${classes}" debug="true" listfiles="true">
+			<src path="${resources}"/>
 			<src path="${src}"/>
-<!--			<src path="${resources}"/>
-			<src path="${javadoc}"/>-->
 			<classpath refid="classpath" />
 		</javac>
 		
 		<copy todir="${classes}">
-			<fileset dir="." includes="**/plugin.xml, **/build.properties" />
+			<fileset dir="." includes="**/plugin.xml, *.properties" />
 			<fileset dir="${src}" includes="**/*.xml, **/*.properties" />
+			<fileset dir="${resources}" includes="**/*.xml, **/*.properties" />
 		</copy>
 
 	</target>
@@ -105,6 +105,8 @@
 
 		<jar basedir="${classes}" destfile="${outputJarDir}/${jarfilename}"> <!--destfile="${build}/${filename}/${jarfilename}"-->
 			<manifest>
+				<attribute name="Bundle-Localization" value="plugin" />
+				<attribute name="Bundle-RequiredExecutionEnvironment" value="J2SE-1.5" />
 				<attribute name="Project" value="JUtils ToString Generator" />
 				<attribute name="Built-By" value="Tanyuanji" />
 				<attribute name="Built-On" value="${today}" />

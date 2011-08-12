@@ -22,22 +22,21 @@
 
 package org.adarsh.jutils.actions;
 
+import java.net.URI;
+
 import org.adarsh.jutils.JUtilsException;
 import org.adarsh.jutils.JUtilsPlugin;
 import org.adarsh.jutils.Messages;
 import org.adarsh.jutils.internal.Logger;
-import org.adarsh.jutils.internal.SourceManipulator;
 import org.adarsh.jutils.preferences.PreferenceConstants;
-import org.eclipse.core.filebuffers.FileBuffers;
-import org.eclipse.core.filebuffers.ITextFileBufferManager;
-import org.eclipse.core.filebuffers.LocationKind;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.internal.resources.ResourceInfo;
+import org.eclipse.core.internal.resources.Workspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
-import org.eclipse.jdt.core.IField;
 import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.core.ISourceRange;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.ui.IWorkingCopyManager;
@@ -45,8 +44,6 @@ import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.widgets.Shell;
@@ -55,21 +52,13 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.texteditor.ITextEditor;
 
-import com.tan.util.Generate;
-import com.tan.util.StringUtil;
 
 /**
- * The Viewer Action Delegate for toString.
- * 
- * @author Adarsh
- * 
- * @version 1.0, 2005
- * 
- * @version 2.0, 14th April 2006
- * 
- * @version 3.0, 10th December 2006
+ * Generate 
+ * @author Generate the dummy setter.
+ *
  */
-public class DummyJavaGeneratorVAD implements IEditorActionDelegate {
+public class DummySetterGeneratorVAD1 implements IEditorActionDelegate {
 	/**
 	 * The preference store associated with the plugin.
 	 */
@@ -80,6 +69,8 @@ public class DummyJavaGeneratorVAD implements IEditorActionDelegate {
 	 * The associated <tt>IEditorPart</tt>.
 	 */
 	private IEditorPart editorPart;
+
+	private ISelection currentSelection;
 
 	/**
 	 * {@inheritDoc}
@@ -93,24 +84,29 @@ public class DummyJavaGeneratorVAD implements IEditorActionDelegate {
 	 */
 	public void run(IAction action) {
 		IWorkingCopyManager manager = JavaUI.getWorkingCopyManager();
-
+		
 		IEditorInput editorInput = this.editorPart.getEditorInput();
-
 		ITextEditor editor = (ITextEditor) this.editorPart;
-
 		ITextSelection selection = (ITextSelection) editor
 				.getSelectionProvider().getSelection();
-
 		ICompilationUnit compUnit = manager.getWorkingCopy(editorInput);
-
 		Shell shell = this.editorPart.getSite().getShell();
-		
-		
-		final String style = SourceManipulator.PREF_STORE.getString(PreferenceConstants.GETTER_SETTER_STYLE);
 
 		try {
 			IJavaElement suspect = compUnit.getElementAt(selection.getOffset());
-
+			
+			IJavaProject project = suspect.getJavaProject();
+			Workspace workspace =  (Workspace) ResourcesPlugin.getWorkspace();
+			IPath xx = project.getPath();
+			ResourceInfo resource = workspace.getResourceInfo(xx, true, false);
+			URI uri = resource.getFileStoreRoot().computeURI(xx);
+			String workspacePath = uri.getPath();
+			String projectPath = xx.toString();
+			int idx = workspacePath.indexOf(projectPath);
+			if (idx >= 0) {
+				workspacePath = workspacePath.substring(0, idx);
+			}
+			
 			if (suspect == null) {
 				MessageDialog.openInformation(shell,
 						Messages.getString("tostring.failure.title"),
@@ -130,59 +126,17 @@ public class DummyJavaGeneratorVAD implements IEditorActionDelegate {
 					theType = (IType) ancestor;
 				}
 			}
-
+			
 			if (theType != null && theType.isClass()) {
-//				SourceManipulator.createToStringWithJavaDoc(theType);
-				
-				IField[] fields = theType.getFields();
-//				IMethod[] method = theType.getMethods();
-//				IAnnotation[] annotations = theType.getAnnotations();
-				
-				
-		        final ITextFileBufferManager fileBufferManager = FileBuffers.getTextFileBufferManager();
-		        final IPath path = compUnit.getPath();
-		        try {
-					fileBufferManager.connect(path, LocationKind.NORMALIZE, null);
-				} catch (CoreException e) {
-					e.printStackTrace();
-				}
-		        IDocument document = fileBufferManager.getTextFileBuffer(path, LocationKind.NORMALIZE).getDocument();
-		        ISourceRange range = null;
-		        String comment = "";
-		        StringBuffer b =  new StringBuffer();
-		        String javaName = theType.getElementName();
-		        Generate.generateDummyObjects(b, javaName);
-				for (int i = 0; i < fields.length; i++) {
-					range = fields[i].getJavadocRange();
-					if (range != null) {
-						 comment = StringUtil.getComment(
-								 fields[i].getElementName(),
-								document.get(range.getOffset(),range.getLength()),
-								true
-								);
-					} else {
-						range = fields[i].getSourceRange();
-						if (null != range) {
-							comment = StringUtil.getComment(
-									 fields[i].getElementName(),
-									document.get(range.getOffset(),range.getLength()),
-									false
-									);
-						}
-					}
-					Generate.generateDummyCode(
-							b, 
-							fields[i], 
-							comment,
-							style
-							);
-				//	b.append("\t// 设置 " +  comment +  "//" + f.getTypeSignature() + " "  +  f.getElementName()  + "\r\n");
-				}
-				
-				SourceManipulator.createDummySetterWithJavaDoc(theType,
-						 b.toString()
-				);
-				
+//				String path = 
+//					workspacePath + suspect.getPath().toOSString();		
+//				SourceManipulator.createDummySetterWithJavaDoc(theType,
+//						JavDocMain.generateSetter(new String[] { "javadoc", 
+//								path, "-encoding", "utf-8"})
+//				);
+				MessageDialog.openError(shell,
+						"信息",
+						"正在开发中......!");
 				
 				if (PREF_STORE
 						.getBoolean(PreferenceConstants.TOSTRING_AUTOSAVE)) {
@@ -205,16 +159,15 @@ public class DummyJavaGeneratorVAD implements IEditorActionDelegate {
 					Messages.getString("exception.message"));
 
 			Logger.error("Fatal error while generating toString", e);
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
+
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		// selection has changed. But, do nothing.
+		currentSelection = selection;
 	}
 }

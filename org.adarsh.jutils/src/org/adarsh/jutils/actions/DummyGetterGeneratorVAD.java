@@ -61,7 +61,7 @@ import com.tan.util.StringUtil;
 /**
  * The Viewer Action Delegate for toString.
  * 
- * @author Adarsh
+ * @author Dolphin
  * 
  * @version 1.0, 2005
  * 

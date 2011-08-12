@@ -27,9 +27,9 @@
 
 <plugin
    id="org.adarsh.jutils"
-   name="JUtils Plug-in"
+   name="%plugin.name"
    version="3.1.0"
-   provider-name="Dolphin Code"
+   provider-name="%plugin.provider-name"
    class="org.adarsh.jutils.JUtilsPlugin">
 
 <!--   <runtime>
@@ -57,47 +57,57 @@
             id="viewerContribution"
             targetID="#CompilationUnitEditorContext">
          <action
-               label="Generate to&amp;String()"
+               label="%action.label"
                class="org.adarsh.jutils.actions.ToStringGeneratorVAD"
                icon="icons/tostring.gif"
                menubarPath="generate.viewer/string"
                id="tostring.viewerContribution.action"/>
-               
+         
+         
          <action
-               label="Generate Dummy Setter"
+               label="%action.label.0"
                class="org.adarsh.jutils.actions.DummySetterGeneratorVAD"
                icon="icons/tostring.gif"
                menubarPath="generate.viewer/string"
                id="dummySetter.viewerContribution.action"/>
+               
+                        
+         <action
+               label="%action.label.1"
+               class="org.adarsh.jutils.actions.DummyGetterGeneratorVAD"
+               icon="icons/tostring.gif"
+               menubarPath="generate.viewer/string"
+               id="dummyGetter.viewerContribution.action"/>
+               
+
+               
+         <!--
          <action
                label="Generate Dummy Java"
                class="org.adarsh.jutils.actions.DummyJavaGeneratorVAD"
                icon="icons/tostring.gif"
                menubarPath="generate.viewer/string"
                id="dummyJava.viewerContribution.action"/>
+         -->
+
                
-         <action
-               label="Generate Dummy Getter"
-               class="org.adarsh.jutils.actions.DummyGetterGeneratorVAD"
-               icon="icons/tostring.gif"
-               menubarPath="generate.viewer/string"
-               id="dummyGetter.viewerContribution.action"/>
-               
-         <action
+         <!--
+         	<action
                label="Generate Getter &amp; Setter"
                class="org.adarsh.jutils.actions.GetterSetterGeneratorVAD"
                icon="icons/tostring.gif"
                menubarPath="generate.viewer/string"
                id="getterSetter.viewerContribution.action"/>
+         -->
                               
          <action
-               label="Generate Copy &amp;Constructor"
+               label="%action.label.2"
                icon="icons/constructor.gif"
                class="org.adarsh.jutils.actions.CopyConstructorGeneratorVAD"
                menubarPath="generate.viewer/constructor"
                id="constructor.viewerContribution.action"/>               
          <menu
-               label="&amp;JUtils"
+               label="%menu.label"
                path="group.additions"
                id="generate.viewer">
             <groupMarker name="string"/>
@@ -110,19 +120,19 @@
             id="objectContribution"
             objectClass="org.eclipse.jdt.core.ICompilationUnit">
          <action
-               label="Generate to&amp;String()"
+               label="%action.label.3"
                icon="icons/tostring.gif"
                class="org.adarsh.jutils.actions.ToStringGeneratorOAD"
                menubarPath="generate.object/string"
                id="tostring.objectContribution.action"/>
          <action
-               label="Generate Copy &amp;Constructor"
+               label="%action.label.4"
                icon="icons/constructor.gif"
                class="org.adarsh.jutils.actions.CopyConstructorGeneratorOAD"
                menubarPath="generate.object/constructor"
                id="constructor.objectContribution.action"/>               
          <menu
-               label="&amp;JUtils"
+               label="%menu.label.0"
                path="group.additions"
                id="generate.object">
             <groupMarker name="string"/>
@@ -136,22 +146,22 @@
       <page
             class="org.adarsh.jutils.preferences.JUtilsPreferencesPage"
             id="jutils"
-            name="JUtils"/>
+            name="%page.name"/>
       <page
             class="org.adarsh.jutils.preferences.ToStringPreferencesPage"
             category="jutils"
-            name="toString()"
+            name="%page.name.0"
             id="tostring.page">
       </page>
       <page
             class="org.adarsh.jutils.preferences.CopyConstructorPreferencesPage"
             category="jutils"
-            name="Copy Constructor"
+            name="%page.name.1"
             id="constructor.page"/>
       <page
             class="org.adarsh.jutils.preferences.GetterSetterPreferencesPage"
             category="jutils"
-            name="GetterSetter样式"
+            name="%page.name.2"
             id="getterSetter.page"/>
 			
 	</extension>
@@ -164,24 +174,24 @@
       <extension
          point="org.eclipse.ui.actionSets">
       <actionSet
-            label="Sample Action Set"
+            label="%actionSet.label"
             visible="true"
             id="jExplorer.actionSet">
          <action
-               label="&amp;定位选中"
+               label="%action.label.5"
                icon="icons/jExplorer.png"
                class="com.tan.actions.LocationAction"
-               tooltip="定位选中"
+               tooltip="%action.tooltip"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="com.tan.actions.LocationAction">
          </action>
          
        	<action
-               label="&amp;外部编辑器打开"
+               label="%action.label.6"
                icon="icons/editplus.png"
                class="com.tan.actions.EditplusAction"
-               tooltip="外部编辑器打开"
+               tooltip="%action.tooltip.0"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="com.tan.actions.EditplusAction">
