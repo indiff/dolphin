@@ -70,7 +70,7 @@ public class DummySetterGeneratorVAD1 implements IEditorActionDelegate {
 	 */
 	private IEditorPart editorPart;
 
-	private ISelection currentSelection;
+//	private ISelection currentSelection;
 
 	/**
 	 * {@inheritDoc}
@@ -107,13 +107,13 @@ public class DummySetterGeneratorVAD1 implements IEditorActionDelegate {
 				workspacePath = workspacePath.substring(0, idx);
 			}
 			
-			if (suspect == null) {
+/*			if (suspect == null) {
 				MessageDialog.openInformation(shell,
 						Messages.getString("tostring.failure.title"),
 						Messages.getString("tostring.failure.message"));
 
 				return;
-			}
+			}*/
 
 			IType theType = null;
 
@@ -162,12 +162,18 @@ public class DummySetterGeneratorVAD1 implements IEditorActionDelegate {
 		}
 	}
 
+	@Override
+	public void selectionChanged(IAction action, ISelection selection) {
+		// TODO Auto-generated method stub
+		
+	}
 
-	/**
+
+/*	*//**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	public void selectionChanged(IAction action, ISelection selection) {
 		// selection has changed. But, do nothing.
 		currentSelection = selection;
-	}
+	}*/
 }

@@ -23,7 +23,6 @@
 package org.adarsh.jutils.preferences;
 
 import org.adarsh.jutils.JUtilsPlugin;
-import org.adarsh.jutils.internal.Util;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;

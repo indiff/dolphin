@@ -36,7 +36,7 @@ public final class Generate {
 			return;
 		}
 		
-		String typeSignature = null, dummy = null;
+		String typeSignature = null;
 		try {
 			typeSignature = field.getTypeSignature();
 		} catch (JavaModelException e) {

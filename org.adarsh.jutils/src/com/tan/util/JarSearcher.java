@@ -17,21 +17,20 @@ import java.util.jar.JarFile;
  *
  */
 public class JarSearcher {
-	private String dir;
 	private File file;
-	private List lists;
+	private List<File> lists;
 	private String keyWord;
 	private String[] fileSuffixs;
+	private String dir;
 	
 	
 	public JarSearcher(final String dir) {
-		lists = new ArrayList();
+		lists = new ArrayList<File>();
 		init(dir);
-		
 	}
 
 	private void init(String dir) {
-		this.dir = dir;
+		this.setDir(dir);
 		this.file = new File(dir);
 		file.listFiles(new FileFilter() {
 			public boolean accept(File path) {
@@ -58,8 +57,8 @@ public class JarSearcher {
 		JarEntry jarEntry = null;
 		String name;
 		File file;
-		Enumeration entries;
-		for (Iterator iter = lists.iterator(); iter.hasNext();) {
+		Enumeration<JarEntry> entries;
+		for (Iterator<File> iter = lists.iterator(); iter.hasNext();) {
 			file = (File) iter.next();
 			try {
 				jarFile = new JarFile(file);
@@ -171,6 +170,14 @@ public class JarSearcher {
 
 	public void setFileSuffixs(String[] fileSuffixs) {
 		this.fileSuffixs = fileSuffixs;
+	}
+
+	public String getDir() {
+		return dir;
+	}
+
+	public void setDir(String dir) {
+		this.dir = dir;
 	}
 
 }

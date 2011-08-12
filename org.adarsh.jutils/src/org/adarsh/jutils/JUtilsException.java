@@ -25,11 +25,13 @@ package org.adarsh.jutils;
 /**
  * A JUtils specific runtime exception.
  * 
- * @author Adarsh
+ * @author Dolphin code
  * 
  * @version 1.0, 10th December 2006
  */
 public class JUtilsException extends RuntimeException {
+	private static final long serialVersionUID = -5355004212146678695L;
+
 	/**
 	 * Constructs a <tt>JUtilsException</tt> instance.
 	 */

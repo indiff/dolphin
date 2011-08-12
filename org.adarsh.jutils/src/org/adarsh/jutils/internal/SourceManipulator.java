@@ -38,7 +38,6 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.internal.corext.codemanipulation.StubUtility;
 import org.eclipse.jface.preference.IPreferenceStore;
 
@@ -143,7 +142,7 @@ public class SourceManipulator {
 					.getBoolean("tostring.sort");
 
 			if (isSort) {
-				Arrays.sort(fields, new Comparator() {
+				Arrays.sort(fields, new Comparator<Object>() {
 					public int compare(Object arg1, Object arg2) {
 						IField field1 = (IField) arg1;
 						IField field2 = (IField) arg2;
@@ -276,7 +275,7 @@ public class SourceManipulator {
 					.getBoolean("copycon.sort");
 
 			if (isSort) {
-				Arrays.sort(fields, new Comparator() {
+				Arrays.sort(fields, new Comparator<Object>() {
 					public int compare(Object arg1, Object arg2) {
 						IField field1 = (IField) arg1;
 						IField field2 = (IField) arg2;

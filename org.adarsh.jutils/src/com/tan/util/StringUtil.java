@@ -1,8 +1,5 @@
 package com.tan.util;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
@@ -241,7 +238,8 @@ public final class StringUtil {
 //        };
         
 		
-		Field[] fs = Signature.class.getFields();
+/*		
+ * Field[] fs = Signature.class.getFields();
 		
 		
 		for ( Field f : fs ) {
@@ -254,22 +252,22 @@ public final class StringUtil {
 					System.out.println("case Signature." + f.getName()
 							+ ": { return \"\"; } "
 						);
-					/**
+					*//**
 					 * case Signature.C_BOOLEAN: { return "false"; }
-					 */
+					 *//*
 				} else if ( false && c == String.class) {
 					System.out.println("else if ( Signature." + f.getName()
 							+ ".equals( typeSignature ) ) { return \"\";}"
 							);
-					/**
+					*//**
 //					 *  else if ( Signature.SIG_BOOLEAN.equals( typeSignature ) ) { return "false";}
-					 */
+					 *//*
 				} else {
 					System.out.println( c + "\t" + f.getName() );
 				}
 			}
-		}
-		
+			
+			*/
 		
 		System.out.println( getDummyField( "QPerson;" ) );
 		System.out.println( getDummyField( "QSet<QString;>;" ) );
