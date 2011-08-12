@@ -2,9 +2,9 @@
 
 <!--
 
-  JUtils ToString Generator for Eclipse
+  com.tan.jutils for Eclipse
   
-  Copyright (C) 2006  Adarsh Ramamurthy
+  Copyright (C) 2011  Dolhin Code
   
   This library is free software; you can redistribute it and/or modify it 
   under the terms of the GNU Lesser General Public License as published by 
@@ -21,11 +21,9 @@
   Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA.
   
   Plugin Home Page: http://eclipse-jutils.sourceforge.net
-
 -->
 
-<project name="JUtils ToString Generator" default="build" >
-
+<project name="com.tan.jutils" default="build" >
 	<property name="src" value="./src" />
 	<property name="resources" value="./resources" />
 	<property name="javadoc" value="./javadoc" />
@@ -107,7 +105,8 @@
 			<manifest>
 				<attribute name="Bundle-Localization" value="plugin" />
 				<attribute name="Bundle-RequiredExecutionEnvironment" value="J2SE-1.5" />
-				<attribute name="Project" value="JUtils ToString Generator" />
+				<attribute name="Bundle-SymbolicName" value="${ant.project.name}; singleton:=true" />
+				<attribute name="Project" value="${ant.project.name}" />
 				<attribute name="Built-By" value="Tanyuanji" />
 				<attribute name="Built-On" value="${today}" />
 				<attribute name="Built-jdk" value="${java-home}" />
