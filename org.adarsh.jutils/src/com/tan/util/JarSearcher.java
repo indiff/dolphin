@@ -11,6 +11,11 @@ import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+/**
+ * 查询jar文件中的class
+ * @author tanyuanji
+ *
+ */
 public class JarSearcher {
 	private String dir;
 	private File file;
