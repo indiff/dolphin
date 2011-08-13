@@ -38,7 +38,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-
 import com.sysdeo.eclipse.tomcat.editors.ProjectListElement;
 
 
@@ -100,6 +99,9 @@ public class TomcatLauncherPlugin extends AbstractUIPlugin {
 		
 		this.getWorkspace().addResourceChangeListener(new TomcatProjectChangeListener(), IResourceChangeEvent.PRE_DELETE);
 	}
+
+	
+
 
 	/**
 	 * Remove TOMCAT_HOME variable from Tomcat projects build path
@@ -182,12 +184,12 @@ public class TomcatLauncherPlugin extends AbstractUIPlugin {
 
 	public String getTomcatDir() {
 		IPreferenceStore pref =	TomcatLauncherPlugin.getDefault().getPreferenceStore();
-		return pref.getString(TOMCAT_PREF_HOME_KEY);
+		return pref.getString( TOMCAT_PREF_HOME_KEY );
 	}
 
 	public String getTomcatBase() {
 		IPreferenceStore pref =	TomcatLauncherPlugin.getDefault().getPreferenceStore();
-		return pref.getString(TOMCAT_PREF_BASE_KEY);
+		return pref.getString( TOMCAT_PREF_BASE_KEY );
 	}
 
 	public String getConfigFile() {

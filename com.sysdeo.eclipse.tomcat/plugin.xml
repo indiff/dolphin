@@ -43,14 +43,14 @@
             </separator>
          </menu>
          
-         <action 
-               label="%menu.path.label"
-               icon="icons/path.gif"
-               tooltip="%menu.path.label"
+         <action
                class="com.sysdeo.eclipse.tomcat.actions.PathActionDelegate"
+               icon="icons/path.gif"
+               id="com.sysdeo.eclipse.tomcat.path"
+               label="%menu.path.label"
                menubarPath="com.sysdeo.eclipse.tomcat.menu/group"
                toolbarPath="Normal/additions"
-               id="com.sysdeo.eclipse.tomcat.path">
+               tooltip="%menu.path.label">
          </action>
                   
          <action
