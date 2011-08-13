@@ -5,7 +5,6 @@ package com.sysdeo.eclipse.tomcat;
 
 import java.util.Arrays;
 
-import org.eclipse.core.runtime.CoreException;
 import org.junit.Before;
 import org.junit.Test;
 

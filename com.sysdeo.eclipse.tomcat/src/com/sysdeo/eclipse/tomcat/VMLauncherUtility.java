@@ -6,13 +6,11 @@ package com.sysdeo.eclipse.tomcat;
  */
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -22,34 +20,22 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
-import org.eclipse.debug.core.Launch;
 import org.eclipse.debug.core.model.ISourceLocator;
 import org.eclipse.debug.core.sourcelookup.ISourceContainer;
 import org.eclipse.debug.core.sourcelookup.ISourceLookupDirector;
 import org.eclipse.debug.core.sourcelookup.ISourcePathComputer;
 import org.eclipse.debug.core.sourcelookup.containers.DefaultSourceContainer;
 import org.eclipse.debug.ui.IDebugUIConstants;
-import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin;
-import org.eclipse.jdt.internal.debug.ui.classpath.ClasspathEntry;
-import org.eclipse.jdt.internal.debug.ui.launcher.LauncherMessages;
 import org.eclipse.jdt.internal.launching.JavaSourceLookupDirector;
-import org.eclipse.jdt.internal.launching.RuntimeClasspathEntry;
-import org.eclipse.jdt.launching.ExecutionArguments;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.jdt.launching.IRuntimeClasspathEntry;
 import org.eclipse.jdt.launching.IVMInstall;
 import org.eclipse.jdt.launching.IVMInstallType;
-import org.eclipse.jdt.launching.IVMRunner;
 import org.eclipse.jdt.launching.JavaRuntime;
-import org.eclipse.jdt.launching.LibraryLocation;
-import org.eclipse.jdt.launching.VMRunnerConfiguration;
-import org.eclipse.jdt.launching.sourcelookup.containers.ClasspathContainerSourceContainer;
-import org.eclipse.jdt.launching.sourcelookup.containers.ClasspathVariableSourceContainer;
 import org.eclipse.jdt.launching.sourcelookup.containers.JavaProjectSourceContainer;
 import org.eclipse.jdt.launching.sourcelookup.containers.PackageFragmentRootSourceContainer;
 

@@ -11,6 +11,8 @@
 package com.sysdeo.eclipse.tomcat.editors;
  
  
+import org.eclipse.jface.preference.FieldEditor;
+import org.eclipse.jface.util.Assert;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -18,9 +20,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-
-import org.eclipse.jface.preference.FieldEditor;
-import org.eclipse.jface.util.Assert;
 
 /**
  * A field editor for a combo box that allows the drop-down selection of one of a list of items.
