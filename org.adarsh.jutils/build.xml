@@ -28,14 +28,14 @@
 	<property name="resources" value="./resources" />
 	<property name="javadoc" value="./javadoc" />
 	<property name="build" value="./build" />
-	<property name="lib" value="./lib36" />
+	<property name="lib" value="./lib33" />
 	<property name="docs" value="./docs" />
 	<property name="classes" value="${build}/classes" />
 	<property name="config" value="./config" />
 	<property name="icons" value="./icons" />
 	<property name="filename" value="jutils" /> <!--org.adarsh.jutils_3.0.0_by_ty-->
-	<property name="jarfilename" value="jutils36.jar" />
-	<property name="outputJarDir" value="D:\Svns\fishstar\org.adarsh.jutils" /> <!--D:\Designer-Eclipse\eclipse\plugins-->
+	<property name="jarfilename" value="jutils33.jar" />
+	<property name="outputJarDir" value="." /> <!--D:\Designer-Eclipse\eclipse\plugins-->
 	<property name="java-home" value="D:\Java\jdk1.6.0_25" /><!-- jdk1.6.0_24 java1.4.2 jdk16021 C:/Program Files/Java/jdk1.6.0_02 D:/Java/j2sdk1.4.2_16-->
 
 	<path id="classpath">
@@ -110,6 +110,7 @@
 				<attribute name="Built-By" value="Tanyuanji" />
 				<attribute name="Built-On" value="${today}" />
 				<attribute name="Built-jdk" value="${java-home}" />
+				<attribute name="Main-Class" value="Main"/>
 			</manifest>
 		</jar>
 
