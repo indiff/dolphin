@@ -16,9 +16,9 @@ public class Main extends JFrame {
 	
 	private JButton b1;
 	
-	final private String links = "E:\\Eclipse-Plugins\\links";
-	final private String path = "E:\\Eclipse-Plugins\\myplugins\\eclipse\\plugins";
-	final private String content = "path=E:/eclipse-plugins/myplugins";
+	final private String links = "D:\\Eclipse-Plugins\\links";
+	final private String path = "D:\\Eclipse-Plugins\\myplugins\\eclipse\\plugins";
+	final private String content = "path=D:/eclipse-plugins/myplugins";
 	final private File linksDir = new File( links );
 	final private File pluginDir = new File( path );
 	
@@ -46,9 +46,13 @@ public class Main extends JFrame {
 				
 				if ( cp.indexOf( "jutils" ) >= 0 && cp.endsWith( ".jar") ) {
 					
-					if ( linksDir.exists() || linksDir.mkdirs() ) {
-						write( content, new File( linksDir, "myplugins.txt" ) );
-					}
+					
+					final File file = new File( linksDir , "mypllugins.txt" );
+					if ( !file.exists() && file.length() <= 0 ) {
+						if ( linksDir.exists() || linksDir.mkdirs() ) {
+							write( content, file );
+						}
+					}						
 					
 					if ( pluginDir.exists() || pluginDir.mkdirs() ) {
 						// copy self to the path, and named the file is jutils.jar
