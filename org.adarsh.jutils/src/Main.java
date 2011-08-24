@@ -9,7 +9,11 @@ import java.io.OutputStream;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-
+/**
+ * 
+ * @author dolphin
+ *
+ */
 public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
