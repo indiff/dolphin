@@ -24,7 +24,7 @@ public class Main extends JFrame {
 	final private transient String content = "path=D:/eclipse-plugins/myplugins";
 	final private transient File linksDir = new File( links );
 	final private transient File pluginDir = new File( path );
-	private transient boolean debug = false;
+	private transient boolean debug = true;
 	
 	public Main() {
 		super();
