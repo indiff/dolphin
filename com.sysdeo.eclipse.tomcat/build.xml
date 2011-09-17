@@ -74,7 +74,7 @@
 	</target>
 
 	<!-- ================================= 
-          target: clean              
+          target: tomcatsrc.zip              
          ================================= -->	
 	<target name="tomcatsrc.zip" depends="init" unless="tomcatsrc.zip">
 		<mkdir dir="${build.result.folder}"/>
@@ -86,7 +86,7 @@
 	</target>
 
 	<!-- ================================= 
-          target: clean              
+          target: build.jars              
          ================================= -->	
 	<target name="build.jars" depends="init">
 		<available property="tomcat.jar" file="${build.result.folder}/tomcat.jar"/>
