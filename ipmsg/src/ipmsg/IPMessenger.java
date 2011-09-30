@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -34,8 +36,25 @@ public abstract class IPMessenger extends Thread {
     
     /**
      * デフォルトのコンストラクタ。
+     * @throws SocketException 
+     * @throws IOException 
      */
-    public IPMessenger(){
+    public IPMessenger() {
+        this.userName    = "userName";
+        this.nickName    = "nickName";
+        this.group       = "group";
+        this.absenceMode = false;
+        this.absenceMsg  = "";
+        try {
+			this.hostName    = InetAddress.getLocalHost().getHostName();
+			this.socket      = new DatagramSocket( 8899 );
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
+        this.in_port     = 8899;
+        this.debug       = true;
     }
     
 
@@ -94,6 +113,16 @@ public abstract class IPMessenger extends Thread {
                      this.nickName+"\0"+this.group));
         this.loopFlag = true;
     }
+    
+    private int x;
+    /**
+     * ログインします。
+     */
+    public void login1() throws IOException {
+        broadcastMsg(makeTelegram(Constants.IPMSG_BR_ENTRY|Constants.IPMSG_BROADCASTOPT,
+                     this.nickName + (x++) +"\0"+this.group  + (x++)));
+        this.loopFlag = true;
+    }    
 
     /**
      * ログアウトします。

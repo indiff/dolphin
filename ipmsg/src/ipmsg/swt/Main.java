@@ -48,6 +48,7 @@ public class Main {
 	private Button send;
 	private Button lock;
 	private Button close;
+	private Button forge;
 	// private Button fresh;
 
 	private String userName;
@@ -224,6 +225,10 @@ public class Main {
 		// fresh.setText("刷新");
 		// fresh.addSelectionListener(new FreshListener());
 		/**** add fresh button ****/
+		forge = new Button( buttons, SWT.NULL );
+		forge.setText( "伪造" );
+		forge.addSelectionListener( new ForgeListener() );
+		
 		close = new Button(buttons, SWT.NULL);
 		close.setText("关闭");
 		close.addSelectionListener(new CloseListener());
@@ -348,6 +353,17 @@ public class Main {
 			System.exit(0);
 		}
 	}
+	
+	class ForgeListener extends SelectionAdapter {
+		public void widgetSelected(SelectionEvent e) {
+			try {
+				messenger.login1();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}	
+	
 
 	// /////////////////////////////////////////////////////////////////////////
 	// ソート関係�?�?��クラス群
