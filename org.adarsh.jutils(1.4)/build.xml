@@ -23,7 +23,7 @@
   Plugin Home Page: http://eclipse-jutils.sourceforge.net
 -->
 
-<project name="com.tan.jutils" default="build" >
+<project name="org.adarsh.jutils" default="build" >
 	<property name="src" value="./src" />
 	<property name="resources" value="./resources" />
 	<property name="javadoc" value="./javadoc" />
@@ -103,9 +103,11 @@
 
 		<jar basedir="${classes}" destfile="${outputJarDir}/${jarfilename}"> <!--destfile="${build}/${filename}/${jarfilename}"-->
 			<manifest>
+<!--
 				<attribute name="Bundle-Localization" value="plugin" />
 				<attribute name="Bundle-RequiredExecutionEnvironment" value="J2SE-1.5" />
 				<attribute name="Bundle-SymbolicName" value="${ant.project.name}; singleton:=true" />
+-->
 				<attribute name="Project" value="${ant.project.name}" />
 				<attribute name="Built-By" value="Tanyuanji" />
 				<attribute name="Built-On" value="${today}" />
