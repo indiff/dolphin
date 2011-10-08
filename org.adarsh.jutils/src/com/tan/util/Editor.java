@@ -64,6 +64,7 @@ public class Editor {
 	private static String readCmd(final String path) {
 		Process p = null;
 		final String command = "reg query \"" + path + "\" /ve "; ///t " + DATA_TYPE;
+		System.out.println( command );
 		try {
 			p = Runtime.getRuntime().exec(command);
 		} catch (IOException e) {
