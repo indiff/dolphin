@@ -63,12 +63,7 @@ public final class Generate {
 			final String name,
 			final String comment,
 			final String[] dummys) {
-		if (name == null || "serialVersionUID".equals(name)){
-			return;
-		}
-		final String methodSuffix =
-				Character.toUpperCase(name.charAt(0)) + 
-				name.substring(1), dummy;
+		final String methodSuffix = Character.toUpperCase(name.charAt(0)) + name.substring(1), dummy;
 		
 		if ( null == dummys || dummys.length == 0  || dummys[0] == null ) {
 			dummy = "po.get" + methodSuffix + "()";
