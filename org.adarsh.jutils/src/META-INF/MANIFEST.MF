@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.adarsh.jutils; singleton:=true
 Main-Class: Main
+REM_Bundle-RequiredExecutionEnvironment: J2SE-1.5
+REM_Bundle-SymbolicName: org.adarsh.jutils; singleton:=true
