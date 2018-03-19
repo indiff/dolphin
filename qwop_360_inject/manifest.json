@@ -1,0 +1,18 @@
+{
+  "name": "360's inject",
+  "description": "qwop 360 inject.",
+  // "version" : "0.1.1" , 
+  "version" : "0.1.1" ,  // click when alt key press
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": [
+	"http://*.huochepiao.360.cn/*"
+      ],
+      "all_frames": true,
+      "js": ["jquery.js", "content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": ["inject.js"]
+}

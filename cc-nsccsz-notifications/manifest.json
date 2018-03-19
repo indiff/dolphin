@@ -1,0 +1,33 @@
+{
+	"name": "工单系统通知服务 by qwop",
+	"version": "1.0",
+	"author": "qwop",
+	"description":
+	"显示工单系统的桌面通知.",
+	"icons": {"16": "16.png", "48": "48.png", "128": "128.png"},
+
+	// 脚本执行权限
+
+	"content_scripts": [
+		{
+			"permissions": [ "notifications" ],
+			"matches": [
+				"http://cc.nsccsz.gov.cn/*"
+			],
+			"all_frames": true,
+			"js": [  "lib/jquery.js", "lib/ext-all-debug.js",  "cc.js" ],
+			"run_at": "document_end"
+		}
+	], 
+
+	"permissions": [ "notifications" , "tabs" ],
+
+	"options_page": "options.html",
+	"background": { "scripts": ["background.js"] },
+	"manifest_version": 2,
+
+	// crbug.com/134315
+	"web_accessible_resources": [
+	"48.png"
+	]
+}

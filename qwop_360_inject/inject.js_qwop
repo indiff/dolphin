@@ -1,0 +1,326 @@
+var indiff = JSON.parse( localStorage[ 'indiff' ] );
+var jsonStr = ( localStorage[ 'indiff' ] );
+var passengersArr = JSON.parse( jsonStr )[ 'passengers'];
+
+function getType(o)
+{
+	var _t;
+	return ((_t = typeof(o)) == "object" ? o==null && "null" || Object.prototype.toString.call(o).slice(8,-1):_t).toLowerCase();
+}
+function extend(destination,source)
+{
+	for(var p in source)
+	{
+		if(getType(source[p])=="array"||getType(source[p])=="object")
+		{
+			destination[p]=getType(source[p])=="array"?[]:{};
+			arguments.callee(destination[p],source[p]);
+		}
+		else
+		{
+			destination[p]=source[p];
+		}
+	}
+}
+
+function selectPassengerName(){
+	var args = arguments;
+	if( null != args && args.length > 1 ){
+		var arr = args[0];
+		if( null != arr && arr.length > 0 ){
+			var newArr = [];
+			var priorityIndex = 1;
+			// 1. deep copy 
+			extend(newArr, arr );
+
+			// 2. reset checked
+			for( var j=0; j < newArr.length; j++ ){
+				newArr[j].checked = false;
+				newArr[j].priority = 0;
+			}
+
+			// 3. set checked 
+			for( var i=1; i<args.length; i++ ){
+				var name = args[i];
+				for( var j=0; j < newArr.length; j++ ){
+					if( name != '' && name == newArr[j].passenger_name  ){
+						newArr[j].checked = true;
+						newArr[j].priority = priorityIndex++;
+					} 
+				}
+			}
+			return newArr;
+		}
+	}
+	return null;
+	// passenger_name
+}
+
+
+
+// 创建备选日期
+function makeAlternativeDate(){
+	var args = arguments;
+	var arr = [];
+	var date = new Date().getDate();
+	if( null != args && args.length > 0 ){
+		var priorityIndex = 0;
+		for( var i=0; i< args.length ; i++ ){
+			var theDate = new Date( args[i] );
+			/*
+			var theDateDate = theDate.getDate();
+			if( theDateDate > date ){
+				continue;
+			}
+			*/
+			arr.push( {
+				"id": theDate.getTime(), 
+				"text": args[i], 
+				"checked": true, 
+				"priority": priorityIndex++, 
+				"display": ""
+			});
+		}
+	}
+	return arr;
+}
+
+// 深圳->景德镇
+function sz_jdz1(){
+	var newObj = JSON.parse( jsonStr );
+	newObj[ 'FROM_STATION' ]	=	'深圳';
+	newObj[ 'TO_STATION' ]		=	'景德镇';
+	newObj[ 'forwardDate' ]		=	"2015-09-26";
+	newObj[ 'timeout' ]		=	1500;
+	newObj[ 'autoSubmit' ]		=	{ "auto": true };
+	newObj[ 'alternativeDate' ] = makeAlternativeDate(  "2015-09-26" );
+	newObj[ 'prioritySeats' ]	=	[  "硬卧", "软卧", "硬座" ];  //高级软卧
+	newObj[ 'passengers' ] = selectPassengerName( passengersArr, '谭元吉', '王晓芳' );
+	localStorage[ 'indiff' ] = JSON.stringify( newObj );
+	// document.location.reload();
+}
+
+// sz_dest
+function sz_dest( dest ){
+	var newObj = JSON.parse( jsonStr );
+	newObj[ 'FROM_STATION' ]	=	'深圳';
+	newObj[ 'TO_STATION' ]		=	dest;
+	newObj[ 'timeout' ]		=	1500;
+	newObj[ 'forwardDate' ]		=	"2015-09-26";
+	newObj[ 'autoSubmit' ]		=	{ "auto": true };
+	newObj[ 'alternativeDate' ] = makeAlternativeDate(  "2015-09-26" );
+	newObj[ 'prioritySeats' ]	=	[  "硬卧", "软卧", "高级软卧" ];
+	newObj[ 'passengers' ] = selectPassengerName( passengersArr, '谭元吉' );
+	localStorage[ 'indiff' ] = JSON.stringify( newObj );
+	// document.location.reload();
+}
+
+// 景德镇->深圳
+function jdz_sz(){
+	var newObj = JSON.parse( jsonStr );
+	newObj[ 'FROM_STATION' ]	=	'景德镇';
+	newObj[ 'TO_STATION' ]		=	'深圳';
+	newObj[ 'timeout' ]		=	1500;
+	newObj[ 'forwardDate' ]		=	"2015-09-26";
+	newObj[ 'alternativeDate' ] = makeAlternativeDate(  "2015-09-26" );
+	newObj[ 'autoSubmit' ]		=	{ "auto": true };
+	newObj[ 'prioritySeats' ]	=	[  "硬卧", "软卧", "高级软卧" ];
+	newObj[ 'passengers' ] = selectPassengerName( passengersArr, '谭元吉' );
+	localStorage[ 'indiff' ] = JSON.stringify( newObj );
+	// document.location.reload();
+}
+
+// 景德镇->深圳345
+function jdz_sz345(){
+	var newObj = JSON.parse( jsonStr );
+	newObj[ 'FROM_STATION' ]	=	'景德镇';
+	newObj[ 'TO_STATION' ]		=	'深圳';
+	newObj[ 'timeout' ]		=	1500;
+	newObj[ 'forwardDate' ]		=	"2015-09-26";
+	newObj[ 'alternativeDate' ] = makeAlternativeDate(  "2015-09-26" );
+	newObj[ 'autoSubmit' ]		=	{ "auto": true };
+	newObj[ 'prioritySeats' ]	=	[  "硬卧", "软卧", "高级软卧" ];
+	newObj[ 'passengers' ] = selectPassengerName( passengersArr, '谭元吉' );
+	localStorage[ 'indiff' ] = JSON.stringify( newObj );
+	// document.location.reload();
+}
+
+
+// 深圳北->长沙南
+function szb_csn(){
+	var newObj = JSON.parse( jsonStr );
+	newObj[ 'FROM_STATION' ]	=	'深圳北';
+	newObj[ 'TO_STATION' ]		=	'长沙南';
+	newObj[ 'timeout' ]		=	1500;
+	newObj[ 'forwardDate' ]		=	"2015-09-26";
+	newObj[ 'autoSubmit' ]		=	{ "auto": true };
+	newObj[ 'prioritySeats' ]	=	["一等座","二等座","硬卧", "软卧", "高级软卧"];
+	newObj[ 'alternativeDate' ] = makeAlternativeDate(  "2015-09-26" );
+	newObj[ 'passengers' ] = selectPassengerName( passengersArr, '何骧', '康贺梁', '黄秋菊');
+	localStorage[ 'indiff' ] = JSON.stringify( newObj );
+	// document.location.reload();
+}
+
+
+// 广州南->长沙南
+function gzn_csn(){
+	var newObj = JSON.parse( jsonStr );
+	newObj[ 'FROM_STATION' ]	=	'广州南';
+	newObj[ 'TO_STATION' ]		=	'长沙南';
+	newObj[ 'timeout' ]		=	1500;
+	newObj[ 'forwardDate' ]		=	"2015-09-26";
+	newObj[ 'autoSubmit' ]		=	{ "auto": true };
+	newObj[ 'prioritySeats' ]	=	["一等座","二等座","硬卧", "软卧", "高级软卧"];
+	newObj[ 'alternativeDate' ] = makeAlternativeDate(  "2015-03-08", "2015-03-09", "2015-03-10" );
+	newObj[ 'passengers' ] = selectPassengerName( passengersArr, '何骧', '康贺梁', '黄秋菊' );
+	localStorage[ 'indiff' ] = JSON.stringify( newObj );
+	// document.location.reload();
+}
+
+// 深圳->南昌
+function sz_nc_01(){
+	var newObj = JSON.parse( jsonStr );
+	newObj[ 'FROM_STATION' ]	=	'深圳';
+	newObj[ 'TO_STATION' ]		=	'南昌';
+	newObj[ 'forwardDate' ]		=	"2015-09-26";
+	newObj[ 'timeout' ]		=	1500;
+	newObj[ 'autoSubmit' ]		=	{ "auto": true };
+	newObj[ 'alternativeDate' ] = makeAlternativeDate(  "2015-09-26" );
+	newObj[ 'prioritySeats' ]	=	[  "一等座", "二等座", "硬卧", "动卧","软卧", "高级软卧" ];
+	newObj[ 'priorityTrains' ] ["SZQ_NCG"]	= [  "G638","G634","D2322" ];
+	newObj[ 'passengers' ] = selectPassengerName( passengersArr, '谭元吉' );
+	localStorage[ 'indiff' ] = JSON.stringify( newObj );
+	// document.location.reload();
+}
+
+
+// 东莞->九江
+function dg_jj(){
+	var newObj = JSON.parse( jsonStr );
+	newObj[ 'FROM_STATION' ]	=	'东莞';
+	newObj[ 'TO_STATION' ]		=	'九江';
+	newObj[ 'forwardDate' ]		=	"2015-10-06";
+	newObj[ 'timeout' ]		=	1500;
+	newObj[ 'autoSubmit' ]		=	{ "auto": true };
+	newObj[ 'alternativeDate' ] = makeAlternativeDate(  "2015-10-06" );
+	newObj[ 'prioritySeats' ]	=	[  "一等座", "二等座", "硬卧", "动卧","软卧", "高级软卧" ];
+	newObj[ 'priorityTrains' ] ["RTQ_JJG"]	= [  "K4510","3160","3388", "3108", "L270" ];
+	newObj[ 'passengers' ] = selectPassengerName( passengersArr, '谭元吉' );
+	localStorage[ 'indiff' ] = JSON.stringify( newObj );
+	// document.location.reload();
+}
+
+// 深圳->景德镇
+function nc_jdz_02(){
+	var newObj = JSON.parse( jsonStr );
+	newObj[ 'FROM_STATION' ]	=	'南昌';
+	newObj[ 'TO_STATION' ]		=	'景德镇';
+	newObj[ 'forwardDate' ]		=	"2015-10-06";
+	newObj[ 'timeout' ]		=	1500;
+	newObj[ 'autoSubmit' ]		=	{ "auto": true };
+	newObj[ 'alternativeDate' ] = makeAlternativeDate(  "2015-10-06" );
+	newObj[ 'prioritySeats' ]	=	[  "硬卧", "软卧", "高级软卧" ];
+	newObj[ 'passengers' ] = selectPassengerName( passengersArr, '谭元吉' );
+	localStorage[ 'indiff' ] = JSON.stringify( newObj );
+	// document.location.reload();
+}
+
+
+// 全点击
+function all_click(){
+	var ids = [
+		'sz_jdz1', 'sz_lp', 'sz_hs', 'sz_jx', 'sz_xc' 
+	];
+	alert( 'new all click' );
+	document.getElementById( 'sz_jdz1' ).click();
+	document.getElementById( 'sz_lp' ).click();
+	for( var i=0; i<ids.length; i++ ){
+	//	document.getElementById( ids[i] ).click();
+		break;
+	}
+}
+
+var g_map = {
+	'景德镇' : 'JCG',
+	'深圳' : 'SZQ',
+	'南昌' : 'NCG',
+	'九江' : 'JJG',
+	'绩溪县' : 'JRH',
+	'河源' : 'VIQ',
+	'黄山' : 'HKH',
+	'东莞东' : 'DMQ',
+	'东莞' : 'RTQ',
+	'惠州' : 'HCQ'
+};
+
+
+/*
+乐平市	LPS	LPG		南	FALSE	赣	×
+绩溪县	JXX	JRH	31373	上	FALSE	皖	
+宣城	XCH	ECH	31319	上	TRUE	皖	
+景德镇	JDZ	JCG	31469	南	FALSE	赣	
+
+var href = parent.location.href;
+var idx = href.indexOf( '#' );
+if( idx> 0 ){
+	var funName = ( href.substring( idx+1 ) );
+	eval( funName + "();");
+}
+*/
+
+var script = document.createElement('script');
+script.type = 'text/javascript';
+// http://pc.huochepiao.360.cn/?from=BJP&to=DLT&date=2015-03-08
+script.innerHTML = ""
+	// + "$('<a id=first style=color:red; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>新页面</b></a>').appendTo('div.filter');"
+	+ "$('<a id=sz_nc_01 style=color:#3300cc; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>01.深圳->南昌</b></a>').appendTo('div.filter');"
+	+ "$('<a id=nc_jdz_02 style=color:##3300cc; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>02.南昌->景德镇</b></a>').appendTo('div.filter');"
+	+ "$('<a id=dg_jj style=color:#00cc00; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>东莞->九江</b></a>').appendTo('div.filter');"
+
+	
+
+	+ "$('<a id=sz_jdz1 style=color:#0000ff; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>深圳->景德镇</b></a>').appendTo('div.filter');"
+	+ "$('<a id=sz_lp style=color:#ff00ff; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>深圳->乐平市</b></a>').appendTo('div.filter');"
+	+ "$('<a id=sz_hs style=color:#cc0000; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>深圳->黄山</b></a>').appendTo('div.filter');"
+	+ "$('<a id=sz_jx style=color:#330000; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>深圳->绩溪县</b></a>').appendTo('div.filter');"
+	+ "$('<a id=sz_xc style=color:#ff9900; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>深圳->宣城</b></a>').appendTo('div.filter');"
+	+ "$('<a id=jdz_sz style=color:#330066; target=_blank href=http://pc.huochepiao.360.cn/?src=ext><b>景德镇->深圳</b></a>').appendTo('div.filter');"
+	+ "$('<a id=jdz_sz345 style=color:#cc66ff; target=_blank href=http://pc.huochepiao.360.cn/?src=ext title=3月4日、3月5日><b>景德镇->深圳345</b></a>').appendTo('div.filter');"
+	
+	
+	// + "$('<a id=all_click style=color:#ff0000; title=全部点击，延迟1秒><b>全点</b></a>').appendTo('div.filter');"
+	// + "$('<a id=szb_csn style=color:green; target=_blank href=http://pc.huochepiao.360.cn/?from=SZQ&to=JCG&date=2015-02-14><b>深圳北->长沙南</b></a>').appendTo('div.filter');"
+	//	+ "$('<a id=gzn_csn style=color:#ff33ff; target=_blank href=http://pc.huochepiao.360.cn/?from=SZQ&to=JCG&date=2015-02-14><b>广州南->长沙南</b></a>').appendTo('div.filter');"
+
+
+	+ "$('#sz_nc_01').click(function(){ sz_nc_01(); }); "
+
+	+ "$('#nc_jdz_02').click(function(){ nc_jdz_02(); }); "
+	+ "$('#dg_jj').click(function(){ dg_jj(); }); "
+
+
+	+ "$('#sz_jdz1').click(function(){ sz_jdz1(); }); "
+
+	+ "$('#sz_lp').click(function(){ sz_dest( '乐平市' ); }); "
+
+	+ "$('#sz_hs').click(function(){ sz_dest( '黄山'); }); "
+
+	+ "$('#sz_jx').click(function(){ sz_dest( '绩溪县'); }); "
+
+	+ "$('#sz_xc').click(function(){ sz_dest( '宣城'); }); "
+
+	+ "$('#jdz_sz').click(function(){ jdz_sz(); }); "
+
+	+ "$('#jdz_sz345').click(function(){ jdz_sz345(); }); "
+
+	+ "$('#szb_csn').click(function(){ szb_csn(); }); "
+
+	+ "$('#gzn_csn').click(function(){ gzn_csn(); }); "
+
+	+ "$('#all_click').click(function(){ all_click(); }); "
+;
+document.head.appendChild(script);
+
+//document.title = indiff[ 'FROM_STATION' ].charAt( 0 ) + "->" + indiff[ 'TO_STATION' ].charAt( 0 );
+document.title = indiff[ 'FROM_STATION' ].charAt( 0 ) + indiff[ 'TO_STATION' ].charAt( 0 );
+jQuery( '#btn_refresh' ).trigger( 'click' );

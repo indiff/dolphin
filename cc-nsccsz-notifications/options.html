@@ -1,0 +1,50 @@
+<!--
+  Copyright (c) 2014 NSCCSZ. All rights reserved.
+  by qwop 2014 07 31
+-->
+<!doctype html>
+<html>
+  <head>
+    <title>工单系统桌面通知-选项 by qwop </title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <script src="options.js"></script>
+  </head>
+  <body>
+    <h1>
+      <img src="64.png" alt="Toast">
+      工单系统桌面通知
+    </h1>
+    <h2>选项</h2>
+    <form id="options">
+      <input type="checkbox" name="isActivated" id="isActivated" checked><label for="isActivated">是否启用桌面通知</label><br/>
+		  
+      通知的间隔事件：
+      <select name="frequency">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+        <option>25</option>
+        <option>30</option>
+      </select>
+		分钟。
+
+		<br/>
+		登陆账号：<input type="text" name="cc_username" id="cc_username" value="" />
+		登陆密码：<input type="password" name="cc_password" id="cc_password" value="" />
+<!-- 	  <br />
+	  间隔单位:
+	  <select name="unit" id="unit">
+	  		<option value="10000">10秒</option>
+	  		<option value="1000">1秒</option>
+	  		<option value="5000" >5秒</option>
+	  		<option value="60000">分钟</option>
+	  </select> -->
+    </form>
+  </body>
+</html>
