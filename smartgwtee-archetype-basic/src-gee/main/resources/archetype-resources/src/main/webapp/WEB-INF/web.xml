@@ -1,0 +1,124 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5"
+    xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd">
+
+    <!--
+      // Starts/stops sample db on startup. You can remove it and the database located at WEB-INF/db/hsqldb 
+      // unless you're using the Isomorphic sample datasources
+      -->
+    <listener>
+        <listener-class>${package}.server.hsqldb.HSQLServletContextListener</listener-class>
+    </listener>
+
+	<!-- Dynamic Compression -->
+	<filter>
+		<filter-name>CompressionFilter</filter-name>
+		<filter-class>com.isomorphic.servlet.CompressionFilter</filter-class>
+	</filter>
+	
+	<!-- CompressionFilter for dynamic compression -->
+	<filter-mapping>
+		<filter-name>CompressionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- // ISC init: initializes ISC framework -->
+	<servlet>
+		<servlet-name>Init</servlet-name>
+		<servlet-class>com.isomorphic.base.Init</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- // The IDACall servlet handles all Built-in DataSource operations -->
+	<servlet>
+		<servlet-name>IDACall</servlet-name>
+		<servlet-class>com.isomorphic.servlet.IDACall</servlet-class>
+	</servlet>
+
+	<!-- The FileDownload servlet downloads static files, like a webserver -->
+	<servlet>
+		<servlet-name>FileDownload</servlet-name>
+		<servlet-class>com.isomorphic.servlet.FileDownload</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>HttpProxy</servlet-name>
+		<servlet-class>com.isomorphic.servlet.HttpProxyServlet</servlet-class>
+	</servlet>
+
+	<!-- 
+	    The DataSourceLoader servlet returns Javascript representations of the dataSources whose
+        ID's are passed to it - it is an alternative to using the <loadDS> JSP tag.
+        
+        We use the JSP mechanism for i18n, but the alternative DataSourceLoader is left here just
+        so that you can easily make the switch if you need to (e.g., for an Isomorphic test case)
+      -->
+    <servlet>
+        <servlet-name>DataSourceLoader</servlet-name>
+        <servlet-class>com.isomorphic.servlet.DataSourceLoader</servlet-class>
+    </servlet> 
+
+	<servlet-mapping>
+		<servlet-name>IDACall</servlet-name>
+		<url-pattern>/${module}/sc/IDACall/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>HttpProxy</servlet-name>
+		<url-pattern>/${module}/sc/HttpProxy/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FileDownload</servlet-name>
+		<url-pattern>/${module}/sc/skins/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- serve ISC modules compressed, with expires headers -->
+	<servlet-mapping>
+		<servlet-name>FileDownload</servlet-name>
+		<url-pattern>/${module}/sc/system/modules/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- serve ISC development modules compressed, with expires headers -->
+	<servlet-mapping>
+		<servlet-name>FileDownload</servlet-name>
+		<url-pattern>/${module}/sc/system/development/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- server skin assets with expires headers -->
+	<servlet-mapping>
+		<servlet-name>FileDownload</servlet-name>
+		<url-pattern>/${module}/sc/system/reference/skin/*</url-pattern>
+	</servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DataSourceLoader</servlet-name>
+        <url-pattern>/${module}/sc/DataSourceLoader</url-pattern>
+    </servlet-mapping>
+
+	<jsp-config>
+        <jsp-property-group>
+            <url-pattern>/ds/*</url-pattern>
+        </jsp-property-group>
+        <taglib>
+            <taglib-uri>http://www.smartclient.com/taglibs/isc</taglib-uri>
+            <taglib-location>/WEB-INF/iscTaglib.xml</taglib-location>
+        </taglib>
+    </jsp-config>
+
+	<mime-mapping>
+		<extension>manifest</extension>
+		<mime-type>text/cache-manifest</mime-type>
+	</mime-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>${module}.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

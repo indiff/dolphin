@@ -1,0 +1,34 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5"
+    xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd">
+
+    <!--
+      // Starts/stops sample db on startup. You can remove it and the database located at WEB-INF/db/hsqldb 
+      // unless you're using the Isomorphic sample datasources
+      -->
+    <listener>
+        <listener-class>${package}.server.hsqldb.HSQLServletContextListener</listener-class>
+    </listener>
+
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>${module}.html</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>${module}Servlet</servlet-name>
+    <servlet-class>${package}.server.${module}ServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>${module}Servlet</servlet-name>
+    <url-pattern>/${artifactId}/${module}</url-pattern>
+  </servlet-mapping>
+
+</web-app>

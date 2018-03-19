@@ -1,0 +1,30 @@
+<!-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> -->
+
+<DataSource xmlns:fmt="urn:jsptld:http://java.sun.com/jsp/jstl/fmt"
+    ID="Order"  
+    serverType="sql"
+    autoDeriveSchema="true"
+    tableName="MASTERDETAIL_ORDER" >  
+    
+    <fmt:setBundle basename="${package}.shared.datasources.Order"/>
+    
+    <fields>  
+        <field name="ORDERID" type="sequence" primaryKey="true" canEdit="false">
+            <title><fmt:message key="orderId.title"/></title>
+            <prompt><fmt:message key="orderId.prompt"/></prompt>
+        </field>
+        <field name="CUSTOMERNAME">
+            <title><fmt:message key="customerName.title"/></title>
+            <prompt><fmt:message key="customerName.prompt"/></prompt>
+        </field>
+        <field name="ORDERDATE">
+            <title><fmt:message key="orderDate.title"/></title>
+            <prompt><fmt:message key="orderDate.prompt"/></prompt>
+        </field>
+        <field name="TRACKINGNUMBER">
+            <title><fmt:message key="trackingNumber.title"/></title>
+            <prompt><fmt:message key="trackingNumber.prompt"/></prompt>
+        </field>
+    </fields>  
+      
+</DataSource>

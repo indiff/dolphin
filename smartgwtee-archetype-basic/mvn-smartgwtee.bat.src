@@ -1,0 +1,6 @@
+call mvn	archetype:generate^
+		-DarchetypeGroupId=com.isomorphic^
+		-DarchetypeArtifactId=smartgwtee-archetype-basic^
+		-Dfile=smartgwtee-archetype-basic-0.0.1-SNAPSHOT.jar
+
+pause

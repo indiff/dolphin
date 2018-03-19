@@ -1,0 +1,43 @@
+<!-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> -->
+
+<DataSource xmlns:fmt="urn:jsptld:http://java.sun.com/jsp/jstl/fmt"
+    ID="OrderItem"
+    serverType="sql"
+    autoDeriveSchema="true"
+    tableName="MASTERDETAIL_ORDERITEM">
+    
+    <fields>
+        
+        <fmt:setBundle basename="${package}.shared.datasources.OrderItem"/>
+        <field name="PK" type="sequence" primaryKey="true" hidden="true">
+            <title><fmt:message key="itemId.title"/></title>
+            <prompt><fmt:message key="itemId.prompt"/></prompt>
+        </field>
+        <field name="ORDERID" canEdit="false" required="true" foreignKey="Order.ORDERID">
+            <title><fmt:message key="orderId.title"/></title>
+            <prompt><fmt:message key="orderId.prompt"/></prompt>
+        </field>
+
+        <fmt:setBundle basename="${package}.shared.datasources.Order"/>
+        <field name="CUSTOMERNAME" includeFrom="Order.CUSTOMERNAME">
+            <title><fmt:message key="customerName.title"/></title>
+            <prompt><fmt:message key="customerName.prompt"/></prompt>
+        </field>
+
+        <fmt:setBundle basename="${package}.shared.datasources.OrderItem"/>
+        <field name="ITEMDESCRIPTION" required="true">
+            <title><fmt:message key="itemDescription.title"/></title>
+            <prompt><fmt:message key="itemDescription.prompt"/></prompt>
+        </field>
+        <field name="QUANTITY" required="true">
+            <title><fmt:message key="quantity.title"/></title>
+            <prompt><fmt:message key="quantity.prompt"/></prompt>
+        </field>
+        <field name="UNITPRICE" required="true">
+            <title><fmt:message key="unitPrice.title"/></title>
+            <prompt><fmt:message key="unitPrice.prompt"/></prompt>
+        </field>
+        
+    </fields>
+    
+</DataSource>
